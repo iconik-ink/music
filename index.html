@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BigBoy Records| Premium Music</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      :root {
+        --primary: #4361ee;
+        --secondary: #3a0ca3;
+        --accent: #4cc9f0;
+        --dark: #1a1a2e;
+        --darker: #16213e;
+        --light: #b8c1ec;
+        --text: #ffffff;
+      }
+      /* Shopping Cart and User Icon Styles */
+      .nav-icon-link {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+      }
+
+      .nav-icon-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+        color: white;
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: #ff5a00;
+        color: white;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+      }
+
+      /* Remove background from the last nav-secondary item */
+      .nav-secondary li:last-child a {
+        background: transparent;
+        padding: 8px;
+      }
+
+      .nav-secondary li:last-child a:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+        box-shadow: none;
+      }
+
+      /* Adjust spacing for the new items */
+      .nav-secondary {
+        display: flex;
+        list-style: none;
+        gap: 20px;
+        margin-left: 20px;
+        padding-left: 30px;
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+        align-items: center;
+      }
+
+      body {
+        background: url("img/BANNR/rock.gif") center/cover fixed;
+        color: var(--text);
+        line-height: 1.6;
+        position: relative;
+        min-height: 100vh;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(22, 33, 62, 0.6); /* Reduced opacity from 0.9 to 0.6 */
+        z-index: -1;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Floating Navbar Styles */
+      header {
+        padding: 25px 0;
+        position: fixed;
+        top: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 1200px;
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo-section {
+        display: flex;
+        align-items: center;
+      }
+
+      .logo-img {
+        height: 80px; /* Adjust size as needed */
+        filter: brightness(0) invert(1); /* Makes logo white */
+        transition: transform 0.3s ease;
+      }
+
+      .logo-img:hover {
+        transform: scale(1.05);
+      }
+
+      .logo-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+      }
+
+      .logo-main {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: white;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .logo-by {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 400;
+      }
+
+      .logo-shutterstock {
+        font-size: 0.75rem;
+        color: #ff5a00;
+        font-weight: 700;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+      }
+
+      .nav-main {
+        display: flex;
+        list-style: none;
+        gap: 35px;
+      }
+
+      .nav-main li a {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 0;
+        position: relative;
+      }
+
+      .nav-main li a:hover {
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      .nav-main li a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent);
+        transition: width 0.3s ease;
+      }
+
+      .nav-main li a:hover::after {
+        width: 100%;
+      }
+
+      .nav-icon {
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+
+      .nav-secondary {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+        margin-left: 20px;
+        padding-left: 30px;
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .nav-secondary li a {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        padding: 8px 16px;
+        border-radius: 20px;
+      }
+
+      .nav-secondary li a:hover {
+        color: white;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .nav-secondary li:last-child a {
+        background: var(--primary);
+        color: white;
+        padding: 8px 20px;
+      }
+
+      .nav-secondary li:last-child a:hover {
+        background: var(--secondary);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+      }
+
+      .hero {
+        padding: 180px 0 100px;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        background: linear-gradient(to right, var(--accent), var(--primary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 30px;
+        color: var(--light);
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: linear-gradient(to right, var(--primary), var(--secondary));
+        color: white;
+        padding: 15px 40px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+      }
+
+      .search-section {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 40px 0;
+        border-radius: 20px;
+        margin: 40px 0;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .search-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .search-box {
+        display: flex;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .search-input {
+        flex: 1;
+        padding: 15px 25px;
+        background: transparent;
+        border: none;
+        color: white;
+        font-size: 1rem;
+      }
+
+      .search-input::placeholder {
+        color: var(--light);
+      }
+
+      .search-button {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 0 25px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .search-button:hover {
+        background: var(--secondary);
+      }
+
+      .search-tags {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .tag {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .tag:hover {
+        background: rgba(67, 97, 238, 0.3);
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 50px;
+        background: linear-gradient(to right, var(--accent), var(--primary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .section-subtitle {
+        text-align: center;
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 50px;
+        color: var(--light);
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin: 80px 0;
+      }
+
+      .feature {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        transition: transform 0.3s ease;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .feature:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .feature i {
+        font-size: 2.5rem;
+        color: var(--accent);
+        margin-bottom: 20px;
+      }
+
+      .feature h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+      }
+
+      .feature p {
+        color: var(--light);
+      }
+
+      .platforms {
+        margin: 100px 0;
+      }
+
+      .platform-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+
+      .platform-card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .platform-card:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .platform-card i {
+        font-size: 3rem;
+        color: var(--accent);
+        margin-bottom: 20px;
+      }
+
+      .platform-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+
+      .platform-card p {
+        color: var(--light);
+        font-size: 1.1rem;
+      }
+
+      .licensing {
+        margin: 100px 0;
+      }
+
+      .license-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: center;
+      }
+
+      .license-content h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        background: linear-gradient(to right, var(--accent), var(--primary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .license-content p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        color: var(--light);
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      }
+
+      .license-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      .license-item {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .license-item:hover {
+        background: rgba(255, 255, 255, 0.08);
+        transform: translateY(-5px);
+      }
+
+      .license-item i {
+        font-size: 2rem;
+        color: var(--accent);
+        margin-bottom: 15px;
+      }
+
+      .playlists {
+        margin: 100px 0;
+      }
+
+      .playlist-container {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 50px;
+      }
+
+      .playlist-categories {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .category {
+        padding: 15px 20px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .category:hover,
+      .category.active {
+        background: rgba(67, 97, 238, 0.3);
+      }
+
+      .playlist-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+      }
+
+      .playlist-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .playlist-card:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .playlist-image {
+        height: 150px;
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        color: white;
+      }
+
+      .playlist-info {
+        padding: 20px;
+      }
+
+      .playlist-info h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+      }
+
+      .playlist-info p {
+        color: var(--light);
+        font-size: 0.9rem;
+      }
+
+      .pricing {
+        text-align: center;
+        margin: 100px 0;
+      }
+
+      .pricing-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        padding: 40px;
+        max-width: 400px;
+        margin: 0 auto;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .price {
+        font-size: 3rem;
+        font-weight: 700;
+        margin: 20px 0;
+        color: var(--accent);
+      }
+
+      .price span {
+        font-size: 1rem;
+        color: var(--light);
+      }
+
+      .pricing-features {
+        list-style: none;
+        margin: 30px 0;
+        text-align: left;
+      }
+
+      .pricing-features li {
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .pricing-features li:last-child {
+        border-bottom: none;
+      }
+
+      .pricing-features li i {
+        color: var(--accent);
+        margin-right: 10px;
+      }
+
+      footer {
+        text-align: center;
+        padding: 40px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--light);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 1024px) {
+        .nav-main {
+          gap: 25px;
+        }
+
+        .nav-secondary {
+          gap: 20px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        header {
+          padding: 20px 0;
+          top: 15px;
+        }
+
+        .nav-container {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        nav {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .nav-main,
+        .nav-secondary {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .nav-secondary {
+          border-left: none;
+          padding-left: 0;
+          margin-left: 0;
+        }
+
+        .hero {
+          padding: 220px 0 100px;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .search-box {
+          flex-direction: column;
+          border-radius: 15px;
+        }
+
+        .search-input {
+          padding: 15px;
+        }
+
+        .search-button {
+          padding: 15px;
+          border-radius: 0 0 15px 15px;
+        }
+
+        .license-container {
+          grid-template-columns: 1fr;
+        }
+
+        .license-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .playlist-container {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Floating Navbar -->
+      <header>
+        <div class="nav-container">
+          <div class="logo-section">
+            <!-- Logo Image -->
+            <img
+              src="img/logo/logo-01.png"
+              alt="SoundVerse Pro Logo"
+              class="logo-img"
+            />
+          </div>
+          <nav>
+            <ul class="nav-main">
+              <li>
+                <a href="#"><span class="nav-icon">♪</span> Music</a>
+              </li>
+              <li>
+                <a href="#"><span class="nav-icon">98</span> Genres</a>
+              </li>
+              <li>
+                <a href="#"><span class="nav-icon">☁</span> Moods</a>
+              </li>
+              <li>
+                <a href="#"><span class="nav-icon">♫</span> Playlists</a>
+              </li>
+              <li>
+                <a href="#"><span class="nav-icon">SFX</span> Sound Effects</a>
+              </li>
+            </ul>
+            <ul class="nav-secondary">
+              <li><a href="#">Pricing</a></li>
+              <li><a href="#">Subscribe</a></li>
+              <li>
+                <a href="#" class="nav-icon-link">
+                  <i class="fas fa-shopping-cart"></i>
+                  <span class="cart-count">8</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-icon-link">
+                  <i class="fas fa-user"></i>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <section class="hero">
+        <h1>Where Every Click Drops a Beat.</h1>
+        <p>
+          Unlimited downloads from our library of studio-quality audio for your
+          videos, podcasts, games, and apps for one simple low price.
+        </p>
+        <a href="unlimite.html" class="cta-button">Get Unlimited Access →</a>
+      </section>
+
+      <section class="search-section">
+        <div class="search-container">
+          <div class="search-box">
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Search by genre, mood, instrument, prompt — or paste a link"
+            />
+            <button class="search-button"><i class="fas fa-search"></i></button>
+          </div>
+          <div class="search-tags">
+            <div class="tag">Cinematic</div>
+            <div class="tag">Upbeat</div>
+            <div class="tag">Ambient</div>
+            <div class="tag">Rock</div>
+            <div class="tag">Electronic</div>
+            <div class="tag">Jazz</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="features">
+        <div class="feature">
+          <i class="fas fa-infinity"></i>
+          <h3>Unlimited Downloads</h3>
+          <p>
+            Access our entire library with a single subscription. Download as
+            much as you need for all your projects.
+          </p>
+        </div>
+        <div class="feature">
+          <i class="fas fa-gem"></i>
+          <h3>Premium Quality</h3>
+          <p>
+            All our tracks are professionally produced and mastered to the
+            highest industry standards.
+          </p>
+        </div>
+        <div class="feature">
+          <i class="fas fa-file-contract"></i>
+          <h3>Simple Licenses</h3>
+          <p>
+            Use our music anywhere - YouTube, podcasts, commercials, games. All
+            covered by our straightforward license.
+          </p>
+        </div>
+      </section>
+
+      <section id="platforms" class="platforms">
+        <h2 class="section-title">Music and sound effects for any platform</h2>
+        <p class="section-subtitle">
+          Providing royalty-free music for over 1.2M creative projects since
+          2015.
+        </p>
+
+        <div class="platform-grid">
+          <div class="platform-card">
+            <i class="fas fa-podcast"></i>
+            <h3>Podcasts</h3>
+            <p>Trusted by 21,021 podcasters</p>
+          </div>
+          <div class="platform-card">
+            <i class="fab fa-youtube"></i>
+            <h3>YouTube</h3>
+            <p>Trusted by 63,097 YouTubers</p>
+          </div>
+          <div class="platform-card">
+            <i class="fab fa-instagram"></i>
+            <h3>Instagram</h3>
+            <p>Used in 59,992 campaigns</p>
+          </div>
+          <div class="platform-card">
+            <i class="fab fa-tiktok"></i>
+            <h3>TikTok</h3>
+            <p>Used by 10,516 TikTokers</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="licensing" class="licensing">
+        <div class="license-container">
+          <div class="license-content">
+            <h2>Easy licensing for every project</h2>
+            <p>
+              Simple, substantial licenses with all rights included for every
+              type of project.
+            </p>
+            <a href="#" class="cta-button">See our licenses</a>
+          </div>
+          <div class="license-grid">
+            <div class="license-item">
+              <i class="fab fa-youtube"></i>
+              <p>YouTube</p>
+            </div>
+            <div class="license-item">
+              <i class="fab fa-vimeo"></i>
+              <p>Vimeo</p>
+            </div>
+            <div class="license-item">
+              <i class="fab fa-twitch"></i>
+              <p>Twitch</p>
+            </div>
+            <div class="license-item">
+              <i class="fab fa-tiktok"></i>
+              <p>TikTok</p>
+            </div>
+            <div class="license-item">
+              <i class="fab fa-instagram"></i>
+              <p>Instagram</p>
+            </div>
+            <div class="license-item">
+              <i class="fab fa-facebook"></i>
+              <p>Facebook</p>
+            </div>
+            <div class="license-item">
+              <i class="fas fa-podcast"></i>
+              <p>Podcasts</p>
+            </div>
+            <div class="license-item">
+              <i class="fas fa-tv"></i>
+              <p>Broadcast/OTT</p>
+            </div>
+            <div class="license-item">
+              <i class="fas fa-film"></i>
+              <p>Film & TV</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="playlists" class="playlists">
+        <h2 class="section-title">
+          No More Dead Air. Find the Beat That Brings Your Verse to Life.
+        </h2>
+        <p class="section-subtitle">
+          Discover our customized collections to find the track for whatever
+          you're working on.
+        </p>
+
+        <div class="playlist-container">
+          <div class="playlist-categories">
+            <div class="category active">Artists</div>
+            <div class="category">Genres</div>
+            <div class="category">Moods</div>
+            <div class="category">Projects</div>
+            <div class="category">Seasonal</div>
+            <div class="category">Staff Picks</div>
+          </div>
+          <div class="playlist-grid">
+            <div class="playlist-card">
+              <div class="playlist-image">
+                <i class="fas fa-music"></i>
+              </div>
+              <div class="playlist-info">
+                <h3>Best of October</h3>
+                <p>Latest & Greatest</p>
+                <p>29 Tracks</p>
+              </div>
+            </div>
+            <div class="playlist-card">
+              <div class="playlist-image">
+                <i class="fas fa-fire"></i>
+              </div>
+              <div class="playlist-info">
+                <h3>Weekly Hits</h3>
+                <p>Producer's Picks</p>
+                <p>28 Tracks</p>
+              </div>
+            </div>
+            <div class="playlist-card">
+              <div class="playlist-image">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <div class="playlist-info">
+                <h3>Now Trending</h3>
+                <p>Chart Topping Hits</p>
+                <p>32 Tracks</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" class="pricing">
+        <h2 class="section-title">Simple, Affordable Pricing</h2>
+        <p class="section-subtitle">
+          Get access to our entire library of premium music and sound effects
+          for one low monthly price.
+        </p>
+        <div class="pricing-card">
+          <h3>Premium Plan</h3>
+          <div class="price">$16<span>/month</span></div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> Unlimited downloads</li>
+            <li><i class="fas fa-check"></i> Commercial use</li>
+            <li><i class="fas fa-check"></i> New content weekly</li>
+            <li><i class="fas fa-check"></i> No attribution required</li>
+            <li><i class="fas fa-check"></i> Cancel anytime</li>
+          </ul>
+          <a href="#" class="cta-button">Get Started Today</a>
+        </div>
+      </section>
+
+      <footer>
+        <p>&copy; 2023 BigBoy Records. All rights reserved.</p>
+      </footer>
+    </div>
+
+    <script>
+      // Simple search functionality
+      document
+        .querySelector(".search-button")
+        .addEventListener("click", function () {
+          const searchTerm = document.querySelector(".search-input").value;
+          if (searchTerm.trim() !== "") {
+            alert(
+              `Searching for: "${searchTerm}"\nThis is a demo - in a real application, this would search the library.`
+            );
+          } else {
+            alert("Please enter a search term");
+          }
+        });
+
+      // Add enter key functionality to search
+      document
+        .querySelector(".search-input")
+        .addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            document.querySelector(".search-button").click();
+          }
+        });
+
+      // Tag click functionality
+      document.querySelectorAll(".tag").forEach((tag) => {
+        tag.addEventListener("click", function () {
+          const tagText = this.textContent;
+          document.querySelector(".search-input").value = tagText;
+          document.querySelector(".search-button").click();
+        });
+      });
+
+      // Category selection
+      document.querySelectorAll(".category").forEach((category) => {
+        category.addEventListener("click", function () {
+          document.querySelectorAll(".category").forEach((cat) => {
+            cat.classList.remove("active");
+          });
+          this.classList.add("active");
+        });
+      });
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll("nav a").forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href");
+          if (targetId.startsWith("#")) {
+            document.querySelector(targetId).scrollIntoView({
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      // Animate elements on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      // Observe features and pricing card
+      document
+        .querySelectorAll(
+          ".feature, .pricing-card, .platform-card, .license-item, .playlist-card"
+        )
+        .forEach((el) => {
+          el.style.opacity = 0;
+          el.style.transform = "translateY(20px)";
+          el.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+          observer.observe(el);
+        });
+    </script>
+  </body>
+</html>

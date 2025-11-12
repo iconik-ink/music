@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pricing & Subscriptions | PremiumBeat</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      :root {
+        --primary: #4361ee;
+        --secondary: #3a0ca3;
+        --accent: #4cc9f0;
+        --dark: #1a1a2e;
+        --darker: #16213e;
+        --light: #ececec;
+        --text: #ffffff;
+        --success: #4ade80;
+        --warning: #f59e0b;
+        --error: #ef4444;
+      }
+      /* HEADING COLOR */
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: var(--text) !important;
+      }
+
+      .page-title,
+      .section-title,
+      .faq-title,
+      .plan-name {
+        color: var(--text) !important;
+      }
+
+      body {
+        background: url("img/bg/music2.jpeg") center/cover fixed;
+        color: var(--text);
+        line-height: 1.6;
+        position: relative;
+        min-height: 100vh;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(22, 33, 62, 0.2); /* Minimal overlay */
+        z-index: -1;
+        opacity: 50%;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Floating Navbar Styles */
+      header {
+        padding: 25px 0;
+        position: fixed;
+        top: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 1400px;
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .logo-img {
+        height: 90px;
+        filter: brightness(0) invert(1);
+        transition: transform 0.3s ease;
+      }
+
+      .logo-img:hover {
+        transform: scale(1.05);
+      }
+      .logo-link {
+        display: inline-block;
+        text-decoration: none;
+        border: none;
+      }
+
+      .logo-link:hover {
+        border: none;
+        background: none;
+      }
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+      }
+
+      /* Pricing Page Styles */
+      .pricing-page {
+        padding: 150px 0 80px;
+      }
+
+      .page-header {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+
+      .page-title {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        background: linear-gradient(to right, var(--accent), var(--primary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .page-subtitle {
+        font-size: 1.3rem;
+        color: var(--light);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      /* Subscription Plans */
+      .subscription-plans {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        margin-bottom: 80px;
+      }
+
+      .plan-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        padding: 40px 30px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .plan-card:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .plan-card.featured {
+        border: 2px solid var(--accent);
+        transform: scale(1.05);
+      }
+
+      .plan-card.featured:hover {
+        transform: scale(1.05) translateY(-10px);
+      }
+
+      .plan-badge {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: var(--accent);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+
+      .plan-header {
+        margin-bottom: 30px;
+      }
+
+      .plan-name {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: white;
+      }
+
+      .plan-price {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+        color: var(--accent);
+      }
+
+      .plan-billing {
+        color: var(--light);
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+      }
+
+      .plan-features {
+        list-style: none;
+        margin-bottom: 30px;
+      }
+
+      .plan-features li {
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .plan-features li:last-child {
+        border-bottom: none;
+      }
+
+      .plan-features li i {
+        color: var(--success);
+        font-size: 1rem;
+      }
+
+      .plan-features li.crossed {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .plan-features li.crossed i {
+        color: var(--error);
+      }
+
+      .plan-button {
+        display: block;
+        width: 100%;
+        background: linear-gradient(to right, var(--primary), var(--secondary));
+        color: white;
+        border: none;
+        padding: 15px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      .plan-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+      }
+
+      .plan-button.outline {
+        background: transparent;
+        border: 2px solid var(--primary);
+        color: var(--primary);
+      }
+
+      .plan-button.outline:hover {
+        background: var(--primary);
+        color: white;
+      }
+
+      /* License Comparison Sections */
+      .license-section {
+        margin-bottom: 80px;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 50px;
+        background: linear-gradient(to right, var(--accent), var(--primary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .comparison-table-container {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        padding: 40px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        overflow-x: auto;
+      }
+
+      .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 800px;
+      }
+
+      .comparison-table th,
+      .comparison-table td {
+        padding: 20px;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .comparison-table th {
+        font-weight: 600;
+        color: var(--accent);
+        font-size: 1.1rem;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .comparison-table td {
+        color: var(--light);
+      }
+
+      .comparison-table tr:last-child td {
+        border-bottom: none;
+      }
+
+      .feature-name {
+        font-weight: 600;
+        color: white;
+        text-align: left !important;
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .license-type {
+        font-weight: 600;
+        color: var(--accent);
+        font-size: 0.9rem;
+      }
+
+      .check-mark {
+        color: var(--success);
+        font-size: 1.2rem;
+      }
+
+      .cross-mark {
+        color: var(--error);
+        font-size: 1.2rem;
+      }
+
+      /* FAQ Section */
+      .faq-section {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        padding: 60px 40px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 80px;
+      }
+
+      .faq-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 50px;
+        color: white;
+      }
+
+      .faq-list {
+        list-style: none;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .faq-item {
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .faq-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .faq-question {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .faq-question:hover {
+        color: var(--accent);
+      }
+
+      .faq-answer {
+        color: var(--light);
+        line-height: 1.7;
+      }
+
+      .more-faqs {
+        text-align: center;
+        margin-top: 40px;
+      }
+
+      .more-faqs-link {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
+
+      .more-faqs-link:hover {
+        text-decoration: underline;
+      }
+
+      /* Trust Badges */
+      .trust-section {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+
+      .trust-title {
+        font-size: 1.2rem;
+        color: var(--light);
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .trust-logos {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+      }
+
+      .trust-logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.8);
+        transition: all 0.3s ease;
+      }
+
+      .trust-logo:hover {
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      .trust-divider {
+        height: 2px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        margin: 40px 0;
+      }
+
+      /* Footer */
+      .main-footer {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 60px 0 30px;
+        margin-top: 80px;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-column h3 {
+        color: white;
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+
+      .footer-links {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        color: var(--light);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: white;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .footer-logo-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+      }
+
+      .footer-logo-main {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+      }
+
+      .footer-logo-by {
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .footer-logo-shutterstock {
+        color: #ff5a00;
+        font-weight: 700;
+      }
+
+      .footer-resources {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .footer-resources a {
+        color: var(--light);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-resources a:hover {
+        color: white;
+      }
+
+      .language-selector {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--light);
+      }
+
+      .language-selector select {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+      }
+
+      .payment-methods {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .payment-text {
+        color: var(--light);
+        font-size: 0.9rem;
+        margin-right: 10px;
+      }
+
+      .payment-icon {
+        font-size: 1.5rem;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .copyright {
+        color: var(--light);
+        font-size: 0.9rem;
+        text-align: center;
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      @media (max-width: 1024px) {
+        .plan-card.featured {
+          transform: scale(1);
+        }
+
+        .plan-card.featured:hover {
+          transform: translateY(-10px);
+        }
+
+        .footer-content {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        header {
+          padding: 20px 0;
+          top: 15px;
+        }
+
+        .nav-container {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        nav {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .nav-main,
+        .nav-secondary {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .nav-secondary {
+          border-left: none;
+          padding-left: 0;
+          margin-left: 0;
+        }
+
+        .pricing-page {
+          padding: 200px 0 80px;
+        }
+
+        .page-title {
+          font-size: 2.5rem;
+        }
+
+        .subscription-plans {
+          grid-template-columns: 1fr;
+        }
+
+        .comparison-table-container {
+          padding: 20px 15px;
+        }
+
+        .footer-content {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .footer-content {
+          grid-template-columns: 1fr;
+        }
+
+        .trust-logos {
+          gap: 20px;
+        }
+
+        .trust-logo {
+          font-size: 1.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Floating Navbar -->
+      <header>
+        <div class="nav-container">
+          <div class="logo-section">
+            <!-- Logo Image with Home Link -->
+            <a href="index.html" class="logo-link">
+              <img
+                src="img/logo/logo-01.png"
+                alt="SoundVerse Pro Logo"
+                class="logo-img"
+              />
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- Pricing Page Content -->
+      <section class="pricing-page">
+        <div class="page-header">
+          <h1 class="page-title">Unlimited Music and SFX Subscriptions</h1>
+          <p class="page-subtitle">
+            Choose the perfect plan for your creative projects. All plans
+            include unlimited downloads from our extensive library.
+          </p>
+        </div>
+
+        <!-- Subscription Plans -->
+        <div class="subscription-plans">
+          <!-- Creator Plan -->
+          <div class="plan-card">
+            <div class="plan-header">
+              <h3 class="plan-name"></h3>
+              <div class="plan-price">US$9.99</div>
+              <div class="plan-billing">
+                / month*<br />*Billed annually US$119.88/year
+              </div>
+            </div>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> Personal use</li>
+              <li><i class="fas fa-check"></i> Publish anywhere online</li>
+              <li><i class="fas fa-check"></i> Monetize 1 social channel</li>
+              <li><i class="fas fa-check"></i> Unlimited downloads</li>
+              <li><i class="fas fa-check"></i> Discounted license upgrades</li>
+            </ul>
+            <a href="checkout.html?plan=creator" class="plan-button"
+              >SUBSCRIBE NOW</a
+            >
+          </div>
+
+          <!-- Standard Plan -->
+          <div class="plan-card featured">
+            <div class="plan-badge">MOST POPULAR</div>
+            <div class="plan-header">
+              <h3 class="plan-name">Standard</h3>
+              <div class="plan-price">US$24.99</div>
+              <div class="plan-billing">
+                / month*<br />*Billed annually US$299.88/year
+              </div>
+            </div>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> Everything in Creator, plus:</li>
+              <li><i class="fas fa-check"></i> Projects for clients</li>
+              <li><i class="fas fa-check"></i> Publish content for clients</li>
+              <li><i class="fas fa-check"></i> Monetize 5 social channels</li>
+              <li><i class="fas fa-check"></i> Unlimited downloads</li>
+              <li><i class="fas fa-check"></i> Discounted license upgrades</li>
+            </ul>
+            <a href="checkout.html?plan=standard" class="plan-button"
+              >SUBSCRIBE NOW</a
+            >
+          </div>
+
+          <!-- Enterprise Plan -->
+          <div class="plan-card">
+            <div class="plan-header">
+              <h3 class="plan-name">Enterprise</h3>
+              <div class="plan-price">Custom</div>
+              <div class="plan-billing">Request a quote</div>
+            </div>
+            <ul class="plan-features">
+              <li>
+                <i class="fas fa-check"></i> Everything in Standard, plus:
+              </li>
+              <li>
+                <i class="fas fa-check"></i> Coverage in TV, radio, film, apps,
+                games
+              </li>
+              <li><i class="fas fa-check"></i> Industrial uses</li>
+              <li>
+                <i class="fas fa-check"></i> Monetize unlimited social channels
+              </li>
+              <li><i class="fas fa-check"></i> Team plans & music curation</li>
+              <li><i class="fas fa-check"></i> Custom invoicing</li>
+            </ul>
+            <a href="#" class="plan-button outline">CONTACT US</a>
+          </div>
+        </div>
+
+        <!-- License Comparison - Basic Features -->
+        <div class="license-section">
+          <h2 class="section-title">License Comparison</h2>
+          <div class="comparison-table-container">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Creator</th>
+                  <th>Standard</th>
+                  <th>Premium</th>
+                  <th>Business</th>
+                  <th>Enterprise</th>
+                </tr>
+                <tr>
+                  <th class="feature-name">License Type</th>
+                  <td class="license-type">Subscription</td>
+                  <td class="license-type">Subscription</td>
+                  <td class="license-type">Single license</td>
+                  <td class="license-type">Single license</td>
+                  <td class="license-type">Custom</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="feature-name">Unlimited downloads</td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                </tr>
+                <tr>
+                  <td class="feature-name">Monetization</td>
+                  <td>1 social channel</td>
+                  <td>5 social channels</td>
+                  <td>5 social channels</td>
+                  <td>Unlimited</td>
+                  <td>Unlimited</td>
+                </tr>
+                <tr>
+                  <td class="feature-name">Client work allowed</td>
+                  <td><i class="fas fa-times cross-mark"></i></td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                </tr>
+                <tr>
+                  <td class="feature-name">Web & social</td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                </tr>
+                <tr>
+                  <td class="feature-name">Podcasts</td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                </tr>
+                <tr>
+                  <td class="feature-name">Corporate Videos & Personal Use</td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                </tr>
+                <tr>
+                  <td class="feature-name">TV & radio (broadcast)</td>
+                  <td><i class="fas fa-times cross-mark"></i></td>
+                  <td><i class="fas fa-times cross-mark"></i></td>
+                  <td>1 territory</td>
+                  <td>5 territories</td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- License Comparison - Broadcast & Extended -->
+        <div class="license-section">
+          <h2 class="section-title">TV, Radio & Extended Coverage</h2>
+          <div class="comparison-table-container">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Creator</th>
+                  <th>Standard</th>
+                  <th>Premium</th>
+                  <th>Business</th>
+                  <th>Enterprise</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="feature-name">TV & radio (broadcast)</td>
+                  <td><i class="fas fa-times cross-mark"></i></td>
+                  <td><i class="fas fa-times cross-mark"></i></td>
+                  <td>1 territory</td>
+                  <td>5 territories</td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                </tr>
+                <tr>
+                  <td class="feature-name">VOD/OTT</td>
+                  <td><i class="fas fa-times cross-mark"></i></td>
+                  <td><i class="fas fa-times cross-mark"></i></td>
+                  <td>1 territory</td>
+                  <td>5 territories</td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                </tr>
+                <tr>
+                  <td class="feature-name">Industrial</td>
+                  <td><i class="fas fa-times cross-mark"></i></td>
+                  <td><i class="fas fa-times cross-mark"></i></td>
+                  <td>1 territory</td>
+                  <td>5 territories</td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                </tr>
+                <tr>
+                  <td class="feature-name">Apps</td>
+                  <td><i class="fas fa-times cross-mark"></i></td>
+                  <td><i class="fas fa-times cross-mark"></i></td>
+                  <td>>1000 downloads</td>
+                  <td>>50,000 downloads</td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                </tr>
+                <tr>
+                  <td class="feature-name">Films and film trailers</td>
+                  <td><i class="fas fa-times cross-mark"></i></td>
+                  <td><i class="fas fa-times cross-mark"></i></td>
+                  <td>Films and film trailers</td>
+                  <td>>50,000 downloads</td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                </tr>
+                <tr>
+                  <td class="feature-name">Video games and trailers</td>
+                  <td><i class="fas fa-times cross-mark"></i></td>
+                  <td><i class="fas fa-times cross-mark"></i></td>
+                  <td>>1000 downloads</td>
+                  <td>>50,000 downloads</td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                </tr>
+                <tr>
+                  <td class="feature-name">OOH (Out-of-home)</td>
+                  <td><i class="fas fa-times cross-mark"></i></td>
+                  <td><i class="fas fa-times cross-mark"></i></td>
+                  <td><i class="fas fa-times cross-mark"></i></td>
+                  <td><i class="fas fa-times cross-mark"></i></td>
+                  <td><i class="fas fa-check check-mark"></i></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+          <h2 class="faq-title">Frequently Asked Questions</h2>
+          <ul class="faq-list">
+            <li class="faq-item">
+              <div class="faq-question">
+                How am I allowed to use the music I license from PremiumBeat?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                You can use the music in videos, podcasts, games, and apps
+                according to your license type. Personal use is covered in all
+                plans, while commercial and client work requires Standard or
+                higher plans.
+              </div>
+            </li>
+            <li class="faq-item">
+              <div class="faq-question">
+                How does the PremiumBeat Unlimited Subscription work?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Our unlimited subscription gives you access to our entire
+                library of music and sound effects. You can download as much as
+                you need while your subscription is active, with new content
+                added weekly.
+              </div>
+            </li>
+            <li class="faq-item">
+              <div class="faq-question">
+                How do I switch to the Unlimited Subscription from my current
+                subscription or pack?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                You can upgrade or change your subscription at any time from
+                your account dashboard. Any unused portion of your current plan
+                will be prorated and applied to your new subscription.
+              </div>
+            </li>
+            <li class="faq-item">
+              <div class="faq-question">
+                Does the Unlimited Music Subscription cover TV, broadcast,
+                radio, film or in-app use?
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                Extended coverage for TV, broadcast, radio, film, and in-app use
+                is available in our Premium, Business, and Enterprise plans.
+                Please refer to the license comparison tables above for detailed
+                coverage information.
+              </div>
+            </li>
+          </ul>
+          <div class="more-faqs">
+            <a href="#" class="more-faqs-link"
+              >Still have questions? See more FAQs.</a
+            >
+          </div>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="trust-section">
+          <h3 class="trust-title">Trusted By Industry Leaders</h3>
+          <div class="trust-logos">
+            <div class="trust-logo">Google</div>
+            <div class="trust-logo">VOGUE</div>
+            <div class="trust-logo">amazon</div>
+            <div class="trust-logo">NATIONAL GEOGRAPHIC</div>
+            <div class="trust-logo">BBDO</div>
+            <div class="trust-logo">billboard</div>
+          </div>
+          <div class="trust-divider"></div>
+        </div>
+
+        <!-- Subscription Info -->
+        <div style="text-align: center; margin-top: 50px">
+          <p style="color: var(--light); margin-bottom: 20px">
+            <strong>Cancel anytime from your account</strong>
+          </p>
+          <div
+            style="
+              display: flex;
+              gap: 20px;
+              justify-content: center;
+              flex-wrap: wrap;
+            "
+          >
+            <a
+              href="checkout.html?plan=standard"
+              class="plan-button"
+              style="width: auto; padding: 12px 30px"
+              >SUBSCRIBE</a
+            >
+            <a
+              href="#"
+              class="plan-button outline"
+              style="width: auto; padding: 12px 30px"
+              >CONTACT US</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Footer -->
+      <footer class="main-footer">
+        <div class="footer-content">
+          <div class="footer-column">
+            <h3>GENERAL</h3>
+            <ul class="footer-links">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Special Offers</a></li>
+              <li><a href="#">Music Genres</a></li>
+              <li><a href="#">Music Moods</a></li>
+              <li><a href="#">Artists</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>PLAYLISTS</h3>
+            <ul class="footer-links">
+              <li><a href="#">Popular Genres</a></li>
+              <li><a href="#">Trending Beats</a></li>
+              <li><a href="#">Amapiano</a></li>
+              <li><a href="#">Jazz Music</a></li>
+              <li><a href="#">Music fusion</a></li>
+              <li><a href="#">Music Playlists</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>INFO</h3>
+            <ul class="footer-links">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Testimonials</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">License Information</a></li>
+              <li><a href="#">Affiliate Program</a></li>
+              <li><a href="#">Refer 5 get US$25</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>COMPOSERS</h3>
+            <ul class="footer-links">
+              <li><a href="#">Submit Music</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>SUPPORT</h3>
+            <ul class="footer-links">
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Cue Sheets</a></li>
+              <li><a href="#">Blog</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-logo">
+            <div class="footer-logo-text">
+              <div class="footer-logo-main">Bigboy</div>
+              <div class="footer-logo-by">
+                by <span class="footer-logo-shutterstock">Records</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-resources">
+            <a href="#">Rhythm and blues</a>
+            <a href="#">Free Music</a>
+            <a href="#"> Hip-hop culture</a>
+            <a href="#">Reggae</a>
+            <a href="#">Soul music</a>
+          </div>
+
+          <div class="language-selector">
+            <span>English</span>
+            <select>
+              <option>English</option>
+              <option>Español</option>
+              <option>Français</option>
+              <option>Deutsch</option>
+            </select>
+          </div>
+
+          <div class="payment-methods">
+            <span class="payment-text">100% SECURE SHOPPING</span>
+            <i class="fab fa-cc-mastercard payment-icon"></i>
+            <i class="fab fa-cc-visa payment-icon"></i>
+            <i class="fab fa-cc-paypal payment-icon"></i>
+            <i class="fab fa-cc-amex payment-icon"></i>
+          </div>
+        </div>
+
+        <div class="copyright">
+          BigboyRecords.com copyright © 2005-2025 kenya, LLC
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      // FAQ Accordion functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        const faqQuestions = document.querySelectorAll(".faq-question");
+
+        faqQuestions.forEach((question) => {
+          question.addEventListener("click", function () {
+            const answer = this.nextElementSibling;
+            const icon = this.querySelector("i");
+
+            // Toggle answer visibility
+            if (answer.style.display === "block") {
+              answer.style.display = "none";
+              icon.classList.remove("fa-chevron-up");
+              icon.classList.add("fa-chevron-down");
+            } else {
+              answer.style.display = "block";
+              icon.classList.remove("fa-chevron-down");
+              icon.classList.add("fa-chevron-up");
+            }
+          });
+        });
+
+        // Set initial state - hide all answers
+        document.querySelectorAll(".faq-answer").forEach((answer) => {
+          answer.style.display = "none";
+        });
+      });
+    </script>
+    <!-- order plan toggle -->
+    <script>
+      // Plan configurations - ADD THIS TO YOUR CHECKOUT PAGE
+      const plans = {
+        creator: {
+          name: "Creator",
+          monthlyPrice: "9.99",
+          yearlyPrice: "119.88",
+          features: [
+            "Personal use",
+            "Publish anywhere online",
+            "Monetize 1 social channel",
+            "Unlimited downloads",
+            "Discounted license upgrades",
+          ],
+        },
+        standard: {
+          name: "Standard",
+          monthlyPrice: "24.99",
+          yearlyPrice: "299.88",
+          features: [
+            "Everything in Creator, plus:",
+            "Projects for clients",
+            "Publish content for clients",
+            "Monetize 5 social channels",
+            "Unlimited downloads",
+            "Discounted license upgrades",
+          ],
+        },
+        enterprise: {
+          name: "Enterprise",
+          monthlyPrice: "Custom",
+          yearlyPrice: "Custom",
+          features: [
+            "Everything in Standard, plus:",
+            "Coverage in TV, radio, film, apps, games",
+            "Industrial uses",
+            "Monetize unlimited social channels",
+            "Team plans & music curation",
+            "Custom invoicing",
+          ],
+        },
+      };
+
+      // Get plan from URL and update page
+      document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const planType = urlParams.get("plan") || "standard";
+        const selectedPlan = plans[planType] || plans.standard;
+
+        // Update plan details in the checkout page
+        updateCheckoutPlan(selectedPlan);
+      });
+
+      function updateCheckoutPlan(plan) {
+        // Update plan name
+        const planNameElements = document.querySelectorAll(".plan-name");
+        planNameElements.forEach((el) => {
+          el.textContent = plan.name;
+        });
+
+        // Update plan price
+        const planPriceElements = document.querySelectorAll(".plan-price");
+        planPriceElements.forEach((el) => {
+          el.textContent =
+            plan.monthlyPrice === "Custom"
+              ? "Custom"
+              : `US$${plan.monthlyPrice}`;
+        });
+
+        // Update billing info
+        const planBillingElements = document.querySelectorAll(".plan-billing");
+        planBillingElements.forEach((el) => {
+          if (plan.monthlyPrice === "Custom") {
+            el.innerHTML = "Request a quote";
+          } else {
+            el.innerHTML = `/ month*<br>*Billed annually US$${plan.yearlyPrice}/year`;
+          }
+        });
+
+        // Update features list
+        const featuresContainers = document.querySelectorAll(".plan-features");
+        featuresContainers.forEach((container) => {
+          container.innerHTML = plan.features
+            .map(
+              (feature) => `<li><i class="fas fa-check"></i> ${feature}</li>`
+            )
+            .join("");
+        });
+
+        // Update total amount
+        const totalAmount = document.querySelector(".total-amount");
+        if (totalAmount) {
+          totalAmount.textContent =
+            plan.yearlyPrice === "Custom"
+              ? "Custom Quote"
+              : `US$${plan.yearlyPrice}/YEAR`;
+        }
+
+        // Update page title
+        document.title = `${plan.name} Plan Checkout | PremiumBeat`;
+
+        // Update button text for enterprise
+        if (plan.name === "Enterprise") {
+          const buttons = document.querySelectorAll(".plan-button");
+          buttons.forEach((button) => {
+            if (!button.classList.contains("outline")) {
+              button.textContent = "CONTACT US";
+              button.classList.add("outline");
+            }
+          });
+        }
+      }
+    </script>
+  </body>
+</html>

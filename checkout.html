@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout | PremiumBeat</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      :root {
+        --primary: #4361ee;
+        --secondary: #3a0ca3;
+        --accent: #4cc9f0;
+        --dark: #1a1a2e;
+        --darker: #16213e;
+        --light: #ececec;
+        --text: #ffffff;
+        --success: #4ade80;
+        --warning: #f59e0b;
+        --error: #ef4444;
+        --gray: #6c757d;
+        --light-gray: #e9ecef;
+      }
+
+      body {
+        background: linear-gradient(135deg, var(--darker), var(--dark));
+        color: var(--text);
+        line-height: 1.6;
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+        margin-bottom: 30px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo h1 {
+        font-size: 1.8rem;
+        font-weight: 700;
+      }
+
+      .logo .byline {
+        font-size: 0.9rem;
+        color: var(--light);
+      }
+
+      .logo .shutterstock {
+        color: #ff5a00;
+        font-weight: 700;
+      }
+
+      .checkout-container {
+        display: grid;
+        grid-template-columns: 1fr 400px;
+        gap: 40px;
+        align-items: start;
+      }
+
+      .checkout-form {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 40px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .order-summary {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 30px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        height: fit-content;
+        position: sticky;
+        top: 20px;
+      }
+
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        color: white;
+      }
+
+      .subtitle {
+        color: var(--light);
+        margin-bottom: 30px;
+        font-size: 1.1rem;
+      }
+
+      h3 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+        color: var(--accent);
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .section {
+        margin-bottom: 40px;
+      }
+
+      .plan-card {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 25px;
+        margin-bottom: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .plan-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .plan-name {
+        font-weight: 700;
+        font-size: 1.3rem;
+        color: white;
+      }
+
+      .plan-price {
+        font-weight: 700;
+        color: var(--accent);
+        font-size: 1.4rem;
+      }
+
+      .features-list {
+        list-style: none;
+      }
+
+      .features-list li {
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .features-list li:last-child {
+        border-bottom: none;
+      }
+
+      .features-list li i {
+        color: var(--success);
+        font-size: 1.1rem;
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: var(--light);
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 14px 16px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      input:focus,
+      select:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 2px rgba(76, 201, 240, 0.2);
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .payment-methods {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 25px;
+      }
+
+      .payment-method {
+        padding: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        cursor: pointer;
+        text-align: center;
+        flex: 1;
+        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .payment-method.active {
+        border-color: var(--accent);
+        background: rgba(67, 97, 238, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .payment-method i {
+        font-size: 2rem;
+        margin-bottom: 8px;
+        display: block;
+      }
+
+      .checkbox-group {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        margin-bottom: 20px;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 8px;
+      }
+
+      .checkbox-group input {
+        width: auto;
+        margin-top: 5px;
+      }
+
+      .terms-text {
+        font-size: 0.95rem;
+        color: var(--light);
+        line-height: 1.5;
+      }
+
+      .total-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 30px 0;
+        padding: 25px 0;
+        border-top: 2px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .total-label {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: white;
+      }
+
+      .total-amount {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      .promo-section {
+        margin: 25px 0;
+      }
+
+      .promo-toggle {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--accent);
+        cursor: pointer;
+        margin-bottom: 15px;
+        font-weight: 600;
+        padding: 10px;
+        border-radius: 6px;
+        transition: background 0.3s ease;
+      }
+
+      .promo-toggle:hover {
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .promo-input {
+        display: none;
+        width: 100%;
+        padding: 14px 16px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        font-size: 1rem;
+      }
+
+      .promo-input.active {
+        display: block;
+      }
+
+      .secure-shopping {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 25px 0;
+        font-size: 1rem;
+        color: var(--light);
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+      }
+
+      .secure-shopping i {
+        color: var(--success);
+        font-size: 1.2rem;
+      }
+
+      .payment-icons {
+        display: flex;
+        gap: 15px;
+        margin-top: 15px;
+        justify-content: center;
+      }
+
+      .payment-icons i {
+        font-size: 2.2rem;
+        color: rgba(255, 255, 255, 0.7);
+        transition: color 0.3s ease;
+      }
+
+      .payment-icons i:hover {
+        color: white;
+      }
+
+      .complete-order {
+        width: 100%;
+        background: linear-gradient(to right, var(--primary), var(--secondary));
+        color: white;
+        border: none;
+        padding: 18px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .complete-order:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(67, 97, 238, 0.4);
+      }
+
+      .back-button {
+        display: inline-block;
+        color: var(--accent);
+        text-decoration: none;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+
+      .back-button:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 1024px) {
+        .checkout-container {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+
+        .order-summary {
+          position: static;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 15px;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+          gap: 15px;
+        }
+
+        .payment-methods {
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .checkout-form,
+        .order-summary {
+          padding: 25px 20px;
+        }
+
+        h2 {
+          font-size: 1.7rem;
+        }
+
+        h3 {
+          font-size: 1.3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo">
+          <h1>PremiumBeat</h1>
+          <div class="byline">
+            by <span class="shutterstock">Shutterstock</span>
+          </div>
+        </div>
+        <div class="secure-shopping">
+          <i class="fas fa-lock"></i>
+          <span>100% SECURE SHOPPING</span>
+        </div>
+      </header>
+
+      <a href="unlimite.html" class="back-button">
+        <i class="fas fa-arrow-left"></i> Back to Pricing
+      </a>
+
+      <div class="checkout-container">
+        <div class="checkout-form">
+          <h2>Checkout</h2>
+          <p class="subtitle">Please review your payment information</p>
+
+          <div class="section">
+            <h3>Selected Plan</h3>
+            <div class="plan-card" id="selected-plan-card">
+              <!-- Plan details will be dynamically inserted here -->
+            </div>
+          </div>
+
+          <div class="section">
+            <h3>Billing Address</h3>
+            <div class="form-group">
+              <label for="contact-name">CONTACT NAME *</label>
+              <input
+                type="text"
+                id="contact-name"
+                placeholder="Enter your full name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">EMAIL ADDRESS *</label>
+              <input type="email" id="email" placeholder="Enter your email" />
+            </div>
+            <div class="form-group">
+              <label for="address">Address *</label>
+              <input
+                type="text"
+                id="address"
+                placeholder="Enter your address"
+              />
+            </div>
+            <div class="form-group">
+              <label for="address2">Address (line 2)</label>
+              <input
+                type="text"
+                id="address2"
+                placeholder="Apartment, suite, etc. (optional)"
+              />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="country">Country *</label>
+                <select id="country">
+                  <option value="">Select Country</option>
+                  <option value="kenya">Kenya</option>
+                  <option value="us">United States</option>
+                  <option value="uk">United Kingdom</option>
+                  <option value="canada">Canada</option>
+                  <option value="australia">Australia</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="state">Province / State</label>
+                <input
+                  type="text"
+                  id="state"
+                  placeholder="Enter state/province"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="city">City *</label>
+                <input type="text" id="city" placeholder="Enter your city" />
+              </div>
+              <div class="form-group">
+                <label for="postal">Postal Code / Zip *</label>
+                <input
+                  type="text"
+                  id="postal"
+                  placeholder="Enter postal code"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3>Payment Method</h3>
+            <div class="payment-methods">
+              <div class="payment-method active">
+                <i class="fab fa-cc-amex"></i>
+                <div>AMEX</div>
+              </div>
+              <div class="payment-method">
+                <i class="fab fa-cc-visa"></i>
+                <div>VISA</div>
+              </div>
+              <div class="payment-method">
+                <i class="fab fa-cc-mastercard"></i>
+                <div>Mastercard</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="card-number">Card number</label>
+              <input
+                type="text"
+                id="card-number"
+                placeholder="1234 1234 1234 1234"
+              />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="expiry">Expiration date</label>
+                <input type="text" id="expiry" placeholder="MM / YY" />
+              </div>
+              <div class="form-group">
+                <label for="cvc">Security code</label>
+                <input type="text" id="cvc" placeholder="CVC" />
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="checkbox-group">
+              <input type="checkbox" id="terms" />
+              <label for="terms" class="terms-text">
+                By subscribing, you authorize Shutterstock Music Canada, ULC to
+                charge you according to the terms until you cancel.
+              </label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="agreement" />
+              <label for="agreement" class="terms-text">
+                I have read and accepted the terms of the PremiumBeat License
+                Agreement
+              </label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="usage" />
+              <label for="usage" class="terms-text">
+                You may only license Music under an Unlimited plan for the
+                purpose of synchronizing such Music to an existing or planned
+                Production. You may not use Music in any new Productions after
+                the expiration of your subscription. PremiumBeat reserves the
+                right to suspend access to Unlimited products if excessive
+                downloading behavior is observed.
+              </label>
+            </div>
+          </div>
+
+          <button class="complete-order">COMPLETE YOUR ORDER</button>
+        </div>
+
+        <div class="order-summary">
+          <h3>Order Summary</h3>
+          <div class="plan-card" id="order-plan-card">
+            <!-- Order summary plan details will be dynamically inserted here -->
+          </div>
+
+          <p class="terms-text">
+            We will bill you every year until you cancel. You can cancel anytime
+            from your account settings.
+          </p>
+
+          <div class="total-section">
+            <div class="total-label">TOTAL USD</div>
+            <div class="total-amount" id="total-amount">US$299.88/YEAR</div>
+          </div>
+
+          <div class="promo-section">
+            <div class="promo-toggle">
+              <i class="fas fa-chevron-down"></i>
+              <span>Apply promotion</span>
+            </div>
+            <input
+              type="text"
+              class="promo-input"
+              placeholder="Enter promo code"
+            />
+          </div>
+
+          <div class="secure-shopping">
+            <i class="fas fa-lock"></i>
+            <span>100% SECURE SHOPPING</span>
+          </div>
+
+          <div class="payment-icons">
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-amex"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Plan configurations
+      const plans = {
+        creator: {
+          name: "Creator",
+          monthlyPrice: "9.99",
+          yearlyPrice: "119.88",
+          features: [
+            "Personal use",
+            "Publish anywhere online",
+            "Monetize 1 social channel",
+            "Unlimited downloads",
+            "Discounted license upgrades",
+          ],
+        },
+        standard: {
+          name: "Standard",
+          monthlyPrice: "24.99",
+          yearlyPrice: "299.88",
+          features: [
+            "Everything in Creator, plus:",
+            "Projects for clients",
+            "Publish content for clients",
+            "Monetize 5 social channels",
+            "Unlimited downloads",
+            "Discounted license upgrades",
+          ],
+        },
+        enterprise: {
+          name: "Enterprise",
+          monthlyPrice: "Custom",
+          yearlyPrice: "Custom",
+          features: [
+            "Everything in Standard, plus:",
+            "Coverage in TV, radio, film, apps, games",
+            "Industrial uses",
+            "Monetize unlimited social channels",
+            "Team plans & music curation",
+            "Custom invoicing",
+          ],
+        },
+      };
+
+      // Get plan details from URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const planType = urlParams.get("plan") || "standard";
+      const price = urlParams.get("price");
+
+      const selectedPlan = plans[planType] || plans.standard;
+
+      // Update the page with plan details
+      function updatePlanDetails() {
+        const planCard = document.getElementById("selected-plan-card");
+        const orderPlanCard = document.getElementById("order-plan-card");
+        const totalAmount = document.getElementById("total-amount");
+
+        // Create plan details HTML
+        const planDetailsHTML = `
+                <div class="plan-header">
+                    <div class="plan-name">${selectedPlan.name} Plan</div>
+                    <div class="plan-price">US$${
+                      selectedPlan.monthlyPrice
+                    }</div>
+                </div>
+                <div class="plan-billing" style="color: var(--light); margin-bottom: 20px;">
+                    / month*<br>*Billed annually US$${
+                      selectedPlan.yearlyPrice
+                    }/year
+                </div>
+                <ul class="features-list">
+                    ${selectedPlan.features
+                      .map(
+                        (feature) => `
+                        <li><i class="fas fa-check"></i> ${feature}</li>
+                    `
+                      )
+                      .join("")}
+                </ul>
+            `;
+
+        // Update both plan cards
+        planCard.innerHTML = planDetailsHTML;
+        orderPlanCard.innerHTML = planDetailsHTML;
+
+        // Update total amount
+        if (selectedPlan.name === "Enterprise") {
+          totalAmount.textContent = "Custom Quote";
+        } else {
+          totalAmount.textContent = `US$${selectedPlan.yearlyPrice}/YEAR`;
+        }
+
+        // Update page title
+        document.title = `${selectedPlan.name} Plan Checkout | PremiumBeat`;
+      }
+
+      // Initialize the page
+      document.addEventListener("DOMContentLoaded", function () {
+        updatePlanDetails();
+
+        // Toggle payment methods
+        document.querySelectorAll(".payment-method").forEach((method) => {
+          method.addEventListener("click", function () {
+            document.querySelectorAll(".payment-method").forEach((m) => {
+              m.classList.remove("active");
+            });
+            this.classList.add("active");
+          });
+        });
+
+        // Toggle promo code input
+        document
+          .querySelector(".promo-toggle")
+          .addEventListener("click", function () {
+            const promoInput = document.querySelector(".promo-input");
+            promoInput.classList.toggle("active");
+
+            const icon = this.querySelector("i");
+            if (promoInput.classList.contains("active")) {
+              icon.classList.remove("fa-chevron-down");
+              icon.classList.add("fa-chevron-up");
+              promoInput.focus();
+            } else {
+              icon.classList.remove("fa-chevron-up");
+              icon.classList.add("fa-chevron-down");
+            }
+          });
+
+        // Form submission
+        document
+          .querySelector(".complete-order")
+          .addEventListener("click", function () {
+            const checkboxes = document.querySelectorAll(
+              'input[type="checkbox"]'
+            );
+            const allChecked = Array.from(checkboxes).every(
+              (checkbox) => checkbox.checked
+            );
+
+            if (allChecked) {
+              alert(
+                `Thank you for subscribing to the ${selectedPlan.name} Plan! Your order has been processed successfully.`
+              );
+              // In a real application, you would submit the form data to a server here
+            } else {
+              alert(
+                "Please accept all terms and conditions to complete your order."
+              );
+            }
+          });
+      });
+    </script>
+  </body>
+</html>
