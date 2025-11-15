@@ -27,40 +27,40 @@
       }
       /* Shopping Cart and User Icon Styles */
       .nav-icon-link {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        transition: all 0.3s ease;
-        color: rgba(255, 255, 255, 0.9);
-        text-decoration: none;
-      }
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+}
 
-      .nav-icon-link:hover {
-        background: rgba(255, 255, 255, 0.1);
-        transform: translateY(-2px);
-        color: white;
-      }
+.nav-icon-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  color: white;
+}
 
-      .cart-count {
-        position: absolute;
-        top: -5px;
-        right: -5px;
-        background: #ff5a00;
-        color: white;
-        border-radius: 50%;
-        width: 18px;
-        height: 18px;
-        font-size: 0.7rem;
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        line-height: 1;
-      }
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ff5a00;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
 
       /* Remove background from the last nav-secondary item */
       .nav-secondary li:last-child a {
@@ -168,6 +168,222 @@
         color: #ff5a00;
         font-weight: 700;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      }
+      /* Modal Styles */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        backdrop-filter: blur(5px);
+      }
+
+      .modal-content {
+        background: rgba(26, 26, 46, 0.95);
+        padding: 2rem;
+        border-radius: 15px;
+        width: 90%;
+        max-width: 450px;
+        position: relative;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--light);
+        transition: color 0.3s ease;
+      }
+
+      .close-btn:hover {
+        color: var(--accent);
+      }
+
+      /* Form Styles */
+      .form-container {
+        text-align: center;
+      }
+
+      .form-toggle {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .toggle-btn {
+        padding: 0.75rem 1.5rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        color: var(--light);
+        position: relative;
+        transition: all 0.3s ease;
+      }
+
+      .toggle-btn.active {
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      .toggle-btn.active::after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(to right, var(--accent), var(--primary));
+      }
+
+      .form {
+        display: none;
+      }
+
+      .form.active {
+        display: block;
+      }
+
+      .form h2 {
+        margin-bottom: 1.5rem;
+        color: white;
+        font-size: 1.5rem;
+      }
+
+      .input-group {
+        margin-bottom: 1rem;
+        text-align: left;
+      }
+
+      .input-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--light);
+        font-weight: 500;
+        font-size: 0.9rem;
+      }
+
+      .input-group input {
+        width: 100%;
+        padding: 0.75rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        font-size: 1rem;
+        color: white;
+        transition: all 0.3s ease;
+      }
+
+      .input-group input:focus {
+        outline: none;
+        border-color: var(--accent);
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .input-group input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .forgot-password {
+        text-align: right;
+        margin-bottom: 1rem;
+      }
+
+      .forgot-password a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+      }
+
+      .forgot-password a:hover {
+        color: var(--primary);
+      }
+
+      .login-btn,
+      .signup-btn {
+        width: 100%;
+        padding: 0.75rem;
+        background: linear-gradient(to right, var(--primary), var(--secondary));
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        margin-bottom: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .login-btn:hover,
+      .signup-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(67, 97, 238, 0.4);
+      }
+
+      .divider {
+        margin: 1.5rem 0;
+        color: var(--light);
+        position: relative;
+        font-size: 0.9rem;
+      }
+
+      .divider::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .divider span {
+        background: rgba(26, 26, 46, 0.95);
+        padding: 0 1rem;
+        position: relative;
+      }
+
+      .social-login {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .social-btn {
+        padding: 0.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        cursor: pointer;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        color: white;
+        transition: all 0.3s ease;
+      }
+
+      .social-btn:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-2px);
+      }
+
+      .social-btn i {
+        font-size: 1.1rem;
       }
 
       nav {
@@ -732,7 +948,6 @@
       <header>
         <div class="nav-container">
           <div class="logo-section">
-            <!-- Logo Image -->
             <img
               src="img/logo/logo-01.png"
               alt="SoundVerse Pro Logo"
@@ -761,10 +976,12 @@
               <li><a href="#">Pricing</a></li>
               <li><a href="#">Subscribe</a></li>
               <li>
-                <a href="#" class="nav-icon-link">
-                  <i class="fas fa-shopping-cart"></i>
-                  <span class="cart-count">8</span>
-                </a>
+               <li>
+ <a href="cart.html" class="nav-icon-link" onclick="event.preventDefault(); window.location.href='cart.html';">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="cart-count">3</span>
+</a>
+</li>
               </li>
               <li>
                 <a href="#" class="nav-icon-link">
@@ -775,7 +992,7 @@
           </nav>
         </div>
       </header>
-
+      <!-- sign up /login -->
       <section class="hero">
         <h1>Where Every Click Drops a Beat.</h1>
         <p>
@@ -992,6 +1209,129 @@
         <p>&copy; 2023 BigBoy Records. All rights reserved.</p>
       </footer>
     </div>
+    <!-- Login/Signup Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal-content">
+        <span class="close-btn" id="closeBtn">&times;</span>
+
+        <div class="form-container">
+          <div class="form-toggle">
+            <button class="toggle-btn active" id="loginToggle">Log In</button>
+            <button class="toggle-btn" id="signupToggle">Sign Up</button>
+          </div>
+
+          <!-- Login Form -->
+          <form class="form active" id="loginForm">
+            <h2>Log in to your account</h2>
+
+            <div class="input-group">
+              <label for="loginEmail">Email or username</label>
+              <input
+                type="text"
+                id="loginEmail"
+                placeholder="Enter your email or username"
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="loginPassword">Password</label>
+              <input
+                type="password"
+                id="loginPassword"
+                placeholder="Enter your password"
+              />
+            </div>
+
+            <div class="forgot-password">
+              <a href="#">Forgot your password?</a>
+            </div>
+
+            <button type="submit" class="login-btn">Log In</button>
+
+            <div class="divider">
+              <span>or</span>
+            </div>
+
+            <div class="social-login">
+              <button type="button" class="social-btn">
+                <i class="fab fa-google"></i>
+                <span>Continue with Google</span>
+              </button>
+              <button type="button" class="social-btn">
+                <i class="fab fa-facebook"></i>
+                <span>Continue with Facebook</span>
+              </button>
+              <button type="button" class="social-btn">
+                <i class="fab fa-apple"></i>
+                <span>Continue with Apple</span>
+              </button>
+            </div>
+          </form>
+
+          <!-- Signup Form -->
+          <form class="form" id="signupForm">
+            <h2>Create your account</h2>
+
+            <div class="input-group">
+              <label for="signupEmail">Email</label>
+              <input
+                type="email"
+                id="signupEmail"
+                placeholder="Enter your email"
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="signupUsername">Username</label>
+              <input
+                type="text"
+                id="signupUsername"
+                placeholder="Choose a username"
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="signupPassword">Password</label>
+              <input
+                type="password"
+                id="signupPassword"
+                placeholder="Create a password"
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="confirmPassword">Confirm Password</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                placeholder="Confirm your password"
+              />
+            </div>
+
+            <button type="submit" class="signup-btn">Sign Up</button>
+
+            <div class="divider">
+              <span>or</span>
+            </div>
+
+            <div class="social-login">
+              <button type="button" class="social-btn">
+                <i class="fab fa-google"></i>
+                <span>Continue with Google</span>
+              </button>
+              <button type="button" class="social-btn">
+                <i class="fab fa-facebook"></i>
+                <span>Continue with Facebook</span>
+              </button>
+              <button type="button" class="social-btn">
+                <i class="fab fa-apple"></i>
+                <span>Continue with Apple</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
     <script>
       // Simple search functionality
@@ -1075,6 +1415,87 @@
           el.style.transition = "opacity 0.5s ease, transform 0.5s ease";
           observer.observe(el);
         });
+      // Modal functionality
+      const userIcon = document
+        .querySelector(".nav-icon-link .fa-user")
+        .closest(".nav-icon-link");
+      const modalOverlay = document.getElementById("modalOverlay");
+      const closeBtn = document.getElementById("closeBtn");
+      const loginToggle = document.getElementById("loginToggle");
+      const signupToggle = document.getElementById("signupToggle");
+      const loginForm = document.getElementById("loginForm");
+      const signupForm = document.getElementById("signupForm");
+
+      // Open modal when user icon is clicked
+      userIcon.addEventListener("click", (e) => {
+        e.preventDefault();
+        modalOverlay.style.display = "flex";
+        document.body.style.overflow = "hidden"; // Prevent scrolling
+      });
+
+      // Close modal when close button is clicked
+      closeBtn.addEventListener("click", () => {
+        modalOverlay.style.display = "none";
+        document.body.style.overflow = "auto"; // Re-enable scrolling
+      });
+
+      // Close modal when clicking outside the modal content
+      modalOverlay.addEventListener("click", (e) => {
+        if (e.target === modalOverlay) {
+          modalOverlay.style.display = "none";
+          document.body.style.overflow = "auto";
+        }
+      });
+
+      // Toggle between login and signup forms
+      loginToggle.addEventListener("click", () => {
+        loginToggle.classList.add("active");
+        signupToggle.classList.remove("active");
+        loginForm.classList.add("active");
+        signupForm.classList.remove("active");
+      });
+
+      signupToggle.addEventListener("click", () => {
+        signupToggle.classList.add("active");
+        loginToggle.classList.remove("active");
+        signupForm.classList.add("active");
+        loginForm.classList.remove("active");
+      });
+
+      // Form submission handlers
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const email = document.getElementById("loginEmail").value;
+        const password = document.getElementById("loginPassword").value;
+        // Add your login logic here
+        console.log("Login attempt:", { email, password });
+        alert("Login functionality would be implemented here!");
+        // Close modal after successful login
+        modalOverlay.style.display = "none";
+        document.body.style.overflow = "auto";
+      });
+
+      signupForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const email = document.getElementById("signupEmail").value;
+        const username = document.getElementById("signupUsername").value;
+        const password = document.getElementById("signupPassword").value;
+        // Add your signup logic here
+        console.log("Signup attempt:", { email, username, password });
+        alert("Signup functionality would be implemented here!");
+        // Close modal after successful signup
+        modalOverlay.style.display = "none";
+        document.body.style.overflow = "auto";
+      });
+
+      // Close modal with Escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modalOverlay.style.display === "flex") {
+          modalOverlay.style.display = "none";
+          document.body.style.overflow = "auto";
+        }
+      });
+      
     </script>
   </body>
 </html>
