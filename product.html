@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BigBoy Records | Premium Beats</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      :root {
+        --primary: #4361ee;
+        --secondary: #3a0ca3;
+        --accent: #4cc9f0;
+        --dark: #1a1a2e;
+        --darker: #16213e;
+        --light: #b8c1ec;
+        --text: #ffffff;
+      }
+
+      body {
+        background: url("img/BANNR/rock.gif") center/cover fixed;
+        color: var(--text);
+        line-height: 1.6;
+        position: relative;
+        min-height: 100vh;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(22, 33, 62, 0.6);
+        z-index: -1;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header Styles */
+      header {
+        padding: 25px 0;
+        position: fixed;
+        top: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 1200px;
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo-section {
+        display: flex;
+        align-items: center;
+      }
+
+      .logo-img {
+        height: 80px;
+        filter: brightness(0) invert(1);
+        transition: transform 0.3s ease;
+      }
+
+      .logo-img:hover {
+        transform: scale(1.05);
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+      }
+
+      .nav-main {
+        display: flex;
+        list-style: none;
+        gap: 35px;
+      }
+
+      .nav-main li a {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 0;
+        position: relative;
+      }
+
+      .nav-main li a:hover {
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      .nav-main li a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent);
+        transition: width 0.3s ease;
+      }
+
+      .nav-main li a:hover::after {
+        width: 100%;
+      }
+
+      .nav-icon {
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+
+      .nav-secondary {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+        margin-left: 20px;
+        padding-left: 30px;
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+        align-items: center;
+      }
+
+      .nav-secondary li a {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        padding: 8px 16px;
+        border-radius: 20px;
+      }
+
+      .nav-secondary li a:hover {
+        color: white;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .nav-secondary li:last-child a {
+        background: var(--primary);
+        color: white;
+        padding: 8px 20px;
+      }
+
+      .nav-secondary li:last-child a:hover {
+        background: var(--secondary);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+      }
+
+      .nav-icon-link {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+      }
+
+      .nav-icon-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+        color: white;
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: #ff5a00;
+        color: white;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+      }
+
+      /* Product Page Styles */
+      .product-page {
+        padding: 180px 0 100px;
+      }
+
+      .page-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .page-title {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        background: linear-gradient(to right, var(--accent), var(--primary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .page-subtitle {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 30px;
+        color: var(--light);
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Genre Navigation */
+      .genre-nav {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin: 40px 0;
+      }
+
+      .genre-nav-item {
+        padding: 10px 20px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .genre-nav-item:hover,
+      .genre-nav-item.active {
+        background: rgba(67, 97, 238, 0.3);
+      }
+
+      /* Genre Sections */
+      .genre-section {
+        margin: 80px 0;
+      }
+
+      .genre-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+
+      .genre-title {
+        font-size: 2rem;
+        background: linear-gradient(to right, var(--accent), var(--primary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .view-all {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .view-all:hover {
+        color: var(--primary);
+        transform: translateX(5px);
+      }
+
+      /* Products Grid */
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 25px;
+      }
+
+      .product-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .product-image {
+        height: 180px;
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        color: white;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .play-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .play-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .product-card:hover .play-overlay {
+        opacity: 1;
+      }
+
+      .play-btn:hover {
+        transform: scale(1.1);
+      }
+
+      .product-info {
+        padding: 20px;
+      }
+
+      .product-info h3 {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .product-producer {
+        color: var(--accent);
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+      }
+
+      .product-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-bottom: 15px;
+      }
+
+      .product-tag {
+        background: rgba(67, 97, 238, 0.3);
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-size: 0.7rem;
+      }
+
+      .product-price {
+        font-weight: 600;
+        color: white;
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+      }
+
+      .product-actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .product-btn {
+        flex: 1;
+        padding: 8px;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: center;
+        border: none;
+      }
+
+      .preview-btn {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+      }
+
+      .preview-btn:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .add-btn {
+        background: var(--primary);
+        color: white;
+      }
+
+      .add-btn:hover {
+        background: var(--secondary);
+      }
+
+      /* Product Detail Modal */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        backdrop-filter: blur(5px);
+      }
+
+      .modal-content {
+        background: rgba(26, 26, 46, 0.95);
+        padding: 2rem;
+        border-radius: 15px;
+        width: 90%;
+        max-width: 800px;
+        position: relative;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--light);
+        transition: color 0.3s ease;
+      }
+
+      .close-btn:hover {
+        color: var(--accent);
+      }
+
+      .product-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+      }
+
+      .product-image-large {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .product-image-large img {
+        width: 100%;
+        max-width: 400px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+
+      .audio-player {
+        width: 100%;
+        margin: 20px 0;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 15px;
+      }
+
+      .audio-player audio {
+        width: 100%;
+      }
+
+      .product-info-large {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 30px;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .product-title {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        color: white;
+      }
+
+      .product-producer-large {
+        font-size: 1.2rem;
+        color: var(--accent);
+        margin-bottom: 20px;
+      }
+
+      .product-description {
+        margin-bottom: 25px;
+        color: var(--light);
+        line-height: 1.6;
+      }
+
+      .product-tags-large {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 25px;
+      }
+
+      .product-tag-large {
+        background: rgba(67, 97, 238, 0.3);
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+      }
+
+      .product-specs {
+        margin-bottom: 30px;
+      }
+
+      .spec-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .spec-item:last-child {
+        border-bottom: none;
+      }
+
+      .spec-label {
+        color: var(--light);
+      }
+
+      .spec-value {
+        font-weight: 500;
+      }
+
+      .pricing-options {
+        margin-top: 30px;
+      }
+
+      .pricing-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: white;
+      }
+
+      .license-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin-bottom: 25px;
+      }
+
+      .license-option {
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      .license-option:hover {
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .license-option.selected {
+        border-color: var(--accent);
+        background: rgba(67, 97, 238, 0.2);
+      }
+
+      .license-name {
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .license-price {
+        font-size: 1.2rem;
+        color: var(--accent);
+        margin-bottom: 5px;
+      }
+
+      .license-desc {
+        font-size: 0.8rem;
+        color: var(--light);
+      }
+
+      .purchase-actions {
+        display: flex;
+        gap: 15px;
+      }
+
+      .purchase-btn {
+        flex: 1;
+        padding: 15px;
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: center;
+        border: none;
+        font-size: 1rem;
+      }
+
+      .add-to-cart {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+      }
+
+      .add-to-cart:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .buy-now {
+        background: linear-gradient(to right, var(--primary), var(--secondary));
+        color: white;
+      }
+
+      .buy-now:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(67, 97, 238, 0.4);
+      }
+
+      footer {
+        text-align: center;
+        padding: 40px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--light);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 1024px) {
+        .nav-main {
+          gap: 25px;
+        }
+
+        .nav-secondary {
+          gap: 20px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        header {
+          padding: 20px 0;
+          top: 15px;
+        }
+
+        .nav-container {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        nav {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .nav-main,
+        .nav-secondary {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .nav-secondary {
+          border-left: none;
+          padding-left: 0;
+          margin-left: 0;
+        }
+
+        .product-page {
+          padding: 220px 0 100px;
+        }
+
+        .page-title {
+          font-size: 2.5rem;
+        }
+
+        .product-container {
+          grid-template-columns: 1fr;
+        }
+
+        .purchase-actions {
+          flex-direction: column;
+        }
+
+        .license-options {
+          grid-template-columns: 1fr;
+        }
+
+        .products-grid {
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+
+        .genre-nav {
+          gap: 10px;
+        }
+
+        .genre-nav-item {
+          padding: 8px 15px;
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Floating Navbar -->
+      <header>
+        <div class="nav-container">
+          <div class="logo-section">
+            <!-- Logo Image with Home Link -->
+            <a href="index.html" class="logo-link">
+              <img
+                src="img/logo/logo-01.png"
+                alt="SoundVerse Pro Logo"
+                class="logo-img"
+              />
+            </a>
+          </div>
+        </div>
+          <nav>
+            <ul class="nav-main">
+              <li>
+                <a href="index.html"><span class="nav-icon">♪</span> Music</a>
+              </li>
+             
+              <li>
+                <a href="#"><span class="nav-icon">☁</span> Moods</a>
+              </li>
+              <li>
+                <a href="#"><span class="nav-icon">♫</span> Playlists</a>
+              </li>
+              <li>
+                <a href="#"><span class="nav-icon">SFX</span> Sound Effects</a>
+              </li>
+            </ul>
+            <ul class="nav-secondary">
+              <li><a href="#">Pricing</a></li>
+              <li><a href="#">Subscribe</a></li>
+              <li>
+                <a
+                  href="cart.html"
+                  class="nav-icon-link"
+                  onclick="event.preventDefault(); window.location.href='cart.html';"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                  <span class="cart-count">3</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-icon-link">
+                  <i class="fas fa-user"></i>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <!-- Product Page Content -->
+      <section class="product-page">
+        <div class="page-header">
+          <h1 class="page-title">Premium Beats Collection</h1>
+          <p class="page-subtitle">
+            Discover our extensive collection of professionally produced beats
+            across all genres. Find the perfect sound for your next project.
+          </p>
+        </div>
+
+        <!-- Genre Navigation -->
+        <div class="genre-nav" id="genreNav">
+          <div class="genre-nav-item active" data-genre="all">All Genres</div>
+          
+        </div>
+
+        <!-- Genre Sections -->
+        <section id="beats">
+          <!-- Hip Hop Section -->
+          <div class="genre-section" id="hiphop">
+            <div class="genre-header">
+              <h2 class="genre-title">Hip Hop Beats</h2>
+              <a href="#" class="view-all"
+                >View All <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+            <div class="products-grid">
+              <!-- Product 1 -->
+              <div class="product-card" data-id="1" data-genre="hiphop">
+                <div class="product-image">
+                  <i class="fas fa-music"></i>
+                  <div class="play-overlay">
+                    <div class="play-btn">
+                      <i class="fas fa-play"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h3>Urban Vibes</h3>
+                  <p class="product-producer">Produced by: CitySounds</p>
+                  <div class="product-tags">
+                    <div class="product-tag">Boom Bap</div>
+                    <div class="product-tag">Old School</div>
+                  </div>
+                  <p class="product-price">$39.99</p>
+                  <div class="product-actions">
+                    <button class="product-btn preview-btn">Preview</button>
+                    <button class="product-btn add-btn">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 2 -->
+              <div class="product-card" data-id="2" data-genre="hiphop">
+                <div class="product-image">
+                  <i class="fas fa-city"></i>
+                  <div class="play-overlay">
+                    <div class="play-btn">
+                      <i class="fas fa-play"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h3>Street Dreams</h3>
+                  <p class="product-producer">Produced by: MetroBeats</p>
+                  <div class="product-tags">
+                    <div class="product-tag">Boom Bap</div>
+                    <div class="product-tag">Jazzy</div>
+                  </div>
+                  <p class="product-price">$44.99</p>
+                  <div class="product-actions">
+                    <button class="product-btn preview-btn">Preview</button>
+                    <button class="product-btn add-btn">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 3 -->
+              <div class="product-card" data-id="3" data-genre="hiphop">
+                <div class="product-image">
+                  <i class="fas fa-record-vinyl"></i>
+                  <div class="play-overlay">
+                    <div class="play-btn">
+                      <i class="fas fa-play"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h3>Vinyl Soul</h3>
+                  <p class="product-producer">Produced by: SampleKing</p>
+                  <div class="product-tags">
+                    <div class="product-tag">Soulful</div>
+                    <div class="product-tag">Sample-Based</div>
+                  </div>
+                  <p class="product-price">$49.99</p>
+                  <div class="product-actions">
+                    <button class="product-btn preview-btn">Preview</button>
+                    <button class="product-btn add-btn">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 4 -->
+              <div class="product-card" data-id="4" data-genre="hiphop">
+                <div class="product-image">
+                  <i class="fas fa-microphone-alt"></i>
+                  <div class="play-overlay">
+                    <div class="play-btn">
+                      <i class="fas fa-play"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h3>Mic Check</h3>
+                  <p class="product-producer">Produced by: RapMaster</p>
+                  <div class="product-tags">
+                    <div class="product-tag">Boom Bap</div>
+                    <div class="product-tag">Hard-hitting</div>
+                  </div>
+                  <p class="product-price">$42.99</p>
+                  <div class="product-actions">
+                    <button class="product-btn preview-btn">Preview</button>
+                    <button class="product-btn add-btn">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trap Section -->
+          <div class="genre-section" id="trap">
+            <div class="genre-header">
+              <h2 class="genre-title">Trap Beats</h2>
+              <a href="#" class="view-all"
+                >View All <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+            <div class="products-grid">
+              <!-- Product 5 -->
+              <div class="product-card" data-id="5" data-genre="trap">
+                <div class="product-image">
+                  <i class="fas fa-fire"></i>
+                  <div class="play-overlay">
+                    <div class="play-btn">
+                      <i class="fas fa-play"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h3>Firestarter</h3>
+                  <p class="product-producer">Produced by: HeatMaker</p>
+                  <div class="product-tags">
+                    <div class="product-tag">Dark</div>
+                    <div class="product-tag">Aggressive</div>
+                  </div>
+                  <p class="product-price">$44.99</p>
+                  <div class="product-actions">
+                    <button class="product-btn preview-btn">Preview</button>
+                    <button class="product-btn add-btn">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 6 -->
+              <div class="product-card" data-id="6" data-genre="trap">
+                <div class="product-image">
+                  <i class="fas fa-skull"></i>
+                  <div class="play-overlay">
+                    <div class="play-btn">
+                      <i class="fas fa-play"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h3>Dark Knight</h3>
+                  <p class="product-producer">Produced by: Nightmare Beats</p>
+                  <div class="product-tags">
+                    <div class="product-tag">Dark</div>
+                    <div class="product-tag">Atmospheric</div>
+                  </div>
+                  <p class="product-price">$47.99</p>
+                  <div class="product-actions">
+                    <button class="product-btn preview-btn">Preview</button>
+                    <button class="product-btn add-btn">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 7 -->
+              <div class="product-card" data-id="7" data-genre="trap">
+                <div class="product-image">
+                  <i class="fas fa-crown"></i>
+                  <div class="play-overlay">
+                    <div class="play-btn">
+                      <i class="fas fa-play"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h3>King's Ransom</h3>
+                  <p class="product-producer">Produced by: Royalty Beats</p>
+                  <div class="product-tags">
+                    <div class="product-tag">Bouncy</div>
+                    <div class="product-tag">Melodic</div>
+                  </div>
+                  <p class="product-price">$52.99</p>
+                  <div class="product-actions">
+                    <button class="product-btn preview-btn">Preview</button>
+                    <button class="product-btn add-btn">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lo-Fi Section -->
+          <div class="genre-section" id="lofi">
+            <div class="genre-header">
+              <h2 class="genre-title">Lo-Fi Beats</h2>
+              <a href="#" class="view-all"
+                >View All <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+            <div class="products-grid">
+              <!-- Product 8 -->
+              <div class="product-card" data-id="8" data-genre="lofi">
+                <div class="product-image">
+                  <i class="fas fa-cloud"></i>
+                  <div class="play-overlay">
+                    <div class="play-btn">
+                      <i class="fas fa-play"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h3>Cloud Nine</h3>
+                  <p class="product-producer">Produced by: SkyHigh Beats</p>
+                  <div class="product-tags">
+                    <div class="product-tag">Chill</div>
+                    <div class="product-tag">Atmospheric</div>
+                  </div>
+                  <p class="product-price">$34.99</p>
+                  <div class="product-actions">
+                    <button class="product-btn preview-btn">Preview</button>
+                    <button class="product-btn add-btn">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 9 -->
+              <div class="product-card" data-id="9" data-genre="lofi">
+                <div class="product-image">
+                  <i class="fas fa-coffee"></i>
+                  <div class="play-overlay">
+                    <div class="play-btn">
+                      <i class="fas fa-play"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h3>Study Session</h3>
+                  <p class="product-producer">Produced by: ChillBeats</p>
+                  <div class="product-tags">
+                    <div class="product-tag">Study</div>
+                    <div class="product-tag">Relaxing</div>
+                  </div>
+                  <p class="product-price">$32.99</p>
+                  <div class="product-actions">
+                    <button class="product-btn preview-btn">Preview</button>
+                    <button class="product-btn add-btn">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- R&B Section -->
+          <div class="genre-section" id="rnb">
+            <div class="genre-header">
+              <h2 class="genre-title">R&B Beats</h2>
+              <a href="#" class="view-all"
+                >View All <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+            <div class="products-grid">
+              <!-- Product 10 -->
+              <div class="product-card" data-id="10" data-genre="rnb">
+                <div class="product-image">
+                  <i class="fas fa-heart"></i>
+                  <div class="play-overlay">
+                    <div class="play-btn">
+                      <i class="fas fa-play"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h3>Midnight Love</h3>
+                  <p class="product-producer">Produced by: Soulful Sounds</p>
+                  <div class="product-tags">
+                    <div class="product-tag">Smooth</div>
+                    <div class="product-tag">Romantic</div>
+                  </div>
+                  <p class="product-price">$45.99</p>
+                  <div class="product-actions">
+                    <button class="product-btn preview-btn">Preview</button>
+                    <button class="product-btn add-btn">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 11 -->
+              <div class="product-card" data-id="11" data-genre="rnb">
+                <div class="product-image">
+                  <i class="fas fa-moon"></i>
+                  <div class="play-overlay">
+                    <div class="play-btn">
+                      <i class="fas fa-play"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h3>Neo Soul</h3>
+                  <p class="product-producer">Produced by: NeoVibes</p>
+                  <div class="product-tags">
+                    <div class="product-tag">Soulful</div>
+                    <div class="product-tag">Modern</div>
+                  </div>
+                  <p class="product-price">$48.99</p>
+                  <div class="product-actions">
+                    <button class="product-btn preview-btn">Preview</button>
+                    <button class="product-btn add-btn">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <footer>
+        <p>&copy; 2023 BigBoy Records. All rights</p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -25,42 +25,43 @@
         --light: #b8c1ec;
         --text: #ffffff;
       }
+      
       /* Shopping Cart and User Icon Styles */
       .nav-icon-link {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-  color: rgba(255, 255, 255, 0.9);
-  text-decoration: none;
-}
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+      }
 
-.nav-icon-link:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
-  color: white;
-}
+      .nav-icon-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+        color: white;
+      }
 
-.cart-count {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background: #ff5a00;
-  color: white;
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
-  font-size: 0.7rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-}
+      .cart-count {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: #ff5a00;
+        color: white;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+      }
 
       /* Remove background from the last nav-secondary item */
       .nav-secondary li:last-child a {
@@ -169,6 +170,57 @@
         font-weight: 700;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       }
+      
+      /* Dropdown Styles */
+      .dropdown {
+        position: relative;
+      }
+
+      .dropdown-content {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: rgba(26, 26, 46, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
+        min-width: 200px;
+        padding: 10px 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.3s ease;
+        z-index: 1001;
+      }
+
+      .dropdown:hover .dropdown-content {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .dropdown-content a {
+        display: block;
+        padding: 12px 20px;
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 0.95rem;
+      }
+
+      .dropdown-content a:hover {
+        background: rgba(67, 97, 238, 0.3);
+        color: white;
+        padding-left: 25px;
+      }
+
+      .dropdown-content a i {
+        margin-right: 10px;
+        width: 16px;
+        text-align: center;
+      }
+
       /* Modal Styles */
       .modal-overlay {
         position: fixed;
@@ -876,6 +928,10 @@
         .nav-secondary {
           gap: 20px;
         }
+        
+        .dropdown-content {
+          min-width: 180px;
+        }
       }
 
       @media (max-width: 768px) {
@@ -939,6 +995,19 @@
         .playlist-container {
           grid-template-columns: 1fr;
         }
+        
+        .dropdown-content {
+          position: static;
+          opacity: 1;
+          visibility: visible;
+          transform: none;
+          margin-top: 10px;
+          display: none;
+        }
+        
+        .dropdown.active .dropdown-content {
+          display: block;
+        }
       }
     </style>
   </head>
@@ -959,9 +1028,20 @@
               <li>
                 <a href="#"><span class="nav-icon">♪</span> Music</a>
               </li>
-              <li>
-                <a href="#"><span class="nav-icon">98</span> Genres</a>
-              </li>
+             <li class="dropdown">
+  <a href="product.html"><span class="nav-icon">98</span> Genres <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i></a>
+  <div class="dropdown-content">
+    <a href="product.html?filter=all"><i class="fas fa-list"></i> All Genres</a>
+    <a href="product.html?filter=rock"><i class="fas fa-guitar"></i> Rock</a>
+    <a href="product.html?filter=hiphop"><i class="fas fa-drum"></i> Hip Hop</a>
+    <a href="product.html?filter=pop"><i class="fas fa-music"></i> Pop</a>
+    <a href="product.html?filter=electronic"><i class="fas fa-headphones"></i> Electronic</a>
+    <a href="product.html?filter=jazz"><i class="fas fa-record-vinyl"></i> Jazz</a>
+    <a href="product.html?filter=country"><i class="fas fa-guitar-electric"></i> Country</a>
+    <a href="product.html?filter=rnb"><i class="fas fa-microphone-alt"></i> R&B</a>
+    <a href="product.html?filter=classical"><i class="fas fa-compact-disc"></i> Classical</a>
+  </div>
+</li>
               <li>
                 <a href="#"><span class="nav-icon">☁</span> Moods</a>
               </li>
@@ -1333,169 +1413,186 @@
       </div>
     </div>
 
-    <script>
-      // Simple search functionality
-      document
-        .querySelector(".search-button")
-        .addEventListener("click", function () {
-          const searchTerm = document.querySelector(".search-input").value;
-          if (searchTerm.trim() !== "") {
-            alert(
-              `Searching for: "${searchTerm}"\nThis is a demo - in a real application, this would search the library.`
-            );
-          } else {
-            alert("Please enter a search term");
-          }
-        });
+  <script>
+  // Simple search functionality
+  document
+    .querySelector(".search-button")
+    .addEventListener("click", function () {
+      const searchTerm = document.querySelector(".search-input").value;
+      if (searchTerm.trim() !== "") {
+        alert(
+          `Searching for: "${searchTerm}"\nThis is a demo - in a real application, this would search the library.`
+        );
+      } else {
+        alert("Please enter a search term");
+      }
+    });
 
-      // Add enter key functionality to search
-      document
-        .querySelector(".search-input")
-        .addEventListener("keypress", function (e) {
-          if (e.key === "Enter") {
-            document.querySelector(".search-button").click();
-          }
-        });
+  // Add enter key functionality to search
+  document
+    .querySelector(".search-input")
+    .addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        document.querySelector(".search-button").click();
+      }
+    });
 
-      // Tag click functionality
-      document.querySelectorAll(".tag").forEach((tag) => {
-        tag.addEventListener("click", function () {
-          const tagText = this.textContent;
-          document.querySelector(".search-input").value = tagText;
-          document.querySelector(".search-button").click();
-        });
+  // Tag click functionality
+  document.querySelectorAll(".tag").forEach((tag) => {
+    tag.addEventListener("click", function () {
+      const tagText = this.textContent;
+      document.querySelector(".search-input").value = tagText;
+      document.querySelector(".search-button").click();
+    });
+  });
+
+  // Category selection
+  document.querySelectorAll(".category").forEach((category) => {
+    category.addEventListener("click", function () {
+      document.querySelectorAll(".category").forEach((cat) => {
+        cat.classList.remove("active");
       });
+      this.classList.add("active");
+    });
+  });
 
-      // Category selection
-      document.querySelectorAll(".category").forEach((category) => {
-        category.addEventListener("click", function () {
-          document.querySelectorAll(".category").forEach((cat) => {
-            cat.classList.remove("active");
-          });
-          this.classList.add("active");
-        });
-      });
-
-      // Smooth scrolling for navigation links
-      document.querySelectorAll("nav a").forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          const targetId = this.getAttribute("href");
-          if (targetId.startsWith("#")) {
-            document.querySelector(targetId).scrollIntoView({
-              behavior: "smooth",
-            });
-          }
-        });
-      });
-
-      // Animate elements on scroll
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
-      };
-
-      const observer = new IntersectionObserver(function (entries) {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = 1;
-            entry.target.style.transform = "translateY(0)";
-          }
-        });
-      }, observerOptions);
-
-      // Observe features and pricing card
-      document
-        .querySelectorAll(
-          ".feature, .pricing-card, .platform-card, .license-item, .playlist-card"
-        )
-        .forEach((el) => {
-          el.style.opacity = 0;
-          el.style.transform = "translateY(20px)";
-          el.style.transition = "opacity 0.5s ease, transform 0.5s ease";
-          observer.observe(el);
-        });
-      // Modal functionality
-      const userIcon = document
-        .querySelector(".nav-icon-link .fa-user")
-        .closest(".nav-icon-link");
-      const modalOverlay = document.getElementById("modalOverlay");
-      const closeBtn = document.getElementById("closeBtn");
-      const loginToggle = document.getElementById("loginToggle");
-      const signupToggle = document.getElementById("signupToggle");
-      const loginForm = document.getElementById("loginForm");
-      const signupForm = document.getElementById("signupForm");
-
-      // Open modal when user icon is clicked
-      userIcon.addEventListener("click", (e) => {
-        e.preventDefault();
-        modalOverlay.style.display = "flex";
-        document.body.style.overflow = "hidden"; // Prevent scrolling
-      });
-
-      // Close modal when close button is clicked
-      closeBtn.addEventListener("click", () => {
-        modalOverlay.style.display = "none";
-        document.body.style.overflow = "auto"; // Re-enable scrolling
-      });
-
-      // Close modal when clicking outside the modal content
-      modalOverlay.addEventListener("click", (e) => {
-        if (e.target === modalOverlay) {
-          modalOverlay.style.display = "none";
-          document.body.style.overflow = "auto";
-        }
-      });
-
-      // Toggle between login and signup forms
-      loginToggle.addEventListener("click", () => {
-        loginToggle.classList.add("active");
-        signupToggle.classList.remove("active");
-        loginForm.classList.add("active");
-        signupForm.classList.remove("active");
-      });
-
-      signupToggle.addEventListener("click", () => {
-        signupToggle.classList.add("active");
-        loginToggle.classList.remove("active");
-        signupForm.classList.add("active");
-        loginForm.classList.remove("active");
-      });
-
-      // Form submission handlers
-      loginForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const email = document.getElementById("loginEmail").value;
-        const password = document.getElementById("loginPassword").value;
-        // Add your login logic here
-        console.log("Login attempt:", { email, password });
-        alert("Login functionality would be implemented here!");
-        // Close modal after successful login
-        modalOverlay.style.display = "none";
-        document.body.style.overflow = "auto";
-      });
-
-      signupForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const email = document.getElementById("signupEmail").value;
-        const username = document.getElementById("signupUsername").value;
-        const password = document.getElementById("signupPassword").value;
-        // Add your signup logic here
-        console.log("Signup attempt:", { email, username, password });
-        alert("Signup functionality would be implemented here!");
-        // Close modal after successful signup
-        modalOverlay.style.display = "none";
-        document.body.style.overflow = "auto";
-      });
-
-      // Close modal with Escape key
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && modalOverlay.style.display === "flex") {
-          modalOverlay.style.display = "none";
-          document.body.style.overflow = "auto";
-        }
-      });
+  // FIXED: Smooth scrolling for navigation links
+  document.querySelectorAll("nav a").forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      const targetId = this.getAttribute("href");
       
-    </script>
+      // Only prevent default and handle smooth scrolling for hash links (#section)
+      if (targetId.startsWith("#")) {
+        e.preventDefault();
+        document.querySelector(targetId).scrollIntoView({
+          behavior: "smooth",
+        });
+      }
+      // For regular links (like product.html), let them work normally
+    });
+  });
+
+  // Animate elements on scroll
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  };
+
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = "translateY(0)";
+      }
+    });
+  }, observerOptions);
+
+  // Observe features and pricing card
+  document
+    .querySelectorAll(
+      ".feature, .pricing-card, .platform-card, .license-item, .playlist-card"
+    )
+    .forEach((el) => {
+      el.style.opacity = 0;
+      el.style.transform = "translateY(20px)";
+      el.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+      observer.observe(el);
+    });
+
+  // Modal functionality
+  const userIcon = document
+    .querySelector(".nav-icon-link .fa-user")
+    .closest(".nav-icon-link");
+  const modalOverlay = document.getElementById("modalOverlay");
+  const closeBtn = document.getElementById("closeBtn");
+  const loginToggle = document.getElementById("loginToggle");
+  const signupToggle = document.getElementById("signupToggle");
+  const loginForm = document.getElementById("loginForm");
+  const signupForm = document.getElementById("signupForm");
+
+  // Open modal when user icon is clicked
+  userIcon.addEventListener("click", (e) => {
+    e.preventDefault();
+    modalOverlay.style.display = "flex";
+    document.body.style.overflow = "hidden"; // Prevent scrolling
+  });
+
+  // Close modal when close button is clicked
+  closeBtn.addEventListener("click", () => {
+    modalOverlay.style.display = "none";
+    document.body.style.overflow = "auto"; // Re-enable scrolling
+  });
+
+  // Close modal when clicking outside the modal content
+  modalOverlay.addEventListener("click", (e) => {
+    if (e.target === modalOverlay) {
+      modalOverlay.style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+  });
+
+  // Toggle between login and signup forms
+  loginToggle.addEventListener("click", () => {
+    loginToggle.classList.add("active");
+    signupToggle.classList.remove("active");
+    loginForm.classList.add("active");
+    signupForm.classList.remove("active");
+  });
+
+  signupToggle.addEventListener("click", () => {
+    signupToggle.classList.add("active");
+    loginToggle.classList.remove("active");
+    signupForm.classList.add("active");
+    loginForm.classList.remove("active");
+  });
+
+  // Form submission handlers
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+    // Add your login logic here
+    console.log("Login attempt:", { email, password });
+    alert("Login functionality would be implemented here!");
+    // Close modal after successful login
+    modalOverlay.style.display = "none";
+    document.body.style.overflow = "auto";
+  });
+
+  signupForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = document.getElementById("signupEmail").value;
+    const username = document.getElementById("signupUsername").value;
+    const password = document.getElementById("signupPassword").value;
+    // Add your signup logic here
+    console.log("Signup attempt:", { email, username, password });
+    alert("Signup functionality would be implemented here!");
+    // Close modal after successful signup
+    modalOverlay.style.display = "none";
+    document.body.style.overflow = "auto";
+  });
+
+  // Close modal with Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modalOverlay.style.display === "flex") {
+      modalOverlay.style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+  });
+  
+  // Mobile dropdown toggle - Fixed for Option 2
+  document.querySelectorAll('.dropdown').forEach(dropdown => {
+    dropdown.addEventListener('click', function(e) {
+      if (window.innerWidth <= 768) {
+        // Don't prevent default if it's the main link being clicked
+        // This allows navigation to product.html on mobile
+        if (e.target === this || !e.target.closest('a')) {
+          e.preventDefault();
+          this.classList.toggle('active');
+        }
+      }
+    });
+  });
+</script>
   </body>
 </html>
