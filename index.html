@@ -920,6 +920,342 @@
         font-size: 0.9rem;
       }
 
+      /* Login Modal Styles */
+      #login-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        backdrop-filter: blur(5px);
+      }
+
+      #login-container {
+        width: 95%;
+        max-width: 800px;
+        height: 500px;
+        position: relative;
+        border-radius: 20px;
+        box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.1), 0 10px 10px -10px rgba(0, 0, 0, 0.02);
+        transform-style: preserve-3d;
+      }
+      
+      #login-container > div {
+        position: absolute;
+        width: 50%;
+        min-width: 350px;
+        height: 100%;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .login-content {
+        width: 100%;
+        padding: 2em 4em;
+        text-align: center;
+      }
+      
+      .login-content p {
+        font-size: 1.4em;
+      }
+
+      .login-form {
+        left: 0;
+        background: #FAFAFA;
+        border-radius: 20px 0 0 20px;
+        color: #333;
+      }
+      
+      .login-form button {
+        border-radius: 0px;
+        width: 100%;
+      }
+      
+      .login-form svg {
+        margin: 1em;
+        stroke: #999;
+      }
+
+      .register-form {
+        right: 0;
+        z-index: 1;
+        border-radius: 0 20px 20px 0;
+        background: #FAFAFA;
+        color: #333;
+      }
+      
+      .register-form button {
+        border-radius: 0px;
+        width: 100%;
+      }
+      
+      .register-form svg {
+        margin: 1em;
+        stroke: #999;
+      }
+
+      .login-page {
+        right: 0;
+        color: #fff;
+        border-radius: 0 20px 20px 0;
+        transform-origin: left center;
+        transition: animation 1s linear;
+      }
+      
+      .login-page button {
+        border-color: #fff;
+        background: transparent;
+      }
+      
+      .login-page p {
+        margin: 2em auto;
+      }
+
+      .front-page {
+        background: linear-gradient(-45deg, #FFCF00 0%, #FC4F4F 100%) no-repeat 0 0/200%;
+        z-index: 3;
+      }
+
+      .back-page {
+        background: linear-gradient(135deg, #FC4F4F 0%, #FFCF00 100%) no-repeat 0 0/200%;
+        z-index: 2;
+      }
+      
+      .back-page .login-content {
+        transform: rotateY(180deg);
+      }
+
+      .active .front-page {
+        animation: rot-front 0.6s ease-in-out normal forwards;
+      }
+
+      .active .back-page {
+        animation: rot-back 0.6s ease-in-out normal forwards;
+      }
+
+      .close .front-page {
+        animation: close-rot-front 0.6s ease-in-out normal forwards;
+      }
+
+      .close .back-page {
+        animation: close-rot-back 0.6s ease-in-out normal forwards;
+      }
+
+      @keyframes rot-front {
+        from {
+          transform: translateZ(2px) rotateY(0deg);
+        }
+        to {
+          transform: translateZ(1px) rotateY(-180deg);
+        }
+      }
+      
+      @keyframes close-rot-front {
+        from {
+          transform: translateZ(1px) rotateY(-180deg);
+        }
+        to {
+          transform: translateZ(2px) rotateY(0deg);
+        }
+      }
+      
+      @keyframes rot-back {
+        from {
+          transform: translateZ(1px) rotateY(0deg);
+        }
+        to {
+          transform: translateZ(2px) rotateY(-180deg);
+        }
+      }
+      
+      @keyframes close-rot-back {
+        from {
+          transform: translateZ(2px) rotateY(-180deg);
+        }
+        to {
+          transform: translateZ(1px) rotateY(0deg);
+        }
+      }
+
+      .active .register-form .login-content {
+        animation: show 0.7s ease-in-out normal forwards;
+      }
+
+      .close .register-form .login-content {
+        animation: hide 0.7s ease-in-out normal forwards;
+      }
+
+      .active .login-form .login-content {
+        animation: hide 0.7s ease-in-out normal forwards;
+      }
+
+      .close .login-form .login-content {
+        animation: show 0.7s ease-in-out normal forwards;
+      }
+
+      @keyframes show {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to {
+          opacity: 0.99;
+          transform: scale(0.99);
+        }
+      }
+      
+      @keyframes hide {
+        from {
+          opacity: 0.99;
+          transform: scale(0.99);
+        }
+        to {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+      }
+
+      .login-form form input,
+      .register-form form input {
+        background: #eee;
+        border: none;
+        padding: 12px 15px;
+        margin: 8px 0;
+        width: 100%;
+        font-size: 1.4em;
+      }
+
+      .login-form span,
+      .register-form span {
+        color: #333;
+        font-size: 1.4em;
+        display: inline-block;
+        margin: 15px auto;
+        font-weight: 100;
+      }
+
+      .login-form span.remember,
+      .register-form span.remember {
+        float: left;
+      }
+      
+      .login-form span.remember::before,
+      .register-form span.remember::before {
+        content: "";
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        border: 2px solid #999;
+        vertical-align: top;
+        margin-right: 4px;
+      }
+
+      .login-form span.forget {
+        float: right;
+      }
+
+      .login-form span.clearfix,
+      .register-form span.clearfix {
+        clear: both;
+        display: table;
+      }
+
+      .login-form span.loginwith,
+      .register-form span.loginwith {
+        display: block;
+        width: 100%;
+        margin-top: 1em;
+        white-space: nowrap;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .login-form span.loginwith::before,
+      .register-form span.loginwith::before {
+        content: "";
+        display: inline-block;
+        width: 42%;
+        height: 1px;
+        background: #aaa;
+        vertical-align: middle;
+        margin-right: 5%;
+      }
+      
+      .login-form span.loginwith::after,
+      .register-form span.loginwith::after {
+        content: "";
+        display: inline-block;
+        width: 45%;
+        height: 1px;
+        background: #aaa;
+        vertical-align: middle;
+        margin-left: 5%;
+      }
+
+      .login-form span.copy {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        font-size: 1em;
+      }
+
+      .login-form button,
+      .register-form button,
+      .login-page button {
+        display: block;
+        margin: 1em auto;
+        border-radius: 40px;
+        border: 1px solid #ff4b2b;
+        background: #ff4b2b;
+        color: #fff;
+        font-size: 1.2em;
+        font-weight: bold;
+        padding: 0.8em 2em;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+      }
+      
+      .login-form button svg,
+      .register-form button svg,
+      .login-page button svg {
+        vertical-align: middle;
+      }
+
+      .login-form button:hover,
+      .register-form button:hover,
+      .login-page button:hover {
+        cursor: pointer;
+      }
+
+      .login-form button:active,
+      .register-form button:active,
+      .login-page button:active {
+        transform: scale(0.95);
+      }
+
+      .login-form button:focus,
+      .register-form button:focus,
+      .login-page button:focus {
+        outline: none;
+      }
+
+      .login-form a,
+      .register-form a {
+        margin: 1em;
+        stroke: #999;
+      }
+
       @media (max-width: 1024px) {
         .nav-main {
           gap: 25px;
@@ -1008,6 +1344,26 @@
         .dropdown.active .dropdown-content {
           display: block;
         }
+        
+        #login-container {
+          height: auto;
+          max-width: 350px;
+        }
+        
+        #login-container > div {
+          position: relative;
+          width: 100%;
+          min-width: auto;
+        }
+        
+        .login-form,
+        .register-form {
+          border-radius: 20px;
+        }
+        
+        .login-page {
+          display: none;
+        }
       }
     </style>
   </head>
@@ -1064,7 +1420,7 @@
 </li>
               </li>
               <li>
-                <a href="#" class="nav-icon-link">
+                <a href="#" class="nav-icon-link" id="user-icon">
                   <i class="fas fa-user"></i>
                 </a>
               </li>
@@ -1289,126 +1645,64 @@
         <p>&copy; 2023 BigBoy Records. All rights reserved.</p>
       </footer>
     </div>
+    
     <!-- Login/Signup Modal -->
-    <div class="modal-overlay" id="modalOverlay">
-      <div class="modal-content">
-        <span class="close-btn" id="closeBtn">&times;</span>
-
-        <div class="form-container">
-          <div class="form-toggle">
-            <button class="toggle-btn active" id="loginToggle">Log In</button>
-            <button class="toggle-btn" id="signupToggle">Sign Up</button>
+    <div id="login-modal">
+      <div id="login-container" class="close">
+        <div class="login-form">
+          <div class="login-content">
+            <h1>Log In</h1>
+            <form>
+              <input type="email" placeholder="email">
+              <input type="password" placeholder="password">
+              <span class="remember">Remember me</span>
+              <span class="forget">Forgot password?</span>
+              <span class="clearfix"></span>
+              <button onclick="return false;">Log In</button>
+            </form>
+            <span class="loginwith">Or Connect with</span>
+            <a href="https://www.facebook.com/emin.qasimovdia"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="https://www.twitter.com/webkoder"><svg class="feather feather-twitter sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+            <a href="https://www.github.com/eminqasimov"><svg class="feather feather-github sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+            <a href="#"><svg class="feather feather-linkedin sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+            <span class="copy">&copy 2019</span>
           </div>
+        </div>
+        <div class="login-page front-page">
+          <div class="login-content">
+            <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+            <h1>Hello, friend!</h1>
+            <p>Enter your personal details and start journey with us</p>
+            <button type="" id="register">Register <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg></button>
+          </div>
+        </div>
+        <div class="login-page back-page">
+          <div class="login-content">
+            <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-in"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+            <h1>Welcome Back!</h1>
+            <p>To keep connected with us please login with your personal info</p>
+            <button type="" id="login"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left-circle"><circle cx="12" cy="12" r="10"/><polyline points="12 8 8 12 12 16"/><line x1="16" y1="12" x2="8" y2="12"/></svg> Log In</button>
+          </div>
+        </div>
+        <div class="register-form">
+          <div class="login-content">
+            <h1>Sign Up</h1>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            <svg class="feather feather-twitter sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+            <svg class="feather feather-github sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            <svg class="feather feather-linkedin sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          
+            <span class="loginwith">Or</span>
 
-          <!-- Login Form -->
-          <form class="form active" id="loginForm">
-            <h2>Log in to your account</h2>
-
-            <div class="input-group">
-              <label for="loginEmail">Email or username</label>
-              <input
-                type="text"
-                id="loginEmail"
-                placeholder="Enter your email or username"
-              />
-            </div>
-
-            <div class="input-group">
-              <label for="loginPassword">Password</label>
-              <input
-                type="password"
-                id="loginPassword"
-                placeholder="Enter your password"
-              />
-            </div>
-
-            <div class="forgot-password">
-              <a href="#">Forgot your password?</a>
-            </div>
-
-            <button type="submit" class="login-btn">Log In</button>
-
-            <div class="divider">
-              <span>or</span>
-            </div>
-
-            <div class="social-login">
-              <button type="button" class="social-btn">
-                <i class="fab fa-google"></i>
-                <span>Continue with Google</span>
-              </button>
-              <button type="button" class="social-btn">
-                <i class="fab fa-facebook"></i>
-                <span>Continue with Facebook</span>
-              </button>
-              <button type="button" class="social-btn">
-                <i class="fab fa-apple"></i>
-                <span>Continue with Apple</span>
-              </button>
-            </div>
-          </form>
-
-          <!-- Signup Form -->
-          <form class="form" id="signupForm">
-            <h2>Create your account</h2>
-
-            <div class="input-group">
-              <label for="signupEmail">Email</label>
-              <input
-                type="email"
-                id="signupEmail"
-                placeholder="Enter your email"
-              />
-            </div>
-
-            <div class="input-group">
-              <label for="signupUsername">Username</label>
-              <input
-                type="text"
-                id="signupUsername"
-                placeholder="Choose a username"
-              />
-            </div>
-
-            <div class="input-group">
-              <label for="signupPassword">Password</label>
-              <input
-                type="password"
-                id="signupPassword"
-                placeholder="Create a password"
-              />
-            </div>
-
-            <div class="input-group">
-              <label for="confirmPassword">Confirm Password</label>
-              <input
-                type="password"
-                id="confirmPassword"
-                placeholder="Confirm your password"
-              />
-            </div>
-
-            <button type="submit" class="signup-btn">Sign Up</button>
-
-            <div class="divider">
-              <span>or</span>
-            </div>
-
-            <div class="social-login">
-              <button type="button" class="social-btn">
-                <i class="fab fa-google"></i>
-                <span>Continue with Google</span>
-              </button>
-              <button type="button" class="social-btn">
-                <i class="fab fa-facebook"></i>
-                <span>Continue with Facebook</span>
-              </button>
-              <button type="button" class="social-btn">
-                <i class="fab fa-apple"></i>
-                <span>Continue with Apple</span>
-              </button>
-            </div>
-          </form>
+            <form>
+              <input type="text" placeholder="name">
+              <input type="email" placeholder="email">
+              <input type="password" placeholder="password"> 
+              <span class="remember">I accept terms</span> 
+              <span class="clearfix"></span>
+              <button onclick="return false;">Register</button>
+            </form>
+          </div>		
         </div>
       </div>
     </div>
@@ -1499,100 +1793,36 @@
       observer.observe(el);
     });
 
-  // Modal functionality
-  const userIcon = document
-    .querySelector(".nav-icon-link .fa-user")
-    .closest(".nav-icon-link");
-  const modalOverlay = document.getElementById("modalOverlay");
-  const closeBtn = document.getElementById("closeBtn");
-  const loginToggle = document.getElementById("loginToggle");
-  const signupToggle = document.getElementById("signupToggle");
-  const loginForm = document.getElementById("loginForm");
-  const signupForm = document.getElementById("signupForm");
+  // Login Modal Functionality
+  const userIcon = document.getElementById('user-icon');
+  const loginModal = document.getElementById('login-modal');
+  const loginContainer = document.getElementById('login-container');
+  const registerButton = document.getElementById('register');
+  const loginButton = document.getElementById('login');
 
   // Open modal when user icon is clicked
-  userIcon.addEventListener("click", (e) => {
+  userIcon.addEventListener('click', function(e) {
     e.preventDefault();
-    modalOverlay.style.display = "flex";
-    document.body.style.overflow = "hidden"; // Prevent scrolling
-  });
-
-  // Close modal when close button is clicked
-  closeBtn.addEventListener("click", () => {
-    modalOverlay.style.display = "none";
-    document.body.style.overflow = "auto"; // Re-enable scrolling
+    loginModal.style.display = 'flex';
   });
 
   // Close modal when clicking outside the modal content
-  modalOverlay.addEventListener("click", (e) => {
-    if (e.target === modalOverlay) {
-      modalOverlay.style.display = "none";
-      document.body.style.overflow = "auto";
+  loginModal.addEventListener('click', function(e) {
+    if (e.target === loginModal) {
+      loginModal.style.display = 'none';
     }
   });
 
-  // Toggle between login and signup forms
-  loginToggle.addEventListener("click", () => {
-    loginToggle.classList.add("active");
-    signupToggle.classList.remove("active");
-    loginForm.classList.add("active");
-    signupForm.classList.remove("active");
-  });
+  // Register button functionality
+  registerButton.onclick = function(){
+    loginContainer.className = 'active';
+  }
 
-  signupToggle.addEventListener("click", () => {
-    signupToggle.classList.add("active");
-    loginToggle.classList.remove("active");
-    signupForm.classList.add("active");
-    loginForm.classList.remove("active");
-  });
+  // Login button functionality
+  loginButton.onclick = function(){
+    loginContainer.className = 'close';
+  }
 
-  // Form submission handlers
-  loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const email = document.getElementById("loginEmail").value;
-    const password = document.getElementById("loginPassword").value;
-    // Add your login logic here
-    console.log("Login attempt:", { email, password });
-    alert("Login functionality would be implemented here!");
-    // Close modal after successful login
-    modalOverlay.style.display = "none";
-    document.body.style.overflow = "auto";
-  });
-
-  signupForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const email = document.getElementById("signupEmail").value;
-    const username = document.getElementById("signupUsername").value;
-    const password = document.getElementById("signupPassword").value;
-    // Add your signup logic here
-    console.log("Signup attempt:", { email, username, password });
-    alert("Signup functionality would be implemented here!");
-    // Close modal after successful signup
-    modalOverlay.style.display = "none";
-    document.body.style.overflow = "auto";
-  });
-
-  // Close modal with Escape key
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modalOverlay.style.display === "flex") {
-      modalOverlay.style.display = "none";
-      document.body.style.overflow = "auto";
-    }
-  });
-  
-  // Mobile dropdown toggle - Fixed for Option 2
-  document.querySelectorAll('.dropdown').forEach(dropdown => {
-    dropdown.addEventListener('click', function(e) {
-      if (window.innerWidth <= 768) {
-        // Don't prevent default if it's the main link being clicked
-        // This allows navigation to product.html on mobile
-        if (e.target === this || !e.target.closest('a')) {
-          e.preventDefault();
-          this.classList.toggle('active');
-        }
-      }
-    });
-  });
-</script>
+  </script>
   </body>
 </html>
