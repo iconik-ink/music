@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BigBoy Records| Premium Music</title>
+    <title>BigBoy Records | All Music Genres</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-   <style>
+    <style>
       * {
         margin: 0;
         padding: 0;
@@ -25,7 +25,7 @@
         --light: #b8c1ec;
         --text: #ffffff;
       }
-      
+
       /* Shopping Cart and User Icon Styles */
       .nav-icon-link {
         position: relative;
@@ -87,22 +87,11 @@
       }
 
       body {
-        background: url("img/BANNR/rock.gif") center/cover fixed;
+        background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
         color: var(--text);
         line-height: 1.6;
         position: relative;
         min-height: 100vh;
-      }
-
-      body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(22, 33, 62, 0.6); /* Reduced opacity from 0.9 to 0.6 */
-        z-index: -1;
       }
 
       .container {
@@ -170,8 +159,7 @@
         font-weight: 700;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       }
-      
-      
+
       /* Dropdown Styles */
       .dropdown {
         position: relative;
@@ -222,48 +210,51 @@
         text-align: center;
       }
 
-
-
       /* Liquid Button Styles */
-.liquid-button {
-  margin: auto;
-  font-weight: bold;
-  cursor: pointer;
-  display: block;
-}
+      .liquid-button {
+        margin: auto;
+        font-weight: bold;
+        cursor: pointer;
+        display: block;
+      }
 
-.liquid-button path {
-  cursor: pointer;
-}
-/* Liquid Button Wrapper */
-.liquid-button-wrapper {
-  display: inline-block;
-  text-decoration: none;
-  border-radius: 50px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
-  transition: all 0.3s ease;
-}
+      .liquid-button path {
+        cursor: pointer;
+      }
 
-.liquid-button-wrapper:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
-}
-/* Loading animation for buttons */
-.loading {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border: 3px solid rgba(255,255,255,.3);
-  border-radius: 50%;
-  border-top-color: #fff;
-  animation: spin 1s ease-in-out infinite;
-  margin-right: 10px;
-}
+      /* Liquid Button Wrapper */
+      .liquid-button-wrapper {
+        display: inline-block;
+        text-decoration: none;
+        border-radius: 50px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+        transition: all 0.3s ease;
+      }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
+      .liquid-button-wrapper:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+      }
+
+      /* Loading animation for buttons */
+      .loading {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: #fff;
+        animation: spin 1s ease-in-out infinite;
+        margin-right: 10px;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
       /* Modal Styles */
       .modal-overlay {
         position: fixed;
@@ -963,6 +954,164 @@
         font-size: 0.9rem;
       }
 
+      /* All Genres Specific Styles */
+      .genres-hero {
+        padding: 180px 0 100px;
+        text-align: center;
+      }
+
+      .genres-hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        background: linear-gradient(to right, var(--accent), var(--primary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .genres-hero p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 30px;
+        color: var(--light);
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      }
+
+      .genres-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 30px;
+        margin: 80px 0;
+      }
+
+      .genre-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        cursor: pointer;
+      }
+
+      .genre-card:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .genre-image {
+        height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3.5rem;
+        color: white;
+      }
+
+      .genre-info {
+        padding: 25px;
+      }
+
+      .genre-info h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+
+      .genre-info p {
+        color: var(--light);
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+      }
+
+      .genre-stats {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.85rem;
+        color: var(--light);
+        opacity: 0.8;
+      }
+
+      .genre-popular {
+        margin: 100px 0;
+      }
+
+      .popular-tracks {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 25px;
+        margin-top: 40px;
+      }
+
+      .track-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .track-card:hover {
+        background: rgba(255, 255, 255, 0.08);
+        transform: translateY(-5px);
+      }
+
+      .track-cover {
+        width: 60px;
+        height: 60px;
+        border-radius: 10px;
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+      }
+
+      .track-info {
+        flex: 1;
+      }
+
+      .track-info h4 {
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+      }
+
+      .track-info p {
+        font-size: 0.9rem;
+        color: var(--light);
+        opacity: 0.8;
+      }
+
+      .track-actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .track-actions button {
+        background: transparent;
+        border: none;
+        color: var(--light);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .track-actions button:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+      }
+
       /* Login Modal Styles */
       #login-modal {
         position: fixed;
@@ -984,11 +1133,12 @@
         height: 500px;
         position: relative;
         border-radius: 20px;
-        box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.1), 0 10px 10px -10px rgba(0, 0, 0, 0.02);
+        box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.1),
+          0 10px 10px -10px rgba(0, 0, 0, 0.02);
         transform-style: preserve-3d;
         overflow: hidden; /* Added to contain animation */
       }
-      
+
       #login-container > div {
         position: absolute;
         width: 50%;
@@ -1008,24 +1158,24 @@
         text-align: center;
         overflow: hidden; /* Added */
       }
-      
+
       .login-content p {
         font-size: 1.4em;
       }
 
       .login-form {
         left: 0;
-        background: #FAFAFA;
+        background: #fafafa;
         border-radius: 20px 0 0 20px;
         color: #333;
         overflow: hidden; /* Added */
       }
-      
+
       .login-form button {
         border-radius: 0px;
         width: 100%;
       }
-      
+
       .login-form svg {
         margin: 1em;
         stroke: #999;
@@ -1035,16 +1185,16 @@
         right: 0;
         z-index: 1;
         border-radius: 0 20px 20px 0;
-        background: #FAFAFA;
+        background: #fafafa;
         color: #333;
         overflow: hidden; /* Added */
       }
-      
+
       .register-form button {
         border-radius: 0px;
         width: 100%;
       }
-      
+
       .register-form svg {
         margin: 1em;
         stroke: #999;
@@ -1058,26 +1208,28 @@
         transition: animation 1s linear;
         overflow: hidden; /* Added */
       }
-      
+
       .login-page button {
         border-color: #fff;
         background: transparent;
       }
-      
+
       .login-page p {
         margin: 2em auto;
       }
 
       .front-page {
-        background: linear-gradient(-45deg, #FFCF00 0%, #FC4F4F 100%) no-repeat 0 0/200%;
+        background: linear-gradient(-45deg, #ffcf00 0%, #fc4f4f 100%) no-repeat
+          0 0/200%;
         z-index: 3;
       }
 
       .back-page {
-        background: linear-gradient(135deg, #FC4F4F 0%, #FFCF00 100%) no-repeat 0 0/200%;
+        background: linear-gradient(135deg, #fc4f4f 0%, #ffcf00 100%) no-repeat
+          0 0/200%;
         z-index: 2;
       }
-      
+
       .back-page .login-content {
         transform: rotateY(180deg);
       }
@@ -1106,7 +1258,7 @@
           transform: translateZ(1px) rotateY(-180deg);
         }
       }
-      
+
       @keyframes close-rot-front {
         from {
           transform: translateZ(1px) rotateY(-180deg);
@@ -1115,7 +1267,7 @@
           transform: translateZ(2px) rotateY(0deg);
         }
       }
-      
+
       @keyframes rot-back {
         from {
           transform: translateZ(1px) rotateY(0deg);
@@ -1124,7 +1276,7 @@
           transform: translateZ(2px) rotateY(-180deg);
         }
       }
-      
+
       @keyframes close-rot-back {
         from {
           transform: translateZ(2px) rotateY(-180deg);
@@ -1160,7 +1312,7 @@
           transform: scale(0.99);
         }
       }
-      
+
       @keyframes hide {
         from {
           opacity: 0.99;
@@ -1195,7 +1347,7 @@
       .register-form span.remember {
         float: left;
       }
-      
+
       .login-form span.remember::before,
       .register-form span.remember::before {
         content: "";
@@ -1228,7 +1380,7 @@
         justify-content: center;
         align-items: center;
       }
-      
+
       .login-form span.loginwith::before,
       .register-form span.loginwith::before {
         content: "";
@@ -1239,7 +1391,7 @@
         vertical-align: middle;
         margin-right: 5%;
       }
-      
+
       .login-form span.loginwith::after,
       .register-form span.loginwith::after {
         content: "";
@@ -1274,7 +1426,7 @@
         text-transform: uppercase;
         transition: transform 80ms ease-in;
       }
-      
+
       .login-form button svg,
       .register-form button svg,
       .login-page button svg {
@@ -1313,7 +1465,7 @@
         .nav-secondary {
           gap: 20px;
         }
-        
+
         .dropdown-content {
           min-width: 180px;
         }
@@ -1380,7 +1532,7 @@
         .playlist-container {
           grid-template-columns: 1fr;
         }
-        
+
         .dropdown-content {
           position: static;
           opacity: 1;
@@ -1389,31 +1541,31 @@
           margin-top: 10px;
           display: none;
         }
-        
+
         .dropdown.active .dropdown-content {
           display: block;
         }
-        
+
         #login-container {
           height: auto;
           max-width: 350px;
         }
-        
+
         #login-container > div {
           position: relative;
           width: 100%;
           min-width: auto;
         }
-        
+
         .login-form,
         .register-form {
           border-radius: 20px;
         }
-        
+
         .login-page {
           display: none;
         }
-        
+
         .login-content {
           padding: 2em;
         }
@@ -1428,29 +1580,50 @@
           <div class="logo-section">
             <img
               src="img/logo/logo-01.png"
-              alt="SoundVerse Pro Logo"
+              alt="BigBoy Records Logo"
               class="logo-img"
             />
           </div>
           <nav>
             <ul class="nav-main">
               <li>
-                <a href="#"><span class="nav-icon">♪</span> Music</a>
+                <a href="index.html"><span class="nav-icon">♪</span> Home</a>
               </li>
-             <li class="dropdown">
-  <a href="product.html"><span class="nav-icon">98</span> Genres <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i></a>
-  <div class="dropdown-content">
-    <a href="product.html?filter=all"><i class="fas fa-list"></i> All Genres</a>
-    <a href="product.html?filter=rock"><i class="fas fa-guitar"></i> Rock</a>
-  <a href="hop.html?filter=hiphop"><i class="fas fa-drum"></i> Hip Hop</a>
-    <a href="product.html?filter=pop"><i class="fas fa-music"></i> R&B</a>
-    <a href="product.html?filter=electronic"><i class="fas fa-headphones"></i> Electronic</a>
-    <a href="product.html?filter=jazz"><i class="fas fa-record-vinyl"></i> Jazz</a>
-    <a href="product.html?filter=country"><i class="fas fa-guitar-electric"></i> Country</a>
-    <a href="product.html?filter=rnb"><i class="fas fa-microphone-alt"></i> R&B</a>
-    <a href="product.html?filter=classical"><i class="fas fa-compact-disc"></i> Classical</a>
-  </div>
-</li>
+              <li class="dropdown">
+                <a href="#"
+                  ><span class="nav-icon">98</span> Genres
+                  <i class="fas fa-chevron-down" style="font-size: 0.8rem"></i
+                ></a>
+                <div class="dropdown-content">
+                  <a href="product.html?filter=all"
+                    ><i class="fas fa-list"></i> All Genres</a
+                  >
+                  <a href="product.html?filter=rock"
+                    ><i class="fas fa-guitar"></i> Rock</a
+                  >
+                  <a href="hop.html?filter=hiphop"
+                    ><i class="fas fa-drum"></i> Hip Hop</a
+                  >
+                  <a href="product.html?filter=pop"
+                    ><i class="fas fa-music"></i> R&B</a
+                  >
+                  <a href="product.html?filter=electronic"
+                    ><i class="fas fa-headphones"></i> Electronic</a
+                  >
+                  <a href="product.html?filter=jazz"
+                    ><i class="fas fa-record-vinyl"></i> Jazz</a
+                  >
+                  <a href="product.html?filter=country"
+                    ><i class="fas fa-guitar-electric"></i> Country</a
+                  >
+                  <a href="product.html?filter=rnb"
+                    ><i class="fas fa-microphone-alt"></i> R&B</a
+                  >
+                  <a href="product.html?filter=classical"
+                    ><i class="fas fa-compact-disc"></i> Classical</a
+                  >
+                </div>
+              </li>
               <li>
                 <a href="#"><span class="nav-icon">☁</span> Moods</a>
               </li>
@@ -1465,12 +1638,14 @@
               <li><a href="#">Pricing</a></li>
               <li><a href="#">Subscribe</a></li>
               <li>
-               <li>
- <a href="cart.html" class="nav-icon-link" onclick="event.preventDefault(); window.location.href='cart.html';">
-    <i class="fas fa-shopping-cart"></i>
-    <span class="cart-count">3</span>
-</a>
-</li>
+                <a
+                  href="cart.html"
+                  class="nav-icon-link"
+                  onclick="event.preventDefault(); window.location.href='cart.html';"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                  <span class="cart-count">3</span>
+                </a>
               </li>
               <li>
                 <a href="#" class="nav-icon-link" id="user-icon">
@@ -1481,31 +1656,18 @@
           </nav>
         </div>
       </header>
-      <!-- unlimited-->
-      <section class="hero">
-        <h1>Where Every Click Drops a Beat.</h1>
+
+      <!-- All Genres Hero Section -->
+      <section class="genres-hero">
+        <h1>Explore All Music Genres</h1>
         <p>
-          Unlimited downloads from our library of studio-quality audio for your
-          videos, podcasts, games, and apps for one simple low price.
+          Dive into our extensive collection of music across all genres. From
+          rock to classical, find the perfect sound for your project.
         </p>
-        <a href="unlimite.html" class="liquid-button-wrapper">
-  <svg class="liquid-button"
-       data-text="Get Unlimited Access →"
-       data-force-factor="0.1"
-       data-layer-1-viscosity="0.5"
-       data-layer-2-viscosity="0.4"
-       data-layer-1-mouse-force="400"
-       data-layer-2-mouse-force="500"
-       data-layer-1-force-limit="1"
-       data-layer-2-force-limit="2"
-       data-color1="#4361ee"
-       data-color2="#3a0ca3"
-       data-color3="#4cc9f0"
-       data-text-color="#ffffff">
-  </svg>
-</a>
+        <a href="#genres" class="cta-button">Browse All Genres</a>
       </section>
 
+      <!-- Search Section -->
       <section class="search-section">
         <div class="search-container">
           <div class="search-box">
@@ -1517,16 +1679,337 @@
             <button class="search-button"><i class="fas fa-search"></i></button>
           </div>
           <div class="search-tags">
-            <div class="tag">Cinematic</div>
-            <div class="tag">Upbeat</div>
-            <div class="tag">Ambient</div>
             <div class="tag">Rock</div>
+            <div class="tag">Hip Hop</div>
             <div class="tag">Electronic</div>
             <div class="tag">Jazz</div>
+            <div class="tag">Pop</div>
+            <div class="tag">Classical</div>
           </div>
         </div>
       </section>
 
+      <!-- All Genres Grid -->
+      <section id="genres" class="genres">
+        <h2 class="section-title">All Music Genres</h2>
+        <p class="section-subtitle">
+          Explore our diverse collection of music across all genres. Click on
+          any genre to discover tracks, playlists, and more.
+        </p>
+
+        <div class="genres-grid">
+          <!-- Rock Genre -->
+          <div
+            class="genre-card"
+            onclick="window.location.href='product.html?filter=rock'"
+          >
+            <div
+              class="genre-image"
+              style="background: linear-gradient(45deg, #ff6b6b, #ee5a24)"
+            >
+              <i class="fas fa-guitar"></i>
+            </div>
+            <div class="genre-info">
+              <h3>Rock</h3>
+              <p>
+                From classic rock anthems to modern alternative, find the
+                perfect guitar-driven tracks for your project.
+              </p>
+              <div class="genre-stats">
+                <span>1,245 tracks</span>
+                <span>85 playlists</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hip Hop Genre -->
+          <div
+            class="genre-card"
+            onclick="window.location.href='product.html?filter=hiphop'"
+          >
+            <div
+              class="genre-image"
+              style="background: linear-gradient(45deg, #a29bfe, #6c5ce7)"
+            >
+              <i class="fas fa-drum"></i>
+            </div>
+            <div class="genre-info">
+              <h3>Hip Hop</h3>
+              <p>
+                Urban beats, rap vocals, and street-inspired sounds for your
+                next project.
+              </p>
+              <div class="genre-stats">
+                <span>987 tracks</span>
+                <span>62 playlists</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pop Genre -->
+          <div
+            class="genre-card"
+            onclick="window.location.href='product.html?filter=pop'"
+          >
+            <div
+              class="genre-image"
+              style="background: linear-gradient(45deg, #fd79a8, #e84393)"
+            >
+              <i class="fas fa-music"></i>
+            </div>
+            <div class="genre-info">
+              <h3>Pop</h3>
+              <p>
+                Catchy melodies, upbeat rhythms, and chart-topping sounds for
+                any occasion.
+              </p>
+              <div class="genre-stats">
+                <span>1,532 tracks</span>
+                <span>104 playlists</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Electronic Genre -->
+          <div
+            class="genre-card"
+            onclick="window.location.href='product.html?filter=electronic'"
+          >
+            <div
+              class="genre-image"
+              style="background: linear-gradient(45deg, #74b9ff, #0984e3)"
+            >
+              <i class="fas fa-headphones"></i>
+            </div>
+            <div class="genre-info">
+              <h3>Electronic</h3>
+              <p>
+                From ambient soundscapes to high-energy EDM, explore the world
+                of electronic music.
+              </p>
+              <div class="genre-stats">
+                <span>2,103 tracks</span>
+                <span>128 playlists</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Jazz Genre -->
+          <div
+            class="genre-card"
+            onclick="window.location.href='product.html?filter=jazz'"
+          >
+            <div
+              class="genre-image"
+              style="background: linear-gradient(45deg, #fdcb6e, #e17055)"
+            >
+              <i class="fas fa-record-vinyl"></i>
+            </div>
+            <div class="genre-info">
+              <h3>Jazz</h3>
+              <p>
+                Smooth melodies, improvisational solos, and classic jazz
+                standards.
+              </p>
+              <div class="genre-stats">
+                <span>756 tracks</span>
+                <span>43 playlists</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Country Genre -->
+          <div
+            class="genre-card"
+            onclick="window.location.href='product.html?filter=country'"
+          >
+            <div
+              class="genre-image"
+              style="background: linear-gradient(45deg, #55efc4, #00b894)"
+            >
+              <i class="fas fa-guitar-electric"></i>
+            </div>
+            <div class="genre-info">
+              <h3>Country</h3>
+              <p>
+                Heartfelt storytelling, acoustic guitars, and down-home rhythms.
+              </p>
+              <div class="genre-stats">
+                <span>634 tracks</span>
+                <span>38 playlists</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- R&B Genre -->
+          <div
+            class="genre-card"
+            onclick="window.location.href='product.html?filter=rnb'"
+          >
+            <div
+              class="genre-image"
+              style="background: linear-gradient(45deg, #e84393, #fd79a8)"
+            >
+              <i class="fas fa-microphone-alt"></i>
+            </div>
+            <div class="genre-info">
+              <h3>R&B</h3>
+              <p>
+                Soulful vocals, smooth grooves, and contemporary R&B sounds.
+              </p>
+              <div class="genre-stats">
+                <span>892 tracks</span>
+                <span>57 playlists</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Classical Genre -->
+          <div
+            class="genre-card"
+            onclick="window.location.href='product.html?filter=classical'"
+          >
+            <div
+              class="genre-image"
+              style="background: linear-gradient(45deg, #a29bfe, #6c5ce7)"
+            >
+              <i class="fas fa-compact-disc"></i>
+            </div>
+            <div class="genre-info">
+              <h3>Classical</h3>
+              <p>
+                Timeless compositions, orchestral arrangements, and classical
+                masterpieces.
+              </p>
+              <div class="genre-stats">
+                <span>1,087 tracks</span>
+                <span>72 playlists</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Popular Tracks Section -->
+      <section class="genre-popular">
+        <h2 class="section-title">Popular Tracks Across All Genres</h2>
+        <p class="section-subtitle">
+          Check out some of our most popular tracks that creators are using in
+          their projects.
+        </p>
+
+        <div class="popular-tracks">
+          <!-- Track 1 -->
+          <div class="track-card">
+            <div
+              class="track-cover"
+              style="background: linear-gradient(45deg, #ff6b6b, #ee5a24)"
+            >
+              <i class="fas fa-play"></i>
+            </div>
+            <div class="track-info">
+              <h4>Electric Dreams</h4>
+              <p>Rock • 3:24</p>
+            </div>
+            <div class="track-actions">
+              <button><i class="fas fa-play"></i></button>
+              <button><i class="fas fa-plus"></i></button>
+            </div>
+          </div>
+
+          <!-- Track 2 -->
+          <div class="track-card">
+            <div
+              class="track-cover"
+              style="background: linear-gradient(45deg, #a29bfe, #6c5ce7)"
+            >
+              <i class="fas fa-play"></i>
+            </div>
+            <div class="track-info">
+              <h4>Urban Pulse</h4>
+              <p>Hip Hop • 2:48</p>
+            </div>
+            <div class="track-actions">
+              <button><i class="fas fa-play"></i></button>
+              <button><i class="fas fa-plus"></i></button>
+            </div>
+          </div>
+
+          <!-- Track 3 -->
+          <div class="track-card">
+            <div
+              class="track-cover"
+              style="background: linear-gradient(45deg, #74b9ff, #0984e3)"
+            >
+              <i class="fas fa-play"></i>
+            </div>
+            <div class="track-info">
+              <h4>Neon Lights</h4>
+              <p>Electronic • 4:12</p>
+            </div>
+            <div class="track-actions">
+              <button><i class="fas fa-play"></i></button>
+              <button><i class="fas fa-plus"></i></button>
+            </div>
+          </div>
+
+          <!-- Track 4 -->
+          <div class="track-card">
+            <div
+              class="track-cover"
+              style="background: linear-gradient(45deg, #fd79a8, #e84393)"
+            >
+              <i class="fas fa-play"></i>
+            </div>
+            <div class="track-info">
+              <h4>Summer Vibes</h4>
+              <p>Pop • 3:15</p>
+            </div>
+            <div class="track-actions">
+              <button><i class="fas fa-play"></i></button>
+              <button><i class="fas fa-plus"></i></button>
+            </div>
+          </div>
+
+          <!-- Track 5 -->
+          <div class="track-card">
+            <div
+              class="track-cover"
+              style="background: linear-gradient(45deg, #fdcb6e, #e17055)"
+            >
+              <i class="fas fa-play"></i>
+            </div>
+            <div class="track-info">
+              <h4>Midnight Jazz</h4>
+              <p>Jazz • 5:22</p>
+            </div>
+            <div class="track-actions">
+              <button><i class="fas fa-play"></i></button>
+              <button><i class="fas fa-plus"></i></button>
+            </div>
+          </div>
+
+          <!-- Track 6 -->
+          <div class="track-card">
+            <div
+              class="track-cover"
+              style="background: linear-gradient(45deg, #55efc4, #00b894)"
+            >
+              <i class="fas fa-play"></i>
+            </div>
+            <div class="track-info">
+              <h4>Country Roads</h4>
+              <p>Country • 3:48</p>
+            </div>
+            <div class="track-actions">
+              <button><i class="fas fa-play"></i></button>
+              <button><i class="fas fa-plus"></i></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
       <section class="features">
         <div class="feature">
           <i class="fas fa-infinity"></i>
@@ -1554,141 +2037,7 @@
         </div>
       </section>
 
-      <section id="platforms" class="platforms">
-        <h2 class="section-title">Music and sound effects for any platform</h2>
-        <p class="section-subtitle">
-          Providing royalty-free music for over 1.2M creative projects since
-          2015.
-        </p>
-
-        <div class="platform-grid">
-          <div class="platform-card">
-            <i class="fas fa-podcast"></i>
-            <h3>Podcasts</h3>
-            <p>Trusted by 21,021 podcasters</p>
-          </div>
-          <div class="platform-card">
-            <i class="fab fa-youtube"></i>
-            <h3>YouTube</h3>
-            <p>Trusted by 63,097 YouTubers</p>
-          </div>
-          <div class="platform-card">
-            <i class="fab fa-instagram"></i>
-            <h3>Instagram</h3>
-            <p>Used in 59,992 campaigns</p>
-          </div>
-          <div class="platform-card">
-            <i class="fab fa-tiktok"></i>
-            <h3>TikTok</h3>
-            <p>Used by 10,516 TikTokers</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="licensing" class="licensing">
-        <div class="license-container">
-          <div class="license-content">
-            <h2>Easy licensing for every project</h2>
-            <p>
-              Simple, substantial licenses with all rights included for every
-              type of project.
-            </p>
-            <a href="#" class="cta-button">See our licenses</a>
-          </div>
-          <div class="license-grid">
-            <div class="license-item">
-              <i class="fab fa-youtube"></i>
-              <p>YouTube</p>
-            </div>
-            <div class="license-item">
-              <i class="fab fa-vimeo"></i>
-              <p>Vimeo</p>
-            </div>
-            <div class="license-item">
-              <i class="fab fa-twitch"></i>
-              <p>Twitch</p>
-            </div>
-            <div class="license-item">
-              <i class="fab fa-tiktok"></i>
-              <p>TikTok</p>
-            </div>
-            <div class="license-item">
-              <i class="fab fa-instagram"></i>
-              <p>Instagram</p>
-            </div>
-            <div class="license-item">
-              <i class="fab fa-facebook"></i>
-              <p>Facebook</p>
-            </div>
-            <div class="license-item">
-              <i class="fas fa-podcast"></i>
-              <p>Podcasts</p>
-            </div>
-            <div class="license-item">
-              <i class="fas fa-tv"></i>
-              <p>Broadcast/OTT</p>
-            </div>
-            <div class="license-item">
-              <i class="fas fa-film"></i>
-              <p>Film & TV</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="playlists" class="playlists">
-        <h2 class="section-title">
-          No More Dead Air. Find the Beat That Brings Your Verse to Life.
-        </h2>
-        <p class="section-subtitle">
-          Discover our customized collections to find the track for whatever
-          you're working on.
-        </p>
-
-        <div class="playlist-container">
-          <div class="playlist-categories">
-            <div class="category active">Artists</div>
-            <div class="category">Genres</div>
-            <div class="category">Moods</div>
-            <div class="category">Projects</div>
-            <div class="category">Seasonal</div>
-            <div class="category">Staff Picks</div>
-          </div>
-          <div class="playlist-grid">
-            <div class="playlist-card">
-              <div class="playlist-image">
-                <i class="fas fa-music"></i>
-              </div>
-              <div class="playlist-info">
-                <h3>Best of October</h3>
-                <p>Latest & Greatest</p>
-                <p>29 Tracks</p>
-              </div>
-            </div>
-            <div class="playlist-card">
-              <div class="playlist-image">
-                <i class="fas fa-fire"></i>
-              </div>
-              <div class="playlist-info">
-                <h3>Weekly Hits</h3>
-                <p>Producer's Picks</p>
-                <p>28 Tracks</p>
-              </div>
-            </div>
-            <div class="playlist-card">
-              <div class="playlist-image">
-                <i class="fas fa-chart-line"></i>
-              </div>
-              <div class="playlist-info">
-                <h3>Now Trending</h3>
-                <p>Chart Topping Hits</p>
-                <p>32 Tracks</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      <!-- Pricing Section -->
       <section id="pricing" class="pricing">
         <h2 class="section-title">Simple, Affordable Pricing</h2>
         <p class="section-subtitle">
@@ -1705,22 +2054,7 @@
             <li><i class="fas fa-check"></i> No attribution required</li>
             <li><i class="fas fa-check"></i> Cancel anytime</li>
           </ul>
-          <a href="#" class="liquid-button-wrapper">
-            <svg class="liquid-button"
-                 data-text="Get Started Today"
-                 data-force-factor="0.1"
-                 data-layer-1-viscosity="0.5"
-                 data-layer-2-viscosity="0.4"
-                 data-layer-1-mouse-force="400"
-                 data-layer-2-mouse-force="500"
-                 data-layer-1-force-limit="1"
-                 data-layer-2-force-limit="2"
-                 data-color1="#4361ee"
-                 data-color2="#3a0ca3"
-                 data-color3="#4cc9f0"
-                 data-text-color="#ffffff">
-            </svg>
-          </a>
+          <a href="#" class="cta-button">Get Started Today</a>
         </div>
       </section>
 
@@ -1728,7 +2062,7 @@
         <p>&copy; 2023 BigBoy Records. All rights reserved.</p>
       </footer>
     </div>
-    
+
     <!-- Login/Signup Modal -->
     <div id="login-modal">
       <div id="login-container" class="close">
@@ -1736,497 +2070,386 @@
           <div class="login-content">
             <h1>Log In</h1>
             <form>
-              <input type="email" placeholder="email">
-              <input type="password" placeholder="password">
+              <input type="email" placeholder="email" />
+              <input type="password" placeholder="password" />
               <span class="remember">Remember me</span>
               <span class="forget">Forgot password?</span>
               <span class="clearfix"></span>
               <button onclick="return false;">Log In</button>
             </form>
             <span class="loginwith">Or Connect with</span>
-            <a href="https://www.facebook.com/emin.qasimovdia"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-            <a href="https://www.twitter.com/webkoder"><svg class="feather feather-twitter sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
-            <a href="https://www.github.com/eminqasimov"><svg class="feather feather-github sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
-            <a href="#"><svg class="feather feather-linkedin sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+            <a href="https://www.facebook.com/emin.qasimovdia"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-facebook"
+              >
+                <path
+                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                /></svg
+            ></a>
+            <a href="https://www.twitter.com/webkoder"
+              ><svg
+                class="feather feather-twitter sc-dnqmqq jxshSx"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+                ></path></svg
+            ></a>
+            <a href="https://www.github.com/eminqasimov"
+              ><svg
+                class="feather feather-github sc-dnqmqq jxshSx"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                ></path></svg
+            ></a>
+            <a href="#"
+              ><svg
+                class="feather feather-linkedin sc-dnqmqq jxshSx"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                ></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle></svg
+            ></a>
             <span class="copy"></span>
           </div>
         </div>
         <div class="login-page front-page">
           <div class="login-content">
-            <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="96"
+              height="96"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-user-plus"
+            >
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="8.5" cy="7" r="4" />
+              <line x1="20" y1="8" x2="20" y2="14" />
+              <line x1="23" y1="11" x2="17" y2="11" />
+            </svg>
             <h1>Hello, friend!</h1>
             <p>Enter your personal details and start journey with us</p>
-            <button type="" id="register">Register <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg></button>
+            <button type="" id="register">
+              Register
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-arrow-right-circle"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 16 16 12 12 8" />
+                <line x1="8" y1="12" x2="16" y2="12" />
+              </svg>
+            </button>
           </div>
         </div>
         <div class="login-page back-page">
           <div class="login-content">
-            <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-in"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="96"
+              height="96"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-log-in"
+            >
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+              <polyline points="10 17 15 12 10 7" />
+              <line x1="15" y1="12" x2="3" y2="12" />
+            </svg>
             <h1>Welcome Back!</h1>
-            <p>To keep connected with us please login with your personal info</p>
-            <button type="" id="login"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left-circle"><circle cx="12" cy="12" r="10"/><polyline points="12 8 8 12 12 16"/><line x1="16" y1="12" x2="8" y2="12"/></svg> Log In</button>
+            <p>
+              To keep connected with us please login with your personal info
+            </p>
+            <button type="" id="login">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-arrow-left-circle"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 8 8 12 12 16" />
+                <line x1="16" y1="12" x2="8" y2="12" />
+              </svg>
+              Log In
+            </button>
           </div>
         </div>
         <div class="register-form">
           <div class="login-content">
             <h1>Sign Up</h1>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-            <svg class="feather feather-twitter sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
-            <svg class="feather feather-github sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-            <svg class="feather feather-linkedin sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-          
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-facebook"
+            >
+              <path
+                d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+              />
+            </svg>
+            <svg
+              class="feather feather-twitter sc-dnqmqq jxshSx"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+              ></path>
+            </svg>
+            <svg
+              class="feather feather-github sc-dnqmqq jxshSx"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+              ></path>
+            </svg>
+            <svg
+              class="feather feather-linkedin sc-dnqmqq jxshSx"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+              ></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+
             <span class="loginwith">Or</span>
 
             <form>
-              <input type="text" placeholder="name">
-              <input type="email" placeholder="email">
-              <input type="password" placeholder="password"> 
-              <span class="remember">I accept terms</span> 
+              <input type="text" placeholder="name" />
+              <input type="email" placeholder="email" />
+              <input type="password" placeholder="password" />
+              <span class="remember">I accept terms</span>
               <span class="clearfix"></span>
-             <button onclick="return false;" id="register-button">Register</button>
+              <button onclick="return false;" id="register-button">
+                Register
+              </button>
             </form>
-          </div>		
+          </div>
         </div>
       </div>
     </div>
 
-  <script>
-  // Simple search functionality
-  document
-    .querySelector(".search-button")
-    .addEventListener("click", function () {
-      const searchTerm = document.querySelector(".search-input").value;
-      if (searchTerm.trim() !== "") {
-        alert(
-          `Searching for: "${searchTerm}"\nThis is a demo - in a real application, this would search the library.`
-        );
-      } else {
-        alert("Please enter a search term");
-      }
-    });
-
-  // Add enter key functionality to search
-  document
-    .querySelector(".search-input")
-    .addEventListener("keypress", function (e) {
-      if (e.key === "Enter") {
-        document.querySelector(".search-button").click();
-      }
-    });
-
-  // Tag click functionality
-  document.querySelectorAll(".tag").forEach((tag) => {
-    tag.addEventListener("click", function () {
-      const tagText = this.textContent;
-      document.querySelector(".search-input").value = tagText;
-      document.querySelector(".search-button").click();
-    });
-  });
-
-  // Category selection
-  document.querySelectorAll(".category").forEach((category) => {
-    category.addEventListener("click", function () {
-      document.querySelectorAll(".category").forEach((cat) => {
-        cat.classList.remove("active");
-      });
-      this.classList.add("active");
-    });
-  });
-
-  //  Smooth scrolling : navigation links
-  document.querySelectorAll("nav a").forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      const targetId = this.getAttribute("href");
-      
-      // Only prevent default and handle smooth scrolling for hash links (#section)
-      if (targetId.startsWith("#")) {
-        e.preventDefault();
-        document.querySelector(targetId).scrollIntoView({
-          behavior: "smooth",
+    <script>
+      // Simple search functionality
+      document
+        .querySelector(".search-button")
+        .addEventListener("click", function () {
+          const searchTerm = document.querySelector(".search-input").value;
+          if (searchTerm.trim() !== "") {
+            alert(
+              `Searching for: "${searchTerm}"\nThis is a demo - in a real application, this would search the library.`
+            );
+          } else {
+            alert("Please enter a search term");
+          }
         });
-      }
-      // For regular links (like product.html), let them work normally
-    });
-  });
 
-  // Animate elements on scroll
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  };
-
-  const observer = new IntersectionObserver(function (entries) {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = 1;
-        entry.target.style.transform = "translateY(0)";
-      }
-    });
-  }, observerOptions);
-
-  // Observe features and pricing card
-  document
-    .querySelectorAll(
-      ".feature, .pricing-card, .platform-card, .license-item, .playlist-card"
-    )
-    .forEach((el) => {
-      el.style.opacity = 0;
-      el.style.transform = "translateY(20px)";
-      el.style.transition = "opacity 0.5s ease, transform 0.5s ease";
-      observer.observe(el);
-    });
-
-  // Login Modal Functionality
-  const userIcon = document.getElementById('user-icon');
-  const loginModal = document.getElementById('login-modal');
-  const loginContainer = document.getElementById('login-container');
-  const registerButton = document.getElementById('register');
-  const loginButton = document.getElementById('login');
-
-  // Open modal when user icon is clicked
-  userIcon.addEventListener('click', function(e) {
-    e.preventDefault();
-    loginModal.style.display = 'flex';
-  });
-
-  // Close modal when clicking outside the modal content
-  loginModal.addEventListener('click', function(e) {
-    if (e.target === loginModal) {
-      loginModal.style.display = 'none';
-    }
-  });
-
-// Register button functionality - toggle between login and signup
-registerButton.onclick = function(){
-  if(loginContainer.className === 'active') {
-    loginContainer.className = 'close';
-  } else {
-    loginContainer.className = 'active';
-  }
-}
-
-// Login button functionality - toggle between login and signup  
-loginButton.onclick = function(){
-  if(loginContainer.className === 'active') {
-    loginContainer.className = 'close';
-  } else {
-    loginContainer.className = 'active';
-  }
-}
-
-// Liquid Button Implementation
-const LiquidButton = class LiquidButton {
-  constructor(svg) {
-    const options = svg.dataset;
-    this.id = this.constructor.id || (this.constructor.id = 1);
-    this.constructor.id++;
-    this.xmlns = 'http://www.w3.org/2000/svg';
-    this.tension = options.tension * 1 || 0.4;
-    this.width = options.width * 1 || 200;
-    this.height = options.height * 1 || 50;
-    this.margin = options.margin || 40;
-    this.hoverFactor = options.hoverFactor || -0.1;
-    this.gap = options.gap || 5;
-    this.debug = options.debug || false;
-    this.forceFactor = options.forceFactor || 0.2;
-    this.color1 = options.color1 || '#4361ee';
-    this.color2 = options.color2 || '#3a0ca3';
-    this.color3 = options.color3 || '#4cc9f0';
-    this.textColor = options.textColor || '#ffffff';
-    this.text = options.text || 'Button';
-    this.svg = svg;
-    this.layers = [{
-      points: [],
-      viscosity: 0.5,
-      mouseForce: 100,
-      forceLimit: 2,
-    },{
-      points: [],
-      viscosity: 0.8,
-      mouseForce: 150,
-      forceLimit: 3,
-    }];
-    
-    for (let layerIndex = 0; layerIndex < this.layers.length; layerIndex++) {
-      const layer = this.layers[layerIndex];
-      layer.viscosity = options['layer-' + (layerIndex + 1) + 'Viscosity'] * 1 || layer.viscosity;
-      layer.mouseForce = options['layer-' + (layerIndex + 1) + 'MouseForce'] * 1 || layer.mouseForce;
-      layer.forceLimit = options['layer-' + (layerIndex + 1) + 'ForceLimit'] * 1 || layer.forceLimit;
-      layer.path = document.createElementNS(this.xmlns, 'path');
-      this.svg.appendChild(layer.path);
-    }
-    
-    this.wrapperElement = options.wrapperElement || document.body;
-    if (!this.svg.parentElement) {
-      this.wrapperElement.append(this.svg);
-    }
-
-    this.svgText = document.createElementNS(this.xmlns, 'text');
-    this.svgText.setAttribute('x', '50%');
-    this.svgText.setAttribute('y', '50%');
-    this.svgText.setAttribute('dy', ~~(this.height / 8) + 'px');
-    this.svgText.setAttribute('font-size', ~~(this.height / 3));
-    this.svgText.style.fontFamily = 'sans-serif';
-    this.svgText.setAttribute('text-anchor', 'middle');
-    this.svgText.setAttribute('pointer-events', 'none');
-    this.svg.appendChild(this.svgText);
-
-    this.svgDefs = document.createElementNS(this.xmlns, 'defs');
-    this.svg.appendChild(this.svgDefs);
-
-    this.touches = [];
-    this.noise = options.noise || 0;
-    
-    // Event listeners
-    this.svg.addEventListener('mousemove', this.mouseHandler.bind(this));
-    this.svg.addEventListener('mouseout', this.clearHandler.bind(this));
-    this.svg.addEventListener('click', this.clickHandler.bind(this));
-    
-    this.initOrigins();
-    this.animate();
-  }
-
-  mouseHandler(e) {
-    this.touches = [{
-      x: e.offsetX,
-      y: e.offsetY,
-      force: 1,
-    }];
-  }
-
-  clearHandler(e) {
-    this.touches = [];
-  }
-
-  clickHandler(e) {
-    // If there's a parent anchor, let it handle the navigation
-    const parentAnchor = this.svg.closest('a');
-    if (!parentAnchor) {
-      // Trigger the button action
-      const action = this.svg.dataset.action;
-      if (action === 'login') {
-        document.getElementById('user-icon').click();
-      } else if (action === 'unlimited') {
-        window.location.href = 'unlimite.html';
-      } else if (action === 'subscribe') {
-        // Handle subscription action
-        const pricingCard = document.querySelector('.pricing-card .cta-button');
-        if (pricingCard) pricingCard.click();
-      }
-    }
-    // Let the anchor tag handle the actual navigation
-  }
-
-  get raf() {
-    return this.__raf || (this.__raf = (
-      window.requestAnimationFrame ||
-      window.webkitRequestAnimationFrame ||
-      window.mozRequestAnimationFrame ||
-      function(callback){ setTimeout(callback, 10)}
-    ).bind(window));
-  }
-
-  distance(p1, p2) {
-    return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
-  }
-
-  update() {
-    for (let layerIndex = 0; layerIndex < this.layers.length; layerIndex++) {
-      const layer = this.layers[layerIndex];
-      const points = layer.points;
-      for (let pointIndex = 0; pointIndex < points.length; pointIndex++) {
-        const point = points[pointIndex];
-        const dx = point.ox - point.x + (Math.random() - 0.5) * this.noise;
-        const dy = point.oy - point.y + (Math.random() - 0.5) * this.noise;
-        const d = Math.sqrt(dx * dx + dy * dy);
-        const f = d * this.forceFactor;
-        point.vx += f * ((dx / d) || 0);
-        point.vy += f * ((dy / d) || 0);
-        
-        for (let touchIndex = 0; touchIndex < this.touches.length; touchIndex++) {
-          const touch = this.touches[touchIndex];
-          let mouseForce = layer.mouseForce;
-          if (
-            touch.x > this.margin &&
-            touch.x < this.margin + this.width &&
-            touch.y > this.margin &&
-            touch.y < this.margin + this.height
-          ) {
-            mouseForce *= -this.hoverFactor;
+      // Add enter key functionality to search
+      document
+        .querySelector(".search-input")
+        .addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            document.querySelector(".search-button").click();
           }
-          const mx = point.x - touch.x;
-          const my = point.y - touch.y;
-          const md = Math.sqrt(mx * mx + my * my);
-          const mf = Math.max(-layer.forceLimit, Math.min(layer.forceLimit, (mouseForce * touch.force) / md));
-          point.vx += mf * ((mx / md) || 0);
-          point.vy += mf * ((my / md) || 0);
+        });
+
+      // Tag click functionality
+      document.querySelectorAll(".tag").forEach((tag) => {
+        tag.addEventListener("click", function () {
+          const tagText = this.textContent;
+          document.querySelector(".search-input").value = tagText;
+          document.querySelector(".search-button").click();
+        });
+      });
+
+      // Category selection
+      document.querySelectorAll(".category").forEach((category) => {
+        category.addEventListener("click", function () {
+          document.querySelectorAll(".category").forEach((cat) => {
+            cat.classList.remove("active");
+          });
+          this.classList.add("active");
+        });
+      });
+
+      //  Smooth scrolling : navigation links
+      document.querySelectorAll("nav a").forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          const targetId = this.getAttribute("href");
+
+          // Only prevent default and handle smooth scrolling for hash links (#section)
+          if (targetId.startsWith("#")) {
+            e.preventDefault();
+            document.querySelector(targetId).scrollIntoView({
+              behavior: "smooth",
+            });
+          }
+          // For regular links (like product.html), let them work normally
+        });
+      });
+
+      // Animate elements on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      // Observe features and pricing card
+      document
+        .querySelectorAll(".feature, .pricing-card, .genre-card, .track-card")
+        .forEach((el) => {
+          el.style.opacity = 0;
+          el.style.transform = "translateY(20px)";
+          el.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+          observer.observe(el);
+        });
+
+      // Login Modal Functionality
+      const userIcon = document.getElementById("user-icon");
+      const loginModal = document.getElementById("login-modal");
+      const loginContainer = document.getElementById("login-container");
+      const registerButton = document.getElementById("register");
+      const loginButton = document.getElementById("login");
+
+      // Open modal when user icon is clicked
+      userIcon.addEventListener("click", function (e) {
+        e.preventDefault();
+        loginModal.style.display = "flex";
+      });
+
+      // Close modal when clicking outside the modal content
+      loginModal.addEventListener("click", function (e) {
+        if (e.target === loginModal) {
+          loginModal.style.display = "none";
         }
-        
-        point.vx *= layer.viscosity;
-        point.vy *= layer.viscosity;
-        point.x += point.vx;
-        point.y += point.vy;
-      }
-      
-      for (let pointIndex = 0; pointIndex < points.length; pointIndex++) {
-        const prev = points[(pointIndex + points.length - 1) % points.length]; 
-        const point = points[pointIndex];
-        const next = points[(pointIndex + points.length + 1) % points.length];
-        const dPrev = this.distance(point, prev);
-        const dNext = this.distance(point, next);
+      });
 
-        const line = {
-          x: next.x - prev.x,
-          y: next.y - prev.y,
-        };
-        const dLine = Math.sqrt(line.x * line.x + line.y * line.y);
-
-        point.cPrev = {
-          x: point.x - (line.x / dLine) * dPrev * this.tension,
-          y: point.y - (line.y / dLine) * dPrev * this.tension,
-        };
-        point.cNext = {
-          x: point.x + (line.x / dLine) * dNext * this.tension,
-          y: point.y + (line.y / dLine) * dNext * this.tension,
-        };
-      }
-    }
-  }
-
-  animate() {
-    this.raf(() => {
-      this.update();
-      this.draw();
-      this.animate();
-    });
-  }
-
-  get svgWidth() {
-    return this.width + this.margin * 2;
-  }
-
-  get svgHeight() {
-    return this.height + this.margin * 2;
-  }
-
-  draw() {
-    for (let layerIndex = 0; layerIndex < this.layers.length; layerIndex++) {
-      const layer = this.layers[layerIndex];
-      if (layerIndex === 1) {
-        if (this.touches.length > 0) {
-          while (this.svgDefs.firstChild) {
-            this.svgDefs.removeChild(this.svgDefs.firstChild);
-          }
-          for (let touchIndex = 0; touchIndex < this.touches.length; touchIndex++) {
-            const touch = this.touches[touchIndex];
-            const gradient = document.createElementNS(this.xmlns, 'radialGradient');
-            gradient.id = 'liquid-gradient-' + this.id + '-' + touchIndex;
-            const start = document.createElementNS(this.xmlns, 'stop');
-            start.setAttribute('stop-color', this.color3);
-            start.setAttribute('offset', '0%');
-            const stop = document.createElementNS(this.xmlns, 'stop');
-            stop.setAttribute('stop-color', this.color2);
-            stop.setAttribute('offset', '100%');
-            gradient.appendChild(start);
-            gradient.appendChild(stop);
-            this.svgDefs.appendChild(gradient);
-            gradient.setAttribute('cx', touch.x / this.svgWidth);
-            gradient.setAttribute('cy', touch.y / this.svgHeight);
-            gradient.setAttribute('r', touch.force);
-            layer.path.style.fill = 'url(#' + gradient.id + ')';
-          }
+      // Register button functionality - toggle between login and signup
+      registerButton.onclick = function () {
+        if (loginContainer.className === "active") {
+          loginContainer.className = "close";
         } else {
-          layer.path.style.fill = this.color2;
+          loginContainer.className = "active";
         }
-      } else {
-        layer.path.style.fill = this.color1;
-      }
-      
-      const points = layer.points;
-      const commands = [];
-      commands.push('M', points[0].x, points[0].y);
-      for (let pointIndex = 1; pointIndex < points.length; pointIndex += 1) {
-        commands.push('C',
-          points[(pointIndex + 0) % points.length].cNext.x,
-          points[(pointIndex + 0) % points.length].cNext.y,
-          points[(pointIndex + 1) % points.length].cPrev.x,
-          points[(pointIndex + 1) % points.length].cPrev.y,
-          points[(pointIndex + 1) % points.length].x,
-          points[(pointIndex + 1) % points.length].y
-        );
-      }
-      commands.push('Z');
-      layer.path.setAttribute('d', commands.join(' '));
-    }
-    
-    this.svgText.textContent = this.text;
-    this.svgText.style.fill = this.textColor;
-  }
+      };
 
-  createPoint(x, y) {
-    return {
-      x: x,
-      y: y,
-      ox: x,
-      oy: y,
-      vx: 0,
-      vy: 0,
-    };
-  }
-
-  initOrigins() {
-    this.svg.setAttribute('width', this.svgWidth);
-    this.svg.setAttribute('height', this.svgHeight);
-    
-    for (let layerIndex = 0; layerIndex < this.layers.length; layerIndex++) {
-      const layer = this.layers[layerIndex];
-      const points = [];
-      
-      // Top edge
-      for (let x = ~~(this.height / 2); x < this.width - ~~(this.height / 2); x += this.gap) {
-        points.push(this.createPoint(x + this.margin, this.margin));
-      }
-      
-      // Right edge (rounded)
-      for (let alpha = ~~(this.height * 1.25); alpha >= 0; alpha -= this.gap) {
-        const angle = (Math.PI / ~~(this.height * 1.25)) * alpha;
-        points.push(this.createPoint(
-          Math.sin(angle) * this.height / 2 + this.margin + this.width - this.height / 2,
-          Math.cos(angle) * this.height / 2 + this.margin + this.height / 2
-        ));
-      }
-      
-      // Bottom edge
-      for (let x = this.width - ~~(this.height / 2) - 1; x >= ~~(this.height / 2); x -= this.gap) {
-        points.push(this.createPoint(x + this.margin, this.margin + this.height));
-      }
-      
-      // Left edge (rounded)
-      for (let alpha = 0; alpha <= ~~(this.height * 1.25); alpha += this.gap) {
-        const angle = (Math.PI / ~~(this.height * 1.25)) * alpha;
-        points.push(this.createPoint(
-          (this.height - Math.sin(angle) * this.height / 2) + this.margin - this.height / 2,
-          Math.cos(angle) * this.height / 2 + this.margin + this.height / 2
-        ));
-      }
-      
-      layer.points = points;
-    }
-  }
-}
-
-// Initialize liquid buttons
-function initLiquidButtons() {
-  const buttons = document.getElementsByClassName('liquid-button');
-  for (let buttonIndex = 0; buttonIndex < buttons.length; buttonIndex++) {
-    const button = buttons[buttonIndex];
-    new LiquidButton(button);
-  }
-}
-
-// Call this after DOM is loaded
-document.addEventListener('DOMContentLoaded', initLiquidButtons);
-
-  </script>
+      // Login button functionality - toggle between login and signup
+      loginButton.onclick = function () {
+        if (loginContainer.className === "active") {
+          loginContainer.className = "close";
+        } else {
+          loginContainer.className = "active";
+        }
+      };
+    </script>
   </body>
 </html>
