@@ -41,6 +41,37 @@
         max-width: 1200px;
         margin: 0 auto;
       }
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .logo-img {
+        height: 90px;
+        filter: brightness(0) invert(1);
+        transition: transform 0.3s ease;
+      }
+
+      .logo-img:hover {
+        transform: scale(1.05);
+      }
+      .logo-link {
+        display: inline-block;
+        text-decoration: none;
+        border: none;
+      }
+
+      .logo-link:hover {
+        border: none;
+        background: none;
+      }
 
       .pricing-header {
         text-align: center;
@@ -234,12 +265,174 @@
           font-size: 2rem;
         }
       }
+      /* Footer */
+      .main-footer {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 60px 0 30px;
+        margin-top: 80px;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-column h3 {
+        color: white;
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+
+      .footer-links {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        color: var(--light);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: white;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .footer-logo-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+      }
+
+      .footer-logo-main {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+      }
+
+      .footer-logo-by {
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .footer-logo-shutterstock {
+        color: #ff5a00;
+        font-weight: 700;
+      }
+
+      .footer-resources {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .footer-resources a {
+        color: var(--light);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-resources a:hover {
+        color: white;
+      }
+
+      .language-selector {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--light);
+      }
+
+      .language-selector select {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+      }
+
+      .payment-methods {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .payment-text {
+        color: var(--light);
+        font-size: 0.9rem;
+        margin-right: 10px;
+      }
+
+      .payment-icon {
+        font-size: 1.5rem;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .copyright {
+        color: var(--light);
+        font-size: 0.9rem;
+        text-align: center;
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      @media (max-width: 1024px) {
+        .plan-card.featured {
+          transform: scale(1);
+        }
+
+        .plan-card.featured:hover {
+          transform: translateY(-10px);
+        }
+
+        .footer-content {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
     </style>
   </head>
   <body>
+    <!-- Floating Navbar -->
+    <header>
+      <div class="nav-container">
+        <div class="logo-section">
+          <!-- Logo Image with Home Link -->
+          <a href="index.html" class="logo-link">
+            <img
+              src="img/logo/logo-01.png"
+              alt="SoundVerse Pro Logo"
+              class="logo-img"
+            />
+          </a>
+        </div>
+      </div>
+    </header>
     <div class="container">
       <div class="pricing-header">
-        <h1 class="pricing-title">Unlimited Music and SFX Subscriptions</h1>
+        <h1 class="pricing-title">Unlimited Music Subscriptions</h1>
         <p class="pricing-subtitle">
           Choose the perfect plan for your creative projects. All plans include
           unlimited downloads from our extensive library.
@@ -263,7 +456,9 @@
             <li><i class="fas fa-check"></i> Discounted license upgrades</li>
           </ul>
 
-          <a href="#" class="plan-button">SUBSCRIBE</a>
+          <a href="#" class="plan-button" data-plan="creator" data-price="9.99"
+            >SUBSCRIBE NOW</a
+          >
           <p class="cancel-text">Cancel anytime from your account</p>
         </div>
 
@@ -285,7 +480,13 @@
             <li><i class="fas fa-check"></i> Discounted license upgrades</li>
           </ul>
 
-          <a href="#" class="plan-button">SUBSCRIBE</a>
+          <a
+            href="#"
+            class="plan-button"
+            data-plan="standard"
+            data-price="24.99"
+            >SUBSCRIBE NOW</a
+          >
           <p class="cancel-text">Cancel anytime from your account</p>
         </div>
 
@@ -309,34 +510,163 @@
             <li><i class="fas fa-check"></i> Custom invoicing, and more</li>
           </ul>
 
-          <a href="#" class="plan-button outline">CONTACT US</a>
+          <a href="#" class="plan-button outline" data-plan="enterprise"
+            >CONTACT US</a
+          >
         </div>
       </div>
 
       <div class="contact-section">
         <h3 class="contact-title">Need a custom solution?</h3>
         <p>Contact our sales team for enterprise pricing and custom plans.</p>
-        <a href="#" class="contact-button">CONTACT US</a>
+        <a href="#" class="plan-button outline" id="contact-button"
+          >CONTACT US</a
+        >
       </div>
     </div>
+    <!-- Main Footer -->
+    <footer class="main-footer">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>GENERAL</h3>
+          <ul class="footer-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Special Offers</a></li>
+            <li><a href="#">Music Genres</a></li>
+            <li><a href="#">Music Moods</a></li>
+            <li><a href="#">Artists</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>PLAYLISTS</h3>
+          <ul class="footer-links">
+            <li><a href="#">Popular Genres</a></li>
+            <li><a href="#">Trending Beats</a></li>
+            <li><a href="#">Amapiano</a></li>
+            <li><a href="#">Jazz Music</a></li>
+            <li><a href="#">Music fusion</a></li>
+            <li><a href="#">Music Playlists</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>INFO</h3>
+          <ul class="footer-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Testimonials</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">License Information</a></li>
+            <li><a href="#">Affiliate Program</a></li>
+            <li><a href="#">Refer 5 get US$25</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>COMPOSERS</h3>
+          <ul class="footer-links">
+            <li><a href="#">Submit Music</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>SUPPORT</h3>
+          <ul class="footer-links">
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Cue Sheets</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-logo">
+          <div class="footer-logo-text">
+            <div class="footer-logo-main">Bigboy</div>
+            <div class="footer-logo-by">
+              by <span class="footer-logo-shutterstock">Records</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-resources">
+          <a href="#">Rhythm and blues</a>
+          <a href="#">Free Music</a>
+          <a href="#"> Hip-hop culture</a>
+          <a href="#">Reggae</a>
+          <a href="#">Soul music</a>
+        </div>
+
+        <div class="language-selector">
+          <span>English</span>
+          <select>
+            <option>English</option>
+            <option>Español</option>
+            <option>Français</option>
+            <option>Deutsch</option>
+          </select>
+        </div>
+
+        <div class="payment-methods">
+          <span class="payment-text">100% SECURE SHOPPING</span>
+          <i class="fab fa-cc-mastercard payment-icon"></i>
+          <i class="fab fa-cc-visa payment-icon"></i>
+          <i class="fab fa-cc-paypal payment-icon"></i>
+          <i class="fab fa-cc-amex payment-icon"></i>
+        </div>
+      </div>
+
+      <div class="copyright">
+        BigboyRecords.com copyright © 2005-2025 kenya, LLC
+      </div>
+    </footer>
 
     <script>
-      // Simple script for button interactions
+      // Enhanced script for button interactions with individual checkout links
       document.addEventListener("DOMContentLoaded", function () {
         const buttons = document.querySelectorAll(
           ".plan-button, .contact-button"
         );
 
+        // Function to handle checkout process
+        function processCheckout(planName, price) {
+          // In a real application, this would redirect to the actual checkout page
+          // For demonstration, we'll show a confirmation and simulate a redirect
+
+          alert(
+            `Processing checkout for ${planName} plan at $${price}/month. Redirecting to secure checkout...`
+          );
+
+          // Simulate a redirect after a short delay
+          setTimeout(() => {
+            // In a real application, this would be:
+            // window.location.href = `/checkout?plan=${planName}&price=${price}`;
+
+            // For demo purposes, we'll just show a success message
+            alert(`Success! Your ${planName} subscription has been activated.`);
+          }, 1500);
+        }
+
+        // Function to handle contact requests
+        function processContact(planName) {
+          alert(
+            `Thank you for your interest in our ${planName} plan. Our team will contact you shortly to discuss your needs.`
+          );
+
+          // In a real application, this would redirect to a contact form
+          // window.location.href = `/contact?plan=${planName}`;
+        }
+
+        // Add event listeners to all plan buttons
         buttons.forEach((button) => {
           button.addEventListener("click", function (e) {
             e.preventDefault();
-            const planName = this.closest(".plan-card")
-              ? this.closest(".plan-card").querySelector(".plan-name")
-                  .textContent
-              : "Enterprise";
-            alert(
-              `You've selected the ${planName} plan. This would redirect to the checkout/contact page in a real application.`
-            );
+
+            const planName = this.dataset.plan;
+            const price = this.dataset.price;
+
+            if (planName === "enterprise" || this.id === "contact-button") {
+              processContact(planName || "custom");
+            } else {
+              processCheckout(planName, price);
+            }
           });
         });
       });
