@@ -1569,6 +1569,375 @@
         .login-content {
           padding: 2em;
         }
+        /* Pop Genre Card Styles */
+        .genre-card {
+          width: 350px;
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(10px);
+          border-radius: 20px;
+          overflow: hidden;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          cursor: pointer;
+          position: relative;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .genre-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .genre-header {
+          position: relative;
+          height: 180px;
+          background: linear-gradient(45deg, #fd79a8, #e84393);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+        }
+
+        .genre-icon {
+          font-size: 70px;
+          color: white;
+          z-index: 2;
+          position: relative;
+        }
+
+        .genre-info {
+          padding: 25px;
+          color: white;
+        }
+
+        .genre-info h3 {
+          font-size: 28px;
+          margin-bottom: 10px;
+          font-weight: 700;
+        }
+
+        .genre-info p {
+          font-size: 16px;
+          line-height: 1.5;
+          margin-bottom: 20px;
+          opacity: 0.8;
+        }
+
+        .genre-stats {
+          display: flex;
+          justify-content: space-between;
+          font-size: 14px;
+          opacity: 0.7;
+        }
+
+        /* SVG Animation Styles */
+        .svg-container {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+          opacity: 0.3;
+        }
+
+        .svg-container svg {
+          width: 100%;
+          height: 100%;
+          fill: rgba(255, 255, 255, 0.5);
+        }
+
+        .icon {
+          animation: shake 4s ease infinite;
+        }
+
+        @keyframes shake {
+          0%,
+          100% {
+            transform: translateX(0);
+          }
+          10%,
+          30%,
+          50%,
+          70%,
+          90% {
+            transform: translateX(-10px);
+          }
+          20%,
+          40%,
+          60%,
+          80% {
+            transform: translateX(10px);
+          }
+        }
+
+        /* Optional: Add a pulse effect to the icon */
+        .genre-icon {
+          animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+          0% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.1);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+      }
+      /* Pop Genre Card Styles */
+      .genre-card {
+        width: 350px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        position: relative;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .genre-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      }
+
+      .genre-header {
+        position: relative;
+        height: 180px;
+        background: linear-gradient(45deg, #fd79a8, #e84393);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .genre-icon {
+        font-size: 70px;
+        color: white;
+        z-index: 2;
+        position: relative;
+      }
+
+      .genre-info {
+        padding: 25px;
+        color: white;
+      }
+
+      .genre-info h3 {
+        font-size: 28px;
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+
+      .genre-info p {
+        font-size: 16px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+        opacity: 0.8;
+      }
+
+      .genre-stats {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        opacity: 0.7;
+      }
+
+      /* SVG Animation Styles */
+      .svg-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        opacity: 0.3;
+      }
+
+      .svg-container svg {
+        width: 100%;
+        height: 100%;
+        fill: rgba(255, 255, 255, 0.5);
+      }
+
+      .icon {
+        animation: shake 4s ease infinite;
+      }
+
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        10%,
+        30%,
+        50%,
+        70%,
+        90% {
+          transform: translateX(-10px);
+        }
+        20%,
+        40%,
+        60%,
+        80% {
+          transform: translateX(10px);
+        }
+      }
+
+      /* Optional: Add a pulse effect to the icon */
+      .genre-icon {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      /* rock card */
+      /* Music Player Animation Styles */
+      .music-player-animation {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .centered {
+        position: absolute;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+
+      .face {
+        width: 80px;
+        height: 80px;
+        background-color: #ebebeb;
+        border-radius: 50%;
+        -webkit-mask: url(http://bdpcali.com/wp-content/uploads/2015/06/fe26d3_73c3dd22967c45b9ad144d63fb7b7a2b.png)
+          top left / cover;
+        mask: url(http://bdpcali.com/wp-content/uploads/2015/06/fe26d3_73c3dd22967c45b9ad144d63fb7b7a2b.png)
+          top left / cover;
+      }
+
+      .back {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background: linear-gradient(
+          to bottom,
+          #ff694c 0%,
+          #f15378 30%,
+          #e053d5 40%,
+          #b54beb 60%,
+          #5b86ee 70%,
+          #00eeeb 100%
+        );
+        -webkit-filter: saturate(0.5);
+        filter: saturate(0.5);
+        -webkit-transform: scale(1) rotate(-25deg);
+        transform: scale(1) rotate(-25deg);
+        -webkit-animation: spin 0.3s infinite linear alternate;
+        animation: spin 0.3s infinite linear alternate;
+      }
+
+      .headphones {
+        width: 180px;
+        height: 70px;
+        -webkit-animation: bounce 0.3s linear infinite alternate;
+        animation: bounce 0.3s linear infinite alternate;
+      }
+
+      .earmuff {
+        float: left;
+        width: 12px;
+        height: 70px;
+        background: #fa7b57;
+        border-radius: 50% 10px 10px 50%;
+        border-right: #fa8e57 solid 12px;
+      }
+      .earmuff:nth-child(2) {
+        float: right;
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+      }
+
+      .band {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background-color: transparent;
+        border-top: #fa7b57 solid 25px;
+        z-index: -99;
+      }
+
+      .music {
+        width: 250px;
+        height: 30px;
+      }
+      .group1 {
+        float: left;
+      }
+      .group2 {
+        float: right;
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+      }
+      .wave {
+        display: inline-block;
+        width: 6px;
+        height: 30px;
+        opacity: 0.2;
+        background-color: #fa7b57;
+        -webkit-animation: wave 0.3s 0.2s linear infinite alternate;
+        animation: wave 0.3s 0.2s linear infinite alternate;
+      }
+      .wave:nth-child(2) {
+        -webkit-animation: wave 0.3s 0.1s linear infinite alternate;
+        animation: wave 0.3s 0.1s linear infinite alternate;
+      }
+      .wave:nth-child(3) {
+        -webkit-animation: wave 0.3s linear infinite alternate;
+        animation: wave 0.3s linear infinite alternate;
+      }
+
+      @keyframes spin {
+        to {
+          -webkit-filter: saturate(1);
+          filter: saturate(1);
+          -webkit-transform: scale(1.05) rotate(-25deg);
+          transform: scale(1.05) rotate(-25deg);
+        }
+      }
+
+      @keyframes bounce {
+        to {
+          -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+        }
+      }
+
+      @keyframes wave {
+        to {
+          opacity: 1;
+          -webkit-transform: scaleY(2);
+          transform: scaleY(2);
+        }
       }
     </style>
   </head>
@@ -1699,6 +2068,7 @@
 
         <div class="genres-grid">
           <!-- Rock Genre -->
+          <!-- Rock Genre -->
           <div
             class="genre-card"
             onclick="window.location.href='product.html?filter=rock'"
@@ -1707,7 +2077,30 @@
               class="genre-image"
               style="background: linear-gradient(45deg, #ff6b6b, #ee5a24)"
             >
-              <i class="fas fa-guitar"></i>
+              <!-- Music Player Animation -->
+              <div class="music-player-animation">
+                <div class="centered back"></div>
+                <div class="centered face"></div>
+
+                <div class="centered headphones">
+                  <div class="centered band"></div>
+                  <div class="earmuff"></div>
+                  <div class="earmuff"></div>
+                </div>
+
+                <div class="centered music">
+                  <div class="group1">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                  </div>
+                  <div class="group2">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="genre-info">
               <h3>Rock</h3>
@@ -1744,7 +2137,7 @@
               </p>
               <div class="genre-stats">
                 <span>987 tracks</span>
-                <span>62 playlists</span>
+                <span>20 playlists</span>
               </div>
             </div>
           </div>
@@ -6172,11 +6565,24 @@
             class="genre-card"
             onclick="window.location.href='product.html?filter=pop'"
           >
-            <div
-              class="genre-image"
-              style="background: linear-gradient(45deg, #fd79a8, #e84393)"
-            >
-              <i class="fas fa-music"></i>
+            <div class="genre-header">
+              <div class="svg-container">
+                <svg version="1.1" viewBox="0 0 500 500">
+                  <path
+                    class="icon"
+                    d="M453.858,105.116v-91.6c0-4.3-2.1-8.4-5.5-10.9c-3.5-2.5-8-3.3-12.1-2l-272.9,86.7c-5.6,1.8-9.4,7-9.4,12.9v91.7v0.1v175.3
+                    c-14.3-9.9-32.6-15.3-51.8-15.3c-20.3,0-39.6,6.1-54.3,17.1c-15.8,11.9-24.5,28-24.5,45.5s8.7,33.6,24.5,45.5
+                    c14.7,11,33.9,17.1,54.3,17.1s39.6-6.1,54.3-17.1c15.8-11.9,24.5-28,24.5-45.5v-212.8l245.9-78.2v156.6
+                    c-14.3-9.9-32.6-15.3-51.8-15.3c-20.3,0-39.6,6.1-54.3,17.1c-15.8,11.9-24.5,28-24.5,45.5s8.7,33.6,24.5,45.5
+                    c14.7,11,33.9,17.1,54.3,17.1s39.6-6.1,54.3-17.1c15.8-11.9,24.5-28,24.5-45.5v-222.3
+                    C453.858,105.116,453.858,105.116,453.858,105.116z M102.158,450.216c-28.1,0-51.8-16.3-51.8-35.6c0-19.3,23.7-35.6,51.8-35.6
+                    s51.8,16.3,51.8,35.6C153.958,434.016,130.258,450.216,102.158,450.216z M180.958,173.416v-63.4l245.9-78.1v63.4L180.958,173.416z
+                    M375.158,363.116c-28.1,0-51.8-16.3-51.8-35.6c0-19.3,23.7-35.6,51.8-35.6s51.8,16.3,51.8,35.6
+                    C426.858,346.816,403.158,363.116,375.158,363.116z"
+                  />
+                </svg>
+              </div>
+              <i class="fas fa-music genre-icon"></i>
             </div>
             <div class="genre-info">
               <h3>Pop</h3>
@@ -6186,7 +6592,7 @@
               </p>
               <div class="genre-stats">
                 <span>1,532 tracks</span>
-                <span>104 playlists</span>
+                <span>20 playlists</span>
               </div>
             </div>
           </div>
