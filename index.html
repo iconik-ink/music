@@ -222,7 +222,150 @@
         text-align: center;
       }
 
+      /* Chat Icon and Chat Box Styles */
+      .chat-icon {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(to right, var(--primary), var(--secondary));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 20px rgba(67, 97, 238, 0.4);
+        z-index: 999;
+        transition: all 0.3s ease;
+      }
 
+      .chat-icon:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 25px rgba(67, 97, 238, 0.6);
+      }
+
+      .chat-icon i {
+        font-size: 24px;
+        color: white;
+      }
+
+      .chat-box {
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        width: 350px;
+        height: 450px;
+        background: rgba(26, 26, 46, 0.95);
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 1000;
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .chat-box.active {
+        display: flex;
+      }
+
+      .chat-header {
+        padding: 15px 20px;
+        background: rgba(67, 97, 238, 0.3);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .chat-header h3 {
+        font-size: 1.1rem;
+        color: white;
+      }
+
+      .close-chat {
+        background: none;
+        border: none;
+        color: var(--light);
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .close-chat:hover {
+        color: var(--accent);
+      }
+
+      .chat-messages {
+        flex: 1;
+        padding: 15px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .message {
+        padding: 10px 15px;
+        border-radius: 18px;
+        max-width: 80%;
+        word-wrap: break-word;
+        font-size: 0.9rem;
+      }
+
+      .message.bot {
+        background: rgba(67, 97, 238, 0.3);
+        align-self: flex-start;
+        border-bottom-left-radius: 5px;
+      }
+
+      .message.user {
+        background: rgba(76, 201, 240, 0.3);
+        align-self: flex-end;
+        border-bottom-right-radius: 5px;
+      }
+
+      .chat-input {
+        padding: 15px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        gap: 10px;
+      }
+
+      .chat-input input {
+        flex: 1;
+        padding: 10px 15px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        color: white;
+        font-size: 0.9rem;
+      }
+
+      .chat-input input:focus {
+        outline: none;
+        border-color: var(--accent);
+      }
+
+      .send-button {
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .send-button:hover {
+        background: var(--secondary);
+      }
 
       /* Liquid Button Styles */
 .liquid-button {
@@ -1417,6 +1560,12 @@
         .login-content {
           padding: 2em;
         }
+        
+        .chat-box {
+          width: 90%;
+          right: 5%;
+          height: 400px;
+        }
       }
     </style>
   </head>
@@ -1792,6 +1941,31 @@
         </div>
       </div>
     </div>
+    
+    <!-- Chat Icon and Chat Box -->
+    <div class="chat-icon" id="chat-icon">
+      <i class="fas fa-comments"></i>
+    </div>
+    
+    <div class="chat-box" id="chat-box">
+      <div class="chat-header">
+        <h3>BigBoy Records Support</h3>
+        <button class="close-chat" id="close-chat">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="chat-messages" id="chat-messages">
+        <div class="message bot">
+          Hello! Welcome to BigBoy Records. How can I help you today?
+        </div>
+      </div>
+      <div class="chat-input">
+        <input type="text" id="chat-input" placeholder="Type your message...">
+        <button class="send-button" id="send-button">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
 
   <script>
   // Simple search functionality
@@ -1916,6 +2090,82 @@ loginButton.onclick = function(){
     loginContainer.className = 'active';
   }
 }
+
+// Chat Functionality
+const chatIcon = document.getElementById('chat-icon');
+const chatBox = document.getElementById('chat-box');
+const closeChat = document.getElementById('close-chat');
+const chatMessages = document.getElementById('chat-messages');
+const chatInput = document.getElementById('chat-input');
+const sendButton = document.getElementById('send-button');
+
+// Open chat box
+chatIcon.addEventListener('click', function() {
+  chatBox.classList.add('active');
+});
+
+// Close chat box
+closeChat.addEventListener('click', function() {
+  chatBox.classList.remove('active');
+});
+
+// Send message function
+function sendMessage() {
+  const message = chatInput.value.trim();
+  if (message !== '') {
+    // Add user message
+    addMessage(message, 'user');
+    chatInput.value = '';
+    
+    // Simulate bot response after a short delay
+    setTimeout(() => {
+      const botResponse = getBotResponse(message);
+      addMessage(botResponse, 'bot');
+    }, 1000);
+  }
+}
+
+// Add message to chat
+function addMessage(text, sender) {
+  const messageDiv = document.createElement('div');
+  messageDiv.classList.add('message', sender);
+  messageDiv.textContent = text;
+  chatMessages.appendChild(messageDiv);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Get bot response based on user input
+function getBotResponse(message) {
+  const lowerMessage = message.toLowerCase();
+  
+  if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
+    return "Hi there! How can I assist you with BigBoy Records today?";
+  } else if (lowerMessage.includes('pricing') || lowerMessage.includes('price') || lowerMessage.includes('cost')) {
+    return "Our Premium Plan is $16/month with unlimited downloads. You can check our pricing page for more details!";
+  } else if (lowerMessage.includes('download') || lowerMessage.includes('access')) {
+    return "With our subscription, you get unlimited downloads from our entire library of premium music and sound effects.";
+  } else if (lowerMessage.includes('license') || lowerMessage.includes('legal')) {
+    return "Our license covers commercial use on YouTube, podcasts, social media, and more. No attribution required!";
+  } else if (lowerMessage.includes('genre') || lowerMessage.includes('type') || lowerMessage.includes('music')) {
+    return "We have a wide variety of genres including Rock, Hip Hop, Electronic, Jazz, R&B, and many more!";
+  } else if (lowerMessage.includes('help') || lowerMessage.includes('support')) {
+    return "I'm here to help! You can ask me about pricing, licensing, genres, or how to get started.";
+  } else if (lowerMessage.includes('thank')) {
+    return "You're welcome! Is there anything else I can help you with?";
+  } else {
+    return "Thanks for your message! For specific questions about your account or technical issues, please contact our support team at support@bigboyrecords.com.";
+  }
+}
+
+// Send message on button click
+sendButton.addEventListener('click', sendMessage);
+
+// Send message on Enter key
+chatInput.addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    sendMessage();
+  }
+});
 
 // Liquid Button Implementation
 const LiquidButton = class LiquidButton {
