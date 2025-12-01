@@ -1567,6 +1567,102 @@
           height: 400px;
         }
       }
+      /* Alternative: Accordion-style dropdown */
+@media (max-width: 768px) {
+  .dropdown > a {
+    position: relative;
+    padding-right: 40px;
+  }
+  
+  .dropdown > a:after {
+    content: '▼';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .dropdown.active > a:after {
+    transform: translateY(-50%) rotate(180deg);
+  }
+  
+  /* Make dropdown items more compact */
+  .dropdown-content {
+    padding: 5px 0;
+  }
+  
+  .dropdown-content a {
+    padding: 8px 20px;
+    font-size: 0.85rem;
+  }
+  
+  /* Add a visual indicator for open state */
+  .dropdown.active > a {
+    background: rgba(67, 97, 238, 0.2);
+    border-left: 3px solid var(--accent);
+  }
+}
+/* Cart link styles */
+.nav-cart-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.nav-cart-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.cart-label {
+  font-size: 0.95rem;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ff5a00;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  display: none; /* Hidden by default, shown when count > 0 */
+}
+
+
+/* Mobile: smaller text and badge */
+@media (max-width: 768px) {
+  .nav-cart-link {
+    padding: 6px 10px;
+    gap: 5px;
+  }
+  
+  .cart-label {
+    font-size: 0.85rem;
+  }
+  
+  .cart-badge {
+    width: 18px;
+    height: 18px;
+    font-size: 0.65rem;
+  }
+}
     </style>
   </head>
   <body>
@@ -1617,11 +1713,12 @@
               <li><a href="pricing.html">Pricing</a></li>
               <li><a href="#">Subscribe</a></li>
               <li>
-               <li>
- <a href="cart.html" class="nav-icon-link" onclick="event.preventDefault(); window.location.href='cart.html';">
+ <li>
+  <a href="cart.html" class="nav-cart-link" onclick="event.preventDefault(); window.location.href='cart.html';">
     <i class="fas fa-shopping-cart"></i>
-    <span class="cart-count">3</span>
-</a>
+    <span class="cart-label">Cart</span>
+    <span class="cart-badge" id="cart-count-badge">0</span>
+  </a>
 </li>
               </li>
               <li>
@@ -2479,7 +2576,243 @@ function initLiquidButtons() {
 
 // Call this after DOM is loaded
 document.addEventListener('DOMContentLoaded', initLiquidButtons);
+// Add this to your existing JavaScript
+// Mobile dropdown toggle
+document.querySelectorAll('.dropdown > a').forEach(dropdown => {
+  dropdown.addEventListener('click', function(e) {
+    if (window.innerWidth <= 768) {
+      e.preventDefault();
+      const dropdown = this.parentElement;
+      dropdown.classList.toggle('active');
+      
+      // Close other dropdowns
+      document.querySelectorAll('.dropdown').forEach(other => {
+        if (other !== dropdown) {
+          other.classList.remove('active');
+        }
+      });
+    }
+  });
+});
 
+// Close dropdown when clicking outside on mobile
+document.addEventListener('click', function(e) {
+  if (window.innerWidth <= 768) {
+    if (!e.target.closest('.dropdown')) {
+      document.querySelectorAll('.dropdown').forEach(dropdown => {
+        dropdown.classList.remove('active');
+      });
+    }
+  }
+});
+
+// Handle window resize
+window.addEventListener('resize', function() {
+  if (window.innerWidth > 768) {
+    // Reset dropdowns on desktop
+    document.querySelectorAll('.dropdown').forEach(dropdown => {
+      dropdown.classList.remove('active');
+    });
+  }
+});
+
+// Prevent horizontal scroll on mobile
+document.body.addEventListener('touchmove', function(e) {
+  if (e.touches.length > 1) e.preventDefault();
+}, { passive: false });
+// ==============================
+// SHOPPING CART FUNCTIONALITY
+// ==============================
+
+// Cart data structure
+const cart = {
+  items: [],
+  total: 0,
+  
+  // Initialize cart from localStorage
+  init() {
+    this.loadFromStorage();
+    this.updateCartCount();
+  },
+  
+  // Load cart from localStorage
+  loadFromStorage() {
+    const savedCart = localStorage.getItem('bigboyCart');
+    if (savedCart) {
+      const cartData = JSON.parse(savedCart);
+      this.items = cartData.items || [];
+      this.total = cartData.total || 0;
+    }
+  },
+  
+  // Save cart to localStorage
+  saveToStorage() {
+    const cartData = {
+      items: this.items,
+      total: this.total
+    };
+    localStorage.setItem('bigboyCart', JSON.stringify(cartData));
+  },
+  
+  // Add item to cart
+  addItem(product) {
+    const existingItem = this.items.find(item => item.id === product.id);
+    
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      this.items.push({
+        ...product,
+        quantity: 1
+      });
+    }
+    
+    this.calculateTotal();
+    this.saveToStorage();
+    this.updateCartCount();
+    this.showAddToCartNotification(product.name);
+  },
+  
+  // Remove item from cart
+  removeItem(productId) {
+    this.items = this.items.filter(item => item.id !== productId);
+    this.calculateTotal();
+    this.saveToStorage();
+    this.updateCartCount();
+  },
+  
+  // Update item quantity
+  updateQuantity(productId, quantity) {
+    const item = this.items.find(item => item.id === productId);
+    if (item) {
+      item.quantity = Math.max(1, quantity);
+      this.calculateTotal();
+      this.saveToStorage();
+      this.updateCartCount();
+    }
+  },
+  
+  // Calculate total price
+  calculateTotal() {
+    this.total = this.items.reduce((sum, item) => {
+      return sum + (item.price * item.quantity);
+    }, 0);
+  },
+  
+  // Get cart item count
+  getItemCount() {
+    return this.items.reduce((count, item) => count + item.quantity, 0);
+  },
+  
+  // Update cart count badge
+  updateCartCount() {
+    const count = this.getItemCount();
+    const badge = document.getElementById('cart-count-badge');
+    if (badge) {
+      badge.textContent = count;
+      badge.style.display = count > 0 ? 'flex' : 'none';
+    }
+  },
+  
+  // Show notification when item is added
+  showAddToCartNotification(productName) {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = 'cart-notification';
+    notification.innerHTML = `
+      <div class="notification-content">
+        <i class="fas fa-check-circle"></i>
+        <span>"${productName}" added to cart!</span>
+      </div>
+    `;
+    
+    // Add styles if not already added
+    if (!document.querySelector('#cart-notification-styles')) {
+      const style = document.createElement('style');
+      style.id = 'cart-notification-styles';
+      style.textContent = `
+        .cart-notification {
+          position: fixed;
+          top: 100px;
+          right: 30px;
+          background: rgba(26, 26, 46, 0.95);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 10px;
+          padding: 15px 20px;
+          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+          z-index: 9999;
+          animation: slideInRight 0.3s ease;
+          max-width: 300px;
+        }
+        
+        .notification-content {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          color: white;
+        }
+        
+        .notification-content i {
+          color: #4cc9f0;
+          font-size: 1.2rem;
+        }
+        
+        .notification-content span {
+          font-size: 0.95rem;
+        }
+        
+        @keyframes slideInRight {
+          from {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+        
+        @keyframes slideOutRight {
+          from {
+            transform: translateX(0);
+            opacity: 1;
+          }
+          to {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+    
+    document.body.appendChild(notification);
+    
+    // Remove notification after 3 seconds
+    setTimeout(() => {
+      notification.style.animation = 'slideOutRight 0.3s ease';
+      setTimeout(() => {
+        if (notification.parentNode) {
+          notification.parentNode.removeChild(notification);
+        }
+      }, 300);
+    }, 3000);
+  }
+};
+
+// Initialize cart on page load
+document.addEventListener('DOMContentLoaded', function() {
+  cart.init();
+  
+  // Listen for cart updates from other pages
+  window.addEventListener('storage', function(e) {
+    if (e.key === 'bigboyCart') {
+      cart.loadFromStorage();
+      cart.updateCartCount();
+    }
+  });
+});
   </script>
   </body>
 </html>
