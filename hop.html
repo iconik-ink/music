@@ -737,7 +737,7 @@
               <li>
                 <a href="cart.html" class="nav-icon-link">
                   <i class="fas fa-shopping-cart"></i>
-                  <span class="cart-count">3</span>
+                  <span class="cart-count"></span>
                 </a>
               </li>
               <li>
@@ -803,364 +803,272 @@
     </div>
 
     <script>
-      // Product data for classical music with audio samples
-      const classicalProducts = [
+      // Product data for HIP HOP music with audio samples
+      const hiphopProducts = [
         {
           id: 1,
-          title: "Moonlight Sonata",
-          composer: "Ludwig van Beethoven",
-          description: "One of Beethoven's most popular piano sonatas...",
-          era: "Classical",
-          type: "Solo",
-          duration: "2:31",
-          bpm: "89",
+          title: "Straight Outta Compton",
+          artist: "N.W.A",
+          description: "Revolutionary West Coast hip hop track...",
+          era: "80s",
+          type: "West Coast",
+          duration: "4:18",
+          bpm: "95",
           price: 12.99,
-          image: "fas fa-moon",
-          tags: ["Piano", "Solo", "Romantic"],
-          audio: "audio/Glass Animals - Heat Waves (2).mp3",
+          image: "fas fa-microphone",
+          tags: ["West Coast", "Gangsta Rap", "80s"],
+          audio: "audio/hiphop1.mp3",
         },
         {
           id: 2,
-          title: "The Four Seasons",
-          composer: "Antonio Vivaldi",
-          description:
-            "A set of four violin concertos depicting the seasons...",
-          era: "Baroque",
-          type: "Orchestral",
-          duration: "2:27",
-          bpm: "83",
-          price: 15.99,
-          image: "fas fa-leaf",
-          tags: ["Violin", "Orchestral", "Baroque"],
-          audio: "audio/four-seasons.mp3",
+          title: "Juicy",
+          artist: "The Notorious B.I.G.",
+          description: "East Coast hip hop classic...",
+          era: "90s",
+          type: "East Coast",
+          duration: "5:03",
+          bpm: "88",
+          price: 14.99,
+          image: "fas fa-crown",
+          tags: ["East Coast", "90s", "Classic"],
+          audio: "audio/hiphop2.mp3",
         },
         {
           id: 3,
-          title: "Symphony No. 5",
-          composer: "Ludwig van Beethoven",
-          description: "Famous for its four-note opening motif...",
-          era: "Classical",
-          type: "Orchestral",
-          duration: "2:20",
-          bpm: "130",
-          price: 14.99,
-          image: "fas fa-music",
-          tags: ["Orchestral", "Symphony", "Classical"],
-          audio: "audio/symphony-5.mp3",
+          title: "In Da Club",
+          artist: "50 Cent",
+          description: "Party anthem from the G-Unit era...",
+          era: "2000s",
+          type: "Party",
+          duration: "3:13",
+          bpm: "134",
+          price: 11.99,
+          image: "fas fa-headphones",
+          tags: ["Party", "2000s", "Club"],
+          audio: "audio/hiphop3.mp3",
         },
         {
           id: 4,
-          title: "Clair de Lune",
-          composer: "Claude Debussy",
-          description: "Dreamy and impressionistic piano piece...",
-          era: "Modern",
-          type: "Solo",
-          duration: "2:31",
-          bpm: "68",
-          price: 9.99,
-          image: "fas fa-moon",
-          tags: ["Piano", "Impressionist", "Solo"],
-          audio: "audio/clair-de-lune.mp3",
+          title: "Lose Yourself",
+          artist: "Eminem",
+          description: "Motivational hip hop track from 8 Mile...",
+          era: "2000s",
+          type: "Motivational",
+          duration: "5:26",
+          bpm: "171",
+          price: 13.99,
+          image: "fas fa-fire",
+          tags: ["Motivational", "Lyrical", "Soundtrack"],
+          audio: "audio/hiphop4.mp3",
         },
         {
           id: 5,
-          title: "The Nutcracker Suite",
-          composer: "Pyotr Ilyich Tchaikovsky",
-          description: "Selection from Tchaikovsky's ballet...",
-          era: "Romantic",
-          type: "Orchestral",
-          duration: "2:18",
-          bpm: "148",
-          price: 16.99,
-          image: "fas fa-gift",
-          tags: ["Ballet", "Orchestral", "Romantic"],
-          audio: "audio/nutcracker.mp3",
+          title: "Gold Digger",
+          artist: "Kanye West ft. Jamie Foxx",
+          description: "Chart-topping single from Late Registration...",
+          era: "2000s",
+          type: "Pop Rap",
+          duration: "3:28",
+          bpm: "98",
+          price: 10.99,
+          image: "fas fa-gem",
+          tags: ["Pop Rap", "Chart", "2000s"],
+          audio: "audio/hiphop5.mp3",
         },
         {
           id: 6,
-          title: "Canon in D",
-          composer: "Johann Pachelbel",
-          description: "Well-known chamber music for weddings...",
-          era: "Baroque",
-          type: "Chamber",
-          duration: "2:45",
-          bpm: "72",
-          price: 8.99,
-          image: "fas fa-music",
-          tags: ["Chamber", "Strings", "Baroque"],
-          audio: "audio/canon-in-d.mp3",
+          title: "Hotline Bling",
+          artist: "Drake",
+          description: "R&B-infused hip hop track...",
+          era: "2010s",
+          type: "R&B Rap",
+          duration: "4:27",
+          bpm: "140",
+          price: 9.99,
+          image: "fas fa-phone",
+          tags: ["R&B", "2010s", "Drake"],
+          audio: "audio/hiphop6.mp3",
         },
         {
           id: 7,
-          title: "Canon in D",
-          composer: "Johann Pachelbel",
-          description: "Well-known chamber music for weddings...",
-          era: "Baroque",
-          type: "Chamber",
-          duration: "2:45",
-          bpm: "72",
-          price: 8.99,
-          image: "fas fa-music",
-          tags: ["Chamber", "Strings", "Baroque"],
-          audio: "audio/canon-in-d.mp3",
+          title: "HUMBLE.",
+          artist: "Kendrick Lamar",
+          description: "Grammy-winning single from DAMN...",
+          era: "2010s",
+          type: "Conscious",
+          duration: "2:57",
+          bpm: "150",
+          price: 12.99,
+          image: "fas fa-star",
+          tags: ["Conscious", "Grammy", "2010s"],
+          audio: "audio/hiphop7.mp3",
         },
         {
           id: 8,
-          title: "Canon in D",
-          composer: "Johann Pachelbel",
-          description: "Well-known chamber music for weddings...",
-          era: "Baroque",
-          type: "Chamber",
-          duration: "2:45",
-          bpm: "72",
-          price: 8.99,
-          image: "fas fa-music",
-          tags: ["Chamber", "Strings", "Baroque"],
-          audio: "audio/canon-in-d.mp3",
+          title: "Sicko Mode",
+          artist: "Travis Scott ft. Drake",
+          description: "Multi-part trap anthem...",
+          era: "2010s",
+          type: "Trap",
+          duration: "5:12",
+          bpm: "154",
+          price: 11.99,
+          image: "fas fa-bolt",
+          tags: ["Trap", "Anthem", "2010s"],
+          audio: "audio/hiphop8.mp3",
         },
         {
           id: 9,
-          title: "Canon in D",
-          composer: "Johann Pachelbel",
-          description: "Well-known chamber music for weddings...",
-          era: "Baroque",
-          type: "Chamber",
-          duration: "2:45",
-          bpm: "72",
-          price: 8.99,
-          image: "fas fa-music",
-          tags: ["Chamber", "Strings", "Baroque"],
-          audio: "audio/canon-in-d.mp3",
+          title: "Bad and Boujee",
+          artist: "Migos ft. Lil Uzi Vert",
+          description: "Cultural phenomenon from 2016...",
+          era: "2010s",
+          type: "Trap",
+          duration: "5:43",
+          bpm: "129",
+          price: 10.99,
+          image: "fas fa-money-bill-wave",
+          tags: ["Trap", "Migos", "Viral"],
+          audio: "audio/hiphop9.mp3",
         },
         {
           id: 10,
-          title: "Canon in D",
-          composer: "Johann Pachelbel",
-          description: "Well-known chamber music for weddings...",
-          era: "Baroque",
-          type: "Chamber",
-          duration: "2:45",
-          bpm: "72",
-          price: 8.99,
-          image: "fas fa-music",
-          tags: ["Chamber", "Strings", "Baroque"],
-          audio: "audio/canon-in-d.mp3",
+          title: "Old Town Road",
+          artist: "Lil Nas X ft. Billy Ray Cyrus",
+          description: "Country-trap crossover record breaker...",
+          era: "2010s",
+          type: "Country Trap",
+          duration: "2:37",
+          bpm: "136",
+          price: 9.99,
+          image: "fas fa-horse",
+          tags: ["Country Trap", "Viral", "2010s"],
+          audio: "audio/hiphop10.mp3",
         },
-        {
-          id: 11,
-          title: "Canon in D",
-          composer: "Johann Pachelbel",
-          description: "Well-known chamber music for weddings...",
-          era: "Baroque",
-          type: "Chamber",
-          duration: "2:45",
-          bpm: "72",
-          price: 8.99,
-          image: "fas fa-music",
-          tags: ["Chamber", "Strings", "Baroque"],
-          audio: "audio/canon-in-d.mp3",
-        },
-        {
-          id: 12,
-          title: "Canon in D",
-          composer: "Johann Pachelbel",
-          description: "Well-known chamber music for weddings...",
-          era: "Baroque",
-          type: "Chamber",
-          duration: "2:45",
-          bpm: "72",
-          price: 8.99,
-          image: "fas fa-music",
-          tags: ["Chamber", "Strings", "Baroque"],
-          audio: "audio/canon-in-d.mp3",
-        },
-        {
-          id: 13,
-          title: "Canon in D",
-          composer: "Johann Pachelbel",
-          description: "Well-known chamber music for weddings...",
-          era: "Baroque",
-          type: "Chamber",
-          duration: "2:45",
-          bpm: "72",
-          price: 8.99,
-          image: "fas fa-music",
-          tags: ["Chamber", "Strings", "Baroque"],
-          audio: "audio/canon-in-d.mp3",
-        },
-        {
-          id: 14,
-          title: "Canon in D",
-          composer: "Johann Pachelbel",
-          description: "Well-known chamber music for weddings...",
-          era: "Baroque",
-          type: "Chamber",
-          duration: "2:45",
-          bpm: "72",
-          price: 8.99,
-          image: "fas fa-music",
-          tags: ["Chamber", "Strings", "Baroque"],
-          audio: "audio/canon-in-d.mp3",
-        },
-        {
-          id: 15,
-          title: "Canon in D",
-          composer: "Johann Pachelbel",
-          description: "Well-known chamber music for weddings...",
-          era: "Baroque",
-          type: "Chamber",
-          duration: "2:45",
-          bpm: "72",
-          price: 8.99,
-          image: "fas fa-music",
-          tags: ["Chamber", "Strings", "Baroque"],
-          audio: "audio/canon-in-d.mp3",
-        },
-        {
-          id: 16,
-          title: "Canon in D",
-          composer: "Johann Pachelbel",
-          description: "Well-known chamber music for weddings...",
-          era: "Baroque",
-          type: "Chamber",
-          duration: "2:45",
-          bpm: "72",
-          price: 8.99,
-          image: "fas fa-music",
-          tags: ["Chamber", "Strings", "Baroque"],
-          audio: "audio/canon-in-d.mp3",
-        },
-        {
-          id: 17,
-          title: "Canon in D",
-          composer: "Johann Pachelbel",
-          description: "Well-known chamber music for weddings...",
-          era: "Baroque",
-          type: "Chamber",
-          duration: "2:45",
-          bpm: "72",
-          price: 8.99,
-          image: "fas fa-music",
-          tags: ["Chamber", "Strings", "Baroque"],
-          audio: "audio/canon-in-d.mp3",
-        },
-        {
-          id: 18,
-          title: "Canon in D",
-          composer: "Johann Pachelbel",
-          description: "Well-known chamber music for weddings...",
-          era: "Baroque",
-          type: "Chamber",
-          duration: "2:45",
-          bpm: "72",
-          price: 8.99,
-          image: "fas fa-music",
-          tags: ["Chamber", "Strings", "Baroque"],
-          audio: "audio/canon-in-d.mp3",
-        },
-        {
-          id: 19,
-          title: "Canon in D",
-          composer: "Johann Pachelbel",
-          description: "Well-known chamber music for weddings...",
-          era: "Baroque",
-          type: "Chamber",
-          duration: "2:45",
-          bpm: "72",
-          price: 8.99,
-          image: "fas fa-music",
-          tags: ["Chamber", "Strings", "Baroque"],
-          audio: "audio/canon-in-d.mp3",
-        },
-        {
-          id: 20,
-          title: "Canon in D",
-          composer: "Johann Pachelbel",
-          description: "Well-known chamber music for weddings...",
-          era: "Baroque",
-          type: "Chamber",
-          duration: "2:45",
-          bpm: "72",
-          price: 8.99,
-          image: "fas fa-music",
-          tags: ["Chamber", "Strings", "Baroque"],
-          audio: "audio/canon-in-d.mp3",
-        },
-        {
-          id: 21,
-          title: "Canon in D",
-          composer: "Johann Pachelbel",
-          description: "Well-known chamber music for weddings...",
-          era: "Baroque",
-          type: "Chamber",
-          duration: "2:45",
-          bpm: "72",
-          price: 8.99,
-          image: "fas fa-music",
-          tags: ["Chamber", "Strings", "Baroque"],
-          audio: "audio/canon-in-d.mp3",
-        },
-        {
-          id: 22,
-          title: "Canon in D",
-          composer: "Johann Pachelbel",
-          description: "Well-known chamber music for weddings...",
-          era: "Baroque",
-          type: "Chamber",
-          duration: "2:45",
-          bpm: "72",
-          price: 8.99,
-          image: "fas fa-music",
-          tags: ["Chamber", "Strings", "Baroque"],
-          audio: "audio/canon-in-d.mp3",
-        },
-        {
-          id: 23,
-          title: "Canon in D",
-          composer: "Johann Pachelbel",
-          description: "Well-known chamber music for weddings...",
-          era: "Baroque",
-          type: "Chamber",
-          duration: "2:45",
-          bpm: "72",
-          price: 8.99,
-          image: "fas fa-music",
-          tags: ["Chamber", "Strings", "Baroque"],
-          audio: "audio/canon-in-d.mp3",
-        },
-        {
-          id: 24,
-          title: "Canon in D",
-          composer: "Johann Pachelbel",
-          description: "Well-known chamber music for weddings...",
-          era: "Baroque",
-          type: "Chamber",
-          duration: "2:45",
-          bpm: "72",
-          price: 8.99,
-          image: "fas fa-music",
-          tags: ["Chamber", "Strings", "Baroque"],
-          audio: "audio/canon-in-d.mp3",
-        },
-        {
-          id: 25,
-          title: "Canon in D",
-          composer: "Johann Pachelbel",
-          description: "Well-known chamber music for weddings...",
-          era: "Baroque",
-          type: "Chamber",
-          duration: "2:45",
-          bpm: "72",
-          price: 8.99,
-          image: "fas fa-music",
-          tags: ["Chamber", "Strings", "Baroque"],
-          audio: "audio/canon-in-d.mp3",
-        },
+        // Add more hip hop tracks as needed
       ];
 
       let currentAudio = null;
 
-      // Function to display products
+      // CART FUNCTIONALITY
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      // Function to add item to cart with success message
+      function addToCart(productId) {
+        const product = hiphopProducts.find((p) => p.id === productId);
+
+        if (!product) return;
+
+        // Check if product already exists in cart
+        const existingItem = cart.find((item) => item.id === productId);
+
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push({
+            id: product.id,
+            title: product.title,
+            artist: product.artist, // Changed from composer to artist
+            price: product.price,
+            image: product.image,
+            description: product.description,
+            quantity: 1,
+          });
+        }
+
+        // Save to localStorage
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        // Update cart count
+        updateCartCount();
+
+        // Show success notification
+        showCartNotification(`✓ ${product.title} added to cart successfully!`);
+      }
+
+      // Function to update cart count in header
+      function updateCartCount() {
+        const cartCount = cart.reduce(
+          (total, item) => total + item.quantity,
+          0
+        );
+        const cartCountElement = document.querySelector(".cart-count");
+
+        if (cartCountElement) {
+          cartCountElement.textContent = cartCount;
+        }
+      }
+
+      // Function to show cart success notification
+      function showCartNotification(message) {
+        // Create notification element
+        const notification = document.createElement("div");
+        notification.className = "cart-notification";
+        notification.innerHTML = `
+          <div class="notification-content">
+            <i class="fas fa-check-circle"></i>
+            <span>${message}</span>
+          </div>
+        `;
+        notification.style.cssText = `
+          position: fixed;
+          top: 100px;
+          right: 20px;
+          background: #4a6cf7;
+          color: white;
+          padding: 15px 20px;
+          border-radius: 10px;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+          z-index: 2000;
+          transform: translateX(150%);
+          transition: transform 0.3s ease;
+          font-weight: 500;
+          max-width: 350px;
+        `;
+
+        // Style for notification content
+        const contentStyle = `
+          .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+          }
+          .notification-content i {
+            font-size: 18px;
+            color: #ffffff;
+          }
+        `;
+
+        // Add styles
+        const styleSheet = document.createElement("style");
+        styleSheet.textContent = contentStyle;
+        document.head.appendChild(styleSheet);
+
+        document.body.appendChild(notification);
+
+        // Show notification
+        setTimeout(() => {
+          notification.style.transform = "translateX(0)";
+        }, 10);
+
+        // Hide and remove notification after 3 seconds
+        setTimeout(() => {
+          notification.style.transform = "translateX(150%)";
+          setTimeout(() => {
+            notification.remove();
+            styleSheet.remove();
+          }, 300);
+        }, 3000);
+      }
+
+      // Function to handle cart button click
+      function handleCartButtonClick(e, productId) {
+        e.stopPropagation(); // Prevent navigation to product page
+        addToCart(productId);
+      }
+
+      // Function to display products - UPDATED VERSION WITH CART BUTTONS
       function displayProducts(products) {
         const productsContainer = document.getElementById("products-container");
         productsContainer.innerHTML = "";
@@ -1181,7 +1089,7 @@
               <div class="product-header">
                 <div>
                   <h3>${product.title}</h3>
-                  <p class="product-composer">by ${product.composer}</p>
+                  <p class="product-composer">by ${product.artist}</p>
                 </div>
               </div>
               
@@ -1207,7 +1115,9 @@
                   <button class="action-btn" title="Add to favorites">
                     <i class="far fa-heart"></i>
                   </button>
-                  <button class="action-btn" title="Add to cart">
+                  <button class="action-btn cart-btn" title="Add to cart" data-id="${
+                    product.id
+                  }">
                     <i class="fas fa-shopping-cart"></i>
                   </button>
                   <button class="download-btn">
@@ -1238,6 +1148,12 @@
           playButton.addEventListener("click", function (e) {
             e.stopPropagation();
             toggleAudio(this);
+          });
+
+          // Add cart button functionality
+          const cartButton = productCard.querySelector(".cart-btn");
+          cartButton.addEventListener("click", function (e) {
+            handleCartButtonClick(e, product.id);
           });
         });
       }
@@ -1294,6 +1210,7 @@
           currentAudio = null;
         };
       }
+
       // Function to setup pagination
       function setupPagination(products, page = 1, itemsPerPage = 6) {
         const paginationContainer = document.getElementById(
@@ -1377,12 +1294,13 @@
           }
         });
       });
-      // Function to filter products
+
+      // Function to filter products - UPDATED FOR HIP HOP
       function filterProducts(filter) {
-        let filteredProducts = classicalProducts;
+        let filteredProducts = hiphopProducts;
 
         if (filter !== "all") {
-          filteredProducts = classicalProducts.filter(
+          filteredProducts = hiphopProducts.filter(
             (product) =>
               product.era.toLowerCase() === filter.toLowerCase() ||
               product.type.toLowerCase() === filter.toLowerCase()
@@ -1409,12 +1327,18 @@
         return filteredProducts;
       }
 
-      // Initialize the page
+      // Initialize the page - UPDATED VERSION
       document.addEventListener("DOMContentLoaded", function () {
+        // Update cart count on page load
+        updateCartCount();
+
         // Display initial products
         const initialProducts = filterProducts("all");
         displayProducts(initialProducts.slice(0, 6));
         setupPagination(initialProducts);
+
+        // Update filter buttons for hip hop categories
+        updateFilterButtons();
 
         // Add event listeners to filter buttons
         document.querySelectorAll(".filter-btn").forEach((button) => {
@@ -1450,6 +1374,23 @@
             setupPagination(filteredProducts);
           });
       });
+
+      // Function to update filter buttons for hip hop
+      function updateFilterButtons() {
+        const filterContainer = document.querySelector(".filter-options");
+        if (filterContainer) {
+          filterContainer.innerHTML = `
+            <button class="filter-btn active">All</button>
+            <button class="filter-btn">80s</button>
+            <button class="filter-btn">90s</button>
+            <button class="filter-btn">2000s</button>
+            <button class="filter-btn">2010s</button>
+            <button class="filter-btn">West Coast</button>
+            <button class="filter-btn">East Coast</button>
+            <button class="filter-btn">Trap</button>
+          `;
+        }
+      }
     </script>
   </body>
 </html>

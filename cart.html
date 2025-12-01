@@ -21,7 +21,29 @@
         color: #333;
         line-height: 1.6;
       }
+      .remove-btn {
+        margin-left: 20px;
+        color: #ff4757;
+        cursor: pointer;
+        font-size: 14px;
+        background: none;
+        border: none;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px 10px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+      }
 
+      .remove-btn:hover {
+        background-color: #ffeff0;
+        transform: translateY(-1px);
+      }
+
+      .remove-btn i {
+        font-size: 12px;
+      }
       .container {
         max-width: 1200px;
         margin: 0 auto;
@@ -366,14 +388,14 @@
     </style>
   </head>
   <body>
-    <!-- This page will be generated entirely by JavaScript -->
-
     <script>
-      // Cart data - Start with empty cart to test the redirect
-      const cartData = [];
+      // Cart data from localStorage
+      let cartData = JSON.parse(localStorage.getItem("cart")) || [];
 
       // Create the entire page with JavaScript
       document.addEventListener("DOMContentLoaded", function () {
+        console.log("Cart data from localStorage:", cartData); // Debug log
+
         // Check if cart is empty and redirect after a short delay
         if (cartData.length === 0) {
           showRedirectMessage();
@@ -395,9 +417,10 @@
         message.className = "redirect-message";
         message.innerHTML = `
           <h2>🛒 Your Cart is Empty</h2>
-          <p>Redirecting you to our product store...</p>
+          <p>Redirecting you to our Hip Hop store...</p>
           <div class="redirect-countdown" id="countdown">3</div>
           <p><a href="index.html" style="color: #4a6cf7; text-decoration: none;">Click here if not redirected</a></p>
+          <p><a href="hop.html" style="color: #8a6dae; text-decoration: none; margin-top: 10px; display: inline-block;">Browse Hip Hop Music</a></p>
         `;
 
         overlay.appendChild(message);
@@ -412,9 +435,30 @@
 
           if (countdown <= 0) {
             clearInterval(countdownInterval);
-            window.location.href = "index.html"; // Redirect to main store page
+            window.location.href = "hop.html"; // Redirect to Hip Hop page
           }
         }, 1000);
+      }
+
+      function getImageForProduct(productId) {
+        // Use FontAwesome icons or default image based on product
+        const iconMap = {
+          "fas fa-moon": "🌙",
+          "fas fa-leaf": "🍃",
+          "fas fa-music": "🎵",
+          "fas fa-gift": "🎁",
+          "fas fa-headphones": "🎧",
+          "fas fa-microphone": "🎤",
+          "fas fa-drum": "🥁",
+          "fas fa-volume-up": "🔊",
+        };
+
+        const product = cartData.find((item) => item.id === productId);
+        if (product && product.image) {
+          return iconMap[product.image] || "🎵";
+        }
+
+        return "🎵";
       }
 
       function createPageStructure() {
@@ -426,14 +470,15 @@
         // Logo with back button
         const logoLink = document.createElement("a");
         logoLink.className = "logo";
-        logoLink.href = "index.html";
-        logoLink.innerHTML = '<i class="fas fa-arrow-left"></i> BigBoy Records';
+        logoLink.href = "javascript:history.back()";
+        logoLink.innerHTML =
+          '<i class="fas fa-arrow-left"></i> Continue Shopping';
 
         const cartIcon = document.createElement("div");
         cartIcon.className = "cart-icon";
         cartIcon.innerHTML =
           '<i class="fas fa-shopping-cart"></i><span class="cart-count">' +
-          cartData.length +
+          cartData.reduce((total, item) => total + (item.quantity || 1), 0) +
           "</span>";
 
         headerContent.appendChild(logoLink);
@@ -460,33 +505,36 @@
         const cartSummary = document.createElement("div");
         cartSummary.className = "cart-summary";
         cartSummary.innerHTML = `
-                <h2 class="summary-title">Order Summary</h2>
-                <div class="summary-row">
-                    <span>Subtotal (<span id="item-count">${cartData.length}</span> items)</span>
-                    <span id="subtotal">$0.00</span>
-                </div>
-                <div class="summary-row">
-                    <span>Shipping</span>
-                    <span id="shipping">$9.99</span>
-                </div>
-                <div class="summary-row">
-                    <span>Tax</span>
-                    <span id="tax">$0.00</span>
-                </div>
-                <div class="summary-row summary-total">
-                    <span>Total</span>
-                    <span id="total">$0.00</span>
-                </div>
-                
-                <div class="promo-code">
-                    <p>Have a promo code?</p>
-                    <input type="text" class="promo-input" placeholder="Enter code">
-                    <button class="apply-btn">Apply</button>
-                </div>
-                
-                <button class="checkout-btn">Proceed to Checkout</button>
-                <a href="index.html" class="continue-shopping">Continue Shopping</a>
-            `;
+          <h2 class="summary-title">Order Summary</h2>
+          <div class="summary-row">
+              <span>Subtotal (<span id="item-count">${cartData.reduce(
+                (total, item) => total + (item.quantity || 1),
+                0
+              )}</span> items)</span>
+              <span id="subtotal">$0.00</span>
+          </div>
+          <div class="summary-row">
+              <span>Shipping</span>
+              <span id="shipping">$9.99</span>
+          </div>
+          <div class="summary-row">
+              <span>Tax (8%)</span>
+              <span id="tax">$0.00</span>
+          </div>
+          <div class="summary-row summary-total">
+              <span>Total</span>
+              <span id="total">$0.00</span>
+          </div>
+          
+          <div class="promo-code">
+              <p>Have a promo code?</p>
+              <input type="text" class="promo-input" placeholder="Enter code">
+              <button class="apply-btn">Apply</button>
+          </div>
+          
+          <button class="checkout-btn">Proceed to Checkout</button>
+          <a href="hop.html" class="continue-shopping">Continue Shopping</a>
+        `;
 
         cartContainer.appendChild(cartItems);
         cartContainer.appendChild(cartSummary);
@@ -503,40 +551,59 @@
         );
         cartItemsContainer.innerHTML = "";
 
+        console.log("Rendering cart items:", cartData); // Debug log
+
         if (cartData.length === 0) {
           cartItemsContainer.innerHTML = `
-                    <div class="empty-cart">
-                        <i class="fas fa-shopping-cart"></i>
-                        <p>Your cart is empty</p>
-                        <button class="shop-now-btn" onclick="window.location.href='index.html'">Browse Products</button>
-                    </div>
-                `;
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+                <button class="shop-now-btn" onclick="window.location.href='hop.html'">Browse Hip Hop Music</button>
+            </div>
+          `;
+
+          // Update cart summary to show empty state
+          document.getElementById("item-count").textContent = "0";
+          document.getElementById("subtotal").textContent = "$0.00";
+          document.getElementById("shipping").textContent = "$0.00";
+          document.getElementById("tax").textContent = "$0.00";
+          document.getElementById("total").textContent = "$0.00";
+
           return;
         }
 
-        cartData.forEach((item) => {
+        cartData.forEach((item, index) => {
           const cartItem = document.createElement("div");
           cartItem.className = "cart-item";
           cartItem.dataset.id = item.id;
+          cartItem.dataset.index = index; // Add index for easy removal
+
+          // Ensure item has a quantity property
+          if (!item.quantity) item.quantity = 1;
 
           cartItem.innerHTML = `
-                    <img src="${item.image}" alt="${
-            item.name
-          }" class="item-image">
-                    <div class="item-details">
-                        <h3 class="item-name">${item.name}</h3>
-                        <div class="item-price">$${item.price.toFixed(2)}</div>
-                        <p>${item.description}</p>
-                        <div class="item-actions">
-                            <div class="quantity-btn minus">-</div>
-                            <input type="text" class="quantity-input" value="${
-                              item.quantity
-                            }">
-                            <div class="quantity-btn plus">+</div>
-                            <div class="remove-btn">Remove</div>
-                        </div>
-                    </div>
-                `;
+            <div class="item-image" style="width: 120px; height: 120px; display: flex; align-items: center; justify-content: center; background: linear-gradient(45deg, #4a6cf7, #3a5bd9); border-radius: 8px; margin-right: 20px; font-size: 48px; color: white;">
+              ${getImageForProduct(item.id)}
+            </div>
+            <div class="item-details">
+                <h3 class="item-name">${item.title || "Unknown Product"}</h3>
+                <div class="item-price">$${(item.price || 0).toFixed(2)}</div>
+                <p>by ${item.composer || item.artist || "Unknown Artist"}</p>
+                <p style="font-size: 0.9rem; color: #666; margin-top: 5px;">${(
+                  item.description || ""
+                ).substring(0, 100)}...</p>
+                <div class="item-actions">
+                    <div class="quantity-btn minus">-</div>
+                    <input type="text" class="quantity-input" value="${
+                      item.quantity
+                    }">
+                    <div class="quantity-btn plus">+</div>
+                    <button class="remove-btn" data-index="${index}">
+                      <i class="fas fa-trash"></i> Remove
+                    </button>
+                </div>
+            </div>
+          `;
 
           cartItemsContainer.appendChild(cartItem);
         });
@@ -550,16 +617,14 @@
             const input =
               e.target.parentElement.querySelector(".quantity-input");
             let quantity = parseInt(input.value);
+            const itemId = parseInt(e.target.closest(".cart-item").dataset.id);
 
             if (quantity > 1) {
               quantity--;
               input.value = quantity;
-
-              const itemId = parseInt(
-                e.target.closest(".cart-item").dataset.id
-              );
               updateItemQuantity(itemId, quantity);
               updateCartTotal();
+              updateLocalStorage();
               showNotification("Quantity updated");
             }
           }
@@ -569,68 +634,71 @@
             const input =
               e.target.parentElement.querySelector(".quantity-input");
             let quantity = parseInt(input.value);
+            const itemId = parseInt(e.target.closest(".cart-item").dataset.id);
 
             quantity++;
             input.value = quantity;
-
-            const itemId = parseInt(e.target.closest(".cart-item").dataset.id);
             updateItemQuantity(itemId, quantity);
             updateCartTotal();
+            updateLocalStorage();
             showNotification("Quantity updated");
           }
 
-          // Remove button
-          if (e.target.classList.contains("remove-btn")) {
-            const itemId = parseInt(e.target.closest(".cart-item").dataset.id);
-            removeItem(itemId);
-            showNotification("Item removed from cart");
-
-            // Check if cart is now empty and redirect
-            if (cartData.length === 0) {
-              setTimeout(() => {
-                showRedirectMessage();
-              }, 1500);
-            }
+          // Remove button - improved selector
+          if (
+            e.target.classList.contains("remove-btn") ||
+            e.target.closest(".remove-btn")
+          ) {
+            const removeBtn = e.target.classList.contains("remove-btn")
+              ? e.target
+              : e.target.closest(".remove-btn");
+            const itemIndex = parseInt(removeBtn.getAttribute("data-index"));
+            removeItem(itemIndex);
           }
 
           // Shop now button (empty cart)
           if (e.target.classList.contains("shop-now-btn")) {
-            window.location.href = "index.html";
+            window.location.href = "hop.html";
           }
         });
 
         // Checkout button
-        document
-          .querySelector(".checkout-btn")
-          .addEventListener("click", function () {
+        const checkoutBtn = document.querySelector(".checkout-btn");
+        if (checkoutBtn) {
+          checkoutBtn.addEventListener("click", function () {
             showNotification("Proceeding to checkout!");
+            // In a real application, this would redirect to a checkout page
           });
+        }
 
         // Apply promo code
-        document
-          .querySelector(".apply-btn")
-          .addEventListener("click", function () {
+        const applyBtn = document.querySelector(".apply-btn");
+        if (applyBtn) {
+          applyBtn.addEventListener("click", function () {
             const promoCode = document.querySelector(".promo-input").value;
             if (promoCode) {
               showNotification(`Promo code "${promoCode}" applied!`);
+              // Apply discount logic would go here
             } else {
               showNotification("Please enter a promo code");
             }
           });
+        }
 
         // Quantity input change
         document.addEventListener("change", function (e) {
           if (e.target.classList.contains("quantity-input")) {
             let quantity = parseInt(e.target.value);
+            const itemId = parseInt(e.target.closest(".cart-item").dataset.id);
 
             if (isNaN(quantity) || quantity < 1) {
               quantity = 1;
               e.target.value = quantity;
             }
 
-            const itemId = parseInt(e.target.closest(".cart-item").dataset.id);
             updateItemQuantity(itemId, quantity);
             updateCartTotal();
+            updateLocalStorage();
             showNotification("Quantity updated");
           }
         });
@@ -643,15 +711,38 @@
         }
       }
 
-      function removeItem(itemId) {
-        const itemIndex = cartData.findIndex((item) => item.id === itemId);
-        if (itemIndex !== -1) {
-          cartData.splice(itemIndex, 1);
-          renderCartItems();
-          updateCartTotal();
+      function removeItem(itemIndex) {
+        if (itemIndex < 0 || itemIndex >= cartData.length) return;
 
-          // Update cart count in header
-          document.querySelector(".cart-count").textContent = cartData.length;
+        const removedItem = cartData[itemIndex];
+        cartData.splice(itemIndex, 1);
+
+        // Show confirmation message
+        showNotification(`"${removedItem.title}" removed from cart`);
+
+        // Update the display
+        renderCartItems();
+        updateCartTotal();
+        updateLocalStorage();
+
+        // Update cart count in header
+        const cartCount = cartData.reduce(
+          (total, item) => total + (item.quantity || 1),
+          0
+        );
+        document.querySelector(".cart-count").textContent = cartCount;
+
+        // Update item count in summary
+        const itemCountElement = document.getElementById("item-count");
+        if (itemCountElement) {
+          itemCountElement.textContent = cartCount;
+        }
+
+        // Check if cart is now empty and redirect
+        if (cartData.length === 0) {
+          setTimeout(() => {
+            showRedirectMessage();
+          }, 2000);
         }
       }
 
@@ -660,20 +751,34 @@
         let itemCount = 0;
 
         cartData.forEach((item) => {
-          subtotal += item.price * item.quantity;
-          itemCount += item.quantity;
+          const price = item.price || 0;
+          const quantity = item.quantity || 1;
+          subtotal += price * quantity;
+          itemCount += quantity;
         });
 
-        const shipping = 9.99;
+        const shipping = subtotal > 50 ? 0 : 9.99; // Free shipping over $50
         const tax = subtotal * 0.08;
         const total = subtotal + shipping + tax;
 
-        document.getElementById("subtotal").textContent = `$${subtotal.toFixed(
-          2
-        )}`;
-        document.getElementById("item-count").textContent = itemCount;
-        document.getElementById("tax").textContent = `$${tax.toFixed(2)}`;
-        document.getElementById("total").textContent = `$${total.toFixed(2)}`;
+        const subtotalElement = document.getElementById("subtotal");
+        const itemCountElement = document.getElementById("item-count");
+        const shippingElement = document.getElementById("shipping");
+        const taxElement = document.getElementById("tax");
+        const totalElement = document.getElementById("total");
+
+        if (subtotalElement)
+          subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+        if (itemCountElement) itemCountElement.textContent = itemCount;
+        if (shippingElement)
+          shippingElement.textContent =
+            shipping === 0 ? "FREE" : `$${shipping.toFixed(2)}`;
+        if (taxElement) taxElement.textContent = `$${tax.toFixed(2)}`;
+        if (totalElement) totalElement.textContent = `$${total.toFixed(2)}`;
+      }
+
+      function updateLocalStorage() {
+        localStorage.setItem("cart", JSON.stringify(cartData));
       }
 
       function showNotification(message) {
@@ -686,7 +791,12 @@
         // Create new notification
         const notification = document.createElement("div");
         notification.className = "notification";
-        notification.textContent = message;
+        notification.innerHTML = `
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <i class="fas fa-trash" style="font-size: 18px;"></i>
+            <span>${message}</span>
+          </div>
+        `;
         document.body.appendChild(notification);
 
         // Show notification
